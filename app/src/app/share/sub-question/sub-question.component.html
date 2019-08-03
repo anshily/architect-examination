@@ -1,0 +1,57 @@
+<div style="width: 100vw;display: flex;flex-direction: column">
+
+  <ion-card *ngIf="question && question['question_type_id'] == 1">
+    <ion-card-header *ngIf="question">
+      <span>单选</span>
+      <div [innerHTML]="question['question_title']"></div>
+    </ion-card-header>
+    <!--<div *ngIf="question" [innerHTML]="question['question_title']" style="padding: 1rem">-->
+
+    <!--</div>-->
+    <!--<div *ngIf="question">-->
+      <!--<div [innerHTML]="question['question_title']"></div>-->
+    <!--</div>-->
+    <ion-radio-group>
+      <ion-list>
+        <ion-item *ngFor="let entry of answers">
+          <!--<ion-label>{{entry.name}}</ion-label>-->
+          <!--<ion-label [innerHTML]="entry.name"></ion-label>-->
+          <ion-text [innerHTML]="entry.name"></ion-text>
+          <ion-radio (ionSelect)="radioSelect(entry)" slot="start" value="{{entry.index_number}}"></ion-radio>
+        </ion-item>
+      </ion-list>
+    </ion-radio-group>
+  </ion-card>
+
+  <ion-card *ngIf="question && question['question_type_id'] == 2">
+    <!--<ion-card-header>多选* {{question['question_title']}}</ion-card-header>-->
+    <ion-card-header *ngIf="question"><span>多选*</span><div [innerHTML]="question['question_title']"></div></ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let entry of answers">
+          <!--<ion-label>{{entry.name}}</ion-label>-->
+          <!--<ion-label [innerHTML]="entry.name"></ion-label>-->
+          <!--<div [innerHTML]="entry.name"></div>-->
+          <ion-text [innerHTML]="entry.name"></ion-text>
+          <ion-checkbox (ionChange)="checkChange()" slot="start" [(ngModel)]="entry.isChecked"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="question && question['question_type_id'] == 3">
+    <!--<ion-card-header *ngIf="question">判断*{{question['question_title']}}</ion-card-header>-->
+    <ion-card-header *ngIf="question"><span>判断*</span><div [innerHTML]="question['question_title']"></div></ion-card-header>
+    <ion-radio-group>
+      <ion-list>
+        <ion-item *ngFor="let entry of answers">
+          <!--<ion-label>{{entry.name}}</ion-label>-->
+          <!--<ion-label [innerHTML]="entry.name"></ion-label>-->
+          <ion-text [innerHTML]="entry.name"></ion-text>
+          <ion-radio (ionSelect)="radioSelect(entry)" slot="start" value="{{entry.index_number}}"></ion-radio>
+        </ion-item>
+      </ion-list>
+    </ion-radio-group>
+  </ion-card>
+</div>

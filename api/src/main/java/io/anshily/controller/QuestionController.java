@@ -48,11 +48,22 @@ public class QuestionController {
     @GetMapping("/detail")
     public Result detail(@RequestParam Integer id) {
         Question question = questionService.findById(id);
+
+        Map<String,Object> resMap = new HashMap<String,Object>();
+
+        if (question.getQuestion_type_id() == 6){
+            Condition conditionQuestion = new Condition(Question.class);
+            Example.Criteria criteria = conditionQuestion.createCriteria();
+            criteria.andEqualTo("parent_id", id);
+            List<Question> questions = questionService.findByCondition(conditionQuestion);
+            resMap.put("subQuestion", questions);
+        }
+
         Condition condition = new Condition(Answer.class);
         Example.Criteria criteria = condition.createCriteria();
         criteria.andEqualTo("question_bank_id", id);
         List<Answer> answers = answerService.findByCondition(condition);
-        Map<String,Object> resMap = new HashMap<String,Object>();
+
         resMap.put("detail", question);
         resMap.put("answer", answers);
         return ResultGenerator.successResult(resMap);
