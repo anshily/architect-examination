@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditBackgoundPage } from './edit-backgound.page';
+import { SubQuestionComponent } from './sub-question.component';
 
-describe('EditBackgoundPage', () => {
-  let component: EditBackgoundPage;
-  let fixture: ComponentFixture<EditBackgoundPage>;
+describe('SubQuestionComponent', () => {
+  let component: SubQuestionComponent;
+  let fixture: ComponentFixture<SubQuestionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditBackgoundPage ],
+      declarations: [ SubQuestionComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditBackgoundPage);
+    fixture = TestBed.createComponent(SubQuestionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

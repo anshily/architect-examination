@@ -2,11 +2,11 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
-  selector: 'app-question',
-  templateUrl: './question.component.html',
-  styleUrls: ['./question.component.scss'],
+    selector: 'app-sub-question',
+    templateUrl: './sub-question.component.html',
+    styleUrls: ['./sub-question.component.scss'],
 })
-export class QuestionComponent implements OnInit {
+export class SubQuestionComponent implements OnInit {
     @Output() updateResult: EventEmitter<any> = new EventEmitter();
     @Input() questionId;
     question;
@@ -15,20 +15,22 @@ export class QuestionComponent implements OnInit {
     rightResult;
     userResult;
     showResult = false;
-  constructor(private http: HttpClient) { }
 
-  ngOnInit() {
-      this.http.get('https://localhost:8888/question/detail?id=' + this.questionId).subscribe(res => {
-          console.log(res);
-          if (res['code'] === 0) {
-              this.question = res['data']['detail'];
-              this.answers = res['data']['answer'].map(item => {
-                  item['isChecked'] = false;
-                  return item;
-              });
-          }
-      });
-  }
+    constructor(private http: HttpClient) {
+    }
+
+    ngOnInit() {
+        this.http.get('https://localhost:8888/question/detail?id=' + this.questionId).subscribe(res => {
+            console.log(res);
+            if (res['code'] === 0) {
+                this.question = res['data']['detail'];
+                this.answers = res['data']['answer'].map(item => {
+                    item['isChecked'] = false;
+                    return item;
+                });
+            }
+        });
+    }
 
     checkChange() {
         // let tmp = this.answers.filter(item =>  {
@@ -37,19 +39,20 @@ export class QuestionComponent implements OnInit {
         // console.log(tmp);
         this.checkResult();
     }
+
     checkResult() {
         let isRight = true;
         let rightResult = [];
         let userResult = [];
         this.answers.forEach(item => {
-            if (item['isChecked']){
+            if (item['isChecked']) {
                 userResult.push(item['index_letter']);
             }
             if (item['result'] === 1) {
                 rightResult.push(item['index_letter']);
             }
             // 答案项未选中 或者 选中项非答案 皆判错
-            if ( (item['result'] === 1 && !item['isChecked']) || (item['isChecked'] && item['result'] === 0) ) {
+            if ((item['result'] === 1 && !item['isChecked']) || (item['isChecked'] && item['result'] === 0)) {
                 isRight = false;
             }
         });
@@ -65,6 +68,7 @@ export class QuestionComponent implements OnInit {
             question: this.question
         });
     }
+
     radioSelect(e) {
         // console.log(e);
         let isRight = false;

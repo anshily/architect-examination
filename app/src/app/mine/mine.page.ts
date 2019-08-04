@@ -1,10 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {IonInfiniteScroll, MenuController, ModalController} from '@ionic/angular';
 import {Router} from '@angular/router';
-import {PlayerPage} from '../player/player.page';
 import {HttpClient} from '@angular/common/http';
-import {NotePage} from '../note/note.page';
-import {EditBackgoundPage} from '../edit-backgound/edit-backgound.page';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 
 @Component({
@@ -155,13 +152,12 @@ export class MinePage implements OnInit {
     }
 
     async presentModal(e) {
-        const modal = await this.modalController.create({
-            component: PlayerPage,
-            componentProps: e,
-        });
-        await modal.present();
-        const { data } = await modal.onDidDismiss();
-        console.log(data);
+        // const modal = await this.modalController.create({
+        //     component: PlayerPage,
+        //     componentProps: e,
+        // });
+        // await modal.present();
+        // const { data } = await modal.onDidDismiss();
         // return await modal.present();
     }
 
@@ -213,13 +209,13 @@ export class MinePage implements OnInit {
     }
 
     async presentEditBackgroundModal(e) {
-        const modal = await this.modalController.create({
-            component: EditBackgoundPage,
-            componentProps: e,
-        });
-        await modal.present();
-        const { data } = await modal.onDidDismiss();
-        console.log(data);
+        // const modal = await this.modalController.create({
+        //     component: EditBackgoundPage,
+        //     componentProps: e,
+        // });
+        // await modal.present();
+        // const { data } = await modal.onDidDismiss();
+        // console.log(data);
         // return await modal.present();
     }
 

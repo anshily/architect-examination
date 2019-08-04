@@ -20,55 +20,61 @@
 
     <app-question (updateResult)="updateResult($event)" [questionId]="'45380'"></app-question>
 
-    <ion-toolbar color="secondary">
-        <ion-buttons slot="start">
-            <ion-button (click)="checkResult()">
-                查看解析
-            </ion-button>
-        </ion-buttons>
+    <app-question (updateResult)="updateResult($event)" [questionId]="'43110'"></app-question>
 
-        <ion-buttons slot="secondary">
-            <ion-button>
-                题库
-            </ion-button>
-        </ion-buttons>
+    <app-question (updateResult)="updateResult($event)" [questionId]="'45064'"></app-question>
 
-    </ion-toolbar>
+    <app-parent-question [questionId]="'45064'"></app-parent-question>
 
-    <div style="width: 100vw;display: flex;flex-direction: column">
-        <ion-card *ngIf="question && question['question_type_id'] == 2">
-            <ion-card-header>多选* {{question['question_title']}}</ion-card-header>
-            <ion-card-content>
-                <ion-list>
-                    <ion-item *ngFor="let entry of answers">
-                        <ion-label>{{entry.name}}</ion-label>
-                        <ion-checkbox (ionChange)="checkChange()" slot="start" [(ngModel)]="entry.isChecked"></ion-checkbox>
-                    </ion-item>
-                </ion-list>
-            </ion-card-content>
-        </ion-card>
+    <!--<ion-toolbar color="secondary">-->
+        <!--<ion-buttons slot="start">-->
+            <!--<ion-button (click)="checkResult()">-->
+                <!--查看解析-->
+            <!--</ion-button>-->
+        <!--</ion-buttons>-->
 
-        <ion-card *ngIf="question && question['question_type_id'] == 1">
-            <ion-card-header *ngIf="question">单选*{{question['question_title']}}</ion-card-header>
-            <ion-radio-group>
-                <ion-list>
-                    <ion-item *ngFor="let entry of answers">
-                        <ion-label>{{entry.name}}</ion-label>
-                        <ion-radio slot="start" value="{{entry.index_number}}"></ion-radio>
-                    </ion-item>
-                </ion-list>
-            </ion-radio-group>
-        </ion-card>
+        <!--<ion-buttons slot="secondary">-->
+            <!--<ion-button>-->
+                <!--题库-->
+            <!--</ion-button>-->
+        <!--</ion-buttons>-->
 
-        <ion-card *ngIf="showResult">
-            <ion-card-header>{{isRight ? '正确' : '错误'}}</ion-card-header>
-            <ion-list>
-                <ion-item>你的答案：{{userResult}}</ion-item>
-                <ion-item>正确答案：{{rightResult}}</ion-item>
-                <ion-item *ngIf="question">{{question['explanation']}}</ion-item>
-            </ion-list>
-        </ion-card>
-    </div>
+    <!--</ion-toolbar>-->
+
+    <!--<div style="width: 100vw;display: flex;flex-direction: column">-->
+        <!--<ion-card *ngIf="question && question['question_type_id'] == 2">-->
+            <!--<ion-card-header>多选* {{question['question_title']}}</ion-card-header>-->
+            <!--<ion-card-content>-->
+                <!--<ion-list>-->
+                    <!--<ion-item *ngFor="let entry of answers">-->
+                        <!--<ion-label>{{entry.name}}</ion-label>-->
+                        <!--<ion-checkbox (ionChange)="checkChange()" slot="start" [(ngModel)]="entry.isChecked"></ion-checkbox>-->
+                    <!--</ion-item>-->
+                <!--</ion-list>-->
+            <!--</ion-card-content>-->
+        <!--</ion-card>-->
+
+        <!--<ion-card *ngIf="question && question['question_type_id'] == 1">-->
+            <!--<ion-card-header *ngIf="question">单选*{{question['question_title']}}</ion-card-header>-->
+            <!--<ion-radio-group [(ngModel)]="testRadio">-->
+                <!--<ion-list>-->
+                    <!--<ion-item *ngFor="let entry of answers">-->
+                        <!--<ion-label>{{entry.name}}</ion-label>-->
+                        <!--<ion-radio (ionSelect)="radioSelect(entry)" slot="start" value="{{entry.index_number}}"></ion-radio>-->
+                    <!--</ion-item>-->
+                <!--</ion-list>-->
+            <!--</ion-radio-group>-->
+        <!--</ion-card>-->
+
+        <!--<ion-card *ngIf="showResult">-->
+            <!--<ion-card-header>{{isRight ? '正确' : '错误'}}</ion-card-header>-->
+            <!--<ion-list>-->
+                <!--<ion-item>你的答案：{{userResult}}</ion-item>-->
+                <!--<ion-item>正确答案：{{rightResult}}</ion-item>-->
+                <!--<ion-item *ngIf="question">{{question['explanation']}}</ion-item>-->
+            <!--</ion-list>-->
+        <!--</ion-card>-->
+    <!--</div>-->
 
     <div style="position: fixed; bottom: 0;z-index: 99">
 

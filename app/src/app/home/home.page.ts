@@ -1,9 +1,10 @@
-import {Component, DoCheck, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {VgAPI} from 'videogular2/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {MenuController, ToastController} from '@ionic/angular';
+import {MenuController, NavController, ToastController} from '@ionic/angular';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
+import {QuestionComponent} from '../share/question/question.component';
 
 @Component({
     selector: 'app-home',
@@ -32,6 +33,8 @@ export class HomePage implements OnInit {
     public storageBaseUrl = ROOT_URL + 'storage';
     @ViewChild('slidesRef')
     public slidesRef;
+    @ViewChild('nav')
+    public nav;
     @Input() insertId: any;
     // public vm: vgMedia;
     public sourceArr = [
@@ -52,6 +55,7 @@ export class HomePage implements OnInit {
     constructor(private statusBar: StatusBar,
                 public route: ActivatedRoute,
                 private router: Router,
+                private navController: NavController,
                 private http: HttpClient, public toastController: ToastController, private menu: MenuController) {
     }
 
@@ -401,5 +405,17 @@ export class HomePage implements OnInit {
         this.router.navigate(['/note']).then( () => {
             console.log('note');
         });
+    }
+    navTo() {
+        this.navController.navigateForward('/feeds').then(
+            () => {
+                console.log('feed');
+            }
+        );
+    }
+
+    testNav() {
+        console.log('test');
+        this.nav.push(QuestionComponent);
     }
 }
