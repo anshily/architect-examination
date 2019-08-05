@@ -1,4 +1,4 @@
-.WrongIndex .wrong-box{
+.wrong-box{
   background: #f8f8f8;
   border-radius: .3rem;
   display: -webkit-box;
@@ -11,16 +11,16 @@
   margin-top: .94rem;
   min-height: 5.5rem;
 }
-.WrongIndex .wrong-box .wrong-box-left {
+.wrong-box .wrong-box-left {
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
 }
-.WrongIndex .wrong-box img{
+.wrong-box img{
   width: .5rem;
   height: .8rem;
 }
-.WrongIndex .wrong-box .wrong-box-left .wrong-content{
+.wrong-box .wrong-box-left .wrong-content{
   font-size: 1rem;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -34,13 +34,13 @@
   word-wrap: break-word;
   word-break: break-all;
 }
-.WrongIndex .wrong-box .wrong-box-left .wrong-info-box{
+.wrong-box .wrong-box-left .wrong-info-box{
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-top: .94rem;
 }
-.WrongIndex .wrong-box .wrong-box-left .wrong-info-box button[data-v-2f16f66e] {
+.wrong-box .wrong-box-left .wrong-info-box button {
   background: #f55a5e;
   border-radius: .2rem;
   border: none;
@@ -50,7 +50,7 @@
   width: 4.8rem;
   min-width: 5rem;
 }
-.WrongIndex .wrong-box .wrong-box-left .wrong-info-box .wrong-info-text[data-v-2f16f66e] {
+.wrong-box .wrong-box-left .wrong-info-box .wrong-info-text {
   font-size: .8rem;
   color: #666;
   line-height: 1.6rem;
