@@ -64,4 +64,6 @@ public class QuestionTitleController {
         page.setList(list);
         return ResultGenerator.successResult(page);
     }
+
+
 }
