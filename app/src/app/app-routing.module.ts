@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: 'feeds', loadChildren: './feeds/feeds.module#FeedsPageModule' },
   { path: 'history', loadChildren: './history/history.module#HistoryPageModule' },
   { path: 'practicing', loadChildren: './practicing/practicing.module#PracticingPageModule' },
-  { path: 'do-wrong', loadChildren: './do-wrong/do-wrong.module#DoWrongPageModule' },
+  { path: 'do-wrong', loadChildren: './do-wrong/do-wrong.module#DoWrongPageModule' },  { path: 'alter-password', loadChildren: './alter-password/alter-password.module#AlterPasswordPageModule' },
+
 
 ];
 

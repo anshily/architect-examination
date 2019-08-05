@@ -1,53 +1,54 @@
-    <ion-header>
-        <ion-toolbar color="primary">
-            <ion-title>个人中心</ion-title>
-        </ion-toolbar>
-    </ion-header>
+<ion-header>
+    <!--<ion-toolbar color="primary">-->
+        <!--<ion-title>个人中心</ion-title>-->
+    <!--</ion-toolbar>-->
+    <app-nav-back [title]="'个人中心'"></app-nav-back>
+</ion-header>
 
-    <ion-content>
+<ion-content>
 
-        <ion-list>
-            <ion-item>
-                <ion-label>账户</ion-label>
-                <ion-note slot="end">On</ion-note>
-            </ion-item>
+    <ion-list>
+        <ion-item>
+            <ion-label>账户</ion-label>
+            <ion-note slot="end">On</ion-note>
+        </ion-item>
 
-            <ion-item>
-                <ion-label>姓名</ion-label>
-                <ion-note slot="end">On</ion-note>
-            </ion-item>
+        <ion-item>
+            <ion-label>姓名</ion-label>
+            <ion-note slot="end">On</ion-note>
+        </ion-item>
 
-            <ion-item>
-                <ion-label>性别</ion-label>
-                <ion-note slot="end">On</ion-note>
-            </ion-item>
+        <ion-item>
+            <ion-label>性别</ion-label>
+            <ion-note slot="end">On</ion-note>
+        </ion-item>
 
-            <ion-item>
-                <ion-label>最后登录时间</ion-label>
-                <ion-note slot="end">On</ion-note>
-            </ion-item>
+        <ion-item>
+            <ion-label>最后登录时间</ion-label>
+            <ion-note slot="end">On</ion-note>
+        </ion-item>
 
-            <ion-item>
-                <ion-label>修改密码</ion-label>
-                <ion-note slot="end">On</ion-note>
-            </ion-item>
+        <ion-item>
+            <ion-label>修改密码</ion-label>
+            <ion-note slot="end">On</ion-note>
+        </ion-item>
 
-        </ion-list>
+    </ion-list>
 
 
-        <div style="position: fixed; bottom: 0;z-index: 99">
+    <div style="position: fixed; bottom: 0;z-index: 99">
 
-            <div style="display: flex;justify-content: space-around;align-items: center; width: 100vw;background-color:black;opacity: 0.8;">
+        <div style="display: flex;justify-content: space-around;align-items: center; width: 100vw;background-color:black;opacity: 0.8;">
 
-                <!--<div (click)="goIndex()" style="color: white">首页</div>-->
+            <!--<div (click)="goIndex()" style="color: white">首页</div>-->
 
-                <!--<ion-icon name="add-circle-outline" (click)="goPublish()"-->
-                          <!--style="color: white;font-size: 3rem;"></ion-icon>-->
+            <!--<ion-icon name="add-circle-outline" (click)="goPublish()"-->
+            <!--style="color: white;font-size: 3rem;"></ion-icon>-->
 
-                <!--<div (click)="goMine()" style="color: white">我的</div>-->
-
-            </div>
+            <!--<div (click)="goMine()" style="color: white">我的</div>-->
 
         </div>
 
-    </ion-content>
+    </div>
+
+</ion-content>

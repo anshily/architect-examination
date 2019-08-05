@@ -9,7 +9,7 @@
     <result column="open_id" jdbcType="VARCHAR" property="open_id" />
     <result column="identify_card" jdbcType="VARCHAR" property="identify_card" />
     <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="password" jdbcType="VARCHAR" property="pas ord" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />

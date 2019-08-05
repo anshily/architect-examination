@@ -71,6 +71,35 @@ public class UserController {
         return ResultGenerator.successResult(user);
     }
 
+    @PostMapping("/alter/password")
+    public Result alterPassword(@RequestParam String token,@RequestParam String oldPassword,@RequestParam String newPassword){
+
+        if(token == null || token.isEmpty())
+        {
+            throw new ServiceException(Constants.CODE_ERR_USER_NAME);
+        }
+        if( oldPassword == null || oldPassword.isEmpty())
+        {
+            throw new ServiceException(Constants.CODE_ERR_USER_NAME);
+        }
+        if( newPassword == null || newPassword.isEmpty())
+        {
+            throw new ServiceException(Constants.CODE_ERR_USER_NAME);
+        }
+
+        User user = userService.findBy("token", token);
+        if (user == null) {
+            throw new ServiceException(5003, "token有误请重新登录");
+        }
+        if (user.getPassword().equals(oldPassword)){
+            throw new ServiceException(5002, "原密码有误！");
+        }
+        user.setPassword(newPassword);
+        user.setUpdate_time(new Date());
+        userService.update(user);
+        return ResultGenerator.successResult(user);
+    }
+
     @GetMapping("/detail")
     public Result detail(@RequestParam Integer id) {
         User user = userService.findById(id);

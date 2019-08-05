@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import {ToastController} from '@ionic/angular';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {ToastController} from '@ionic/angular';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.page.html',
-  styleUrls: ['./register.page.scss'],
+  selector: 'app-alter-password',
+  templateUrl: './alter-password.page.html',
+  styleUrls: ['./alter-password.page.scss'],
 })
-export class RegisterPage implements OnInit {
+export class AlterPasswordPage implements OnInit {
     public name: any;
     public email: any;
     public password: any;
@@ -22,7 +22,7 @@ export class RegisterPage implements OnInit {
     }
 
     // 注册
-    register() {
+    alterPassword() {
         if (!this.name || !this.email) {
             console.log('帐号/密码不能为空');
             this.presentToast('帐号/密码不能为空').then();
