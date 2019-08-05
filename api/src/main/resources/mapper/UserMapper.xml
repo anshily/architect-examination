@@ -19,4 +19,11 @@
     <result column="add_time" jdbcType="TIMESTAMP" property="add_time" />
     <result column="update_time" jdbcType="TIMESTAMP" property="update_time" />
   </resultMap>
+
+    <select id="getUserInfoByToken" resultType="User" parameterType="String">
+        select sw_role.category as category_id,sw_role.name as role_name from sw_user
+            join sw_user_role on sw_user.id = sw_user_role.uid
+            join sw_role on sw_user_role.rid = sw_role.id
+        where token = #{token}
+    </select>
 </mapper>

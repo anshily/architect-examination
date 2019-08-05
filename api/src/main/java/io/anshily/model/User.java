@@ -27,6 +27,18 @@ public class User {
     private String username;
 
     /**
+     * 题面标签 12：A，13：B，14：C
+     */
+    @Transient
+    private Integer category_id;
+
+    /**
+     * 角色名
+     */
+    @Transient
+    private String role_name;
+
+    /**
      * 密码
      */
     @Column(name = "password")
@@ -294,5 +306,21 @@ public class User {
      */
     public void setUpdate_time(Date update_time) {
         this.update_time = update_time;
+    }
+
+    public Integer getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(Integer category_id) {
+        this.category_id = category_id;
+    }
+
+    public String getRole_name() {
+        return role_name;
+    }
+
+    public void setRole_name(String role_name) {
+        this.role_name = role_name;
     }
 }
