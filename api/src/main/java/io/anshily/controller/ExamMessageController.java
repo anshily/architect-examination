@@ -1,8 +1,8 @@
 package io.anshily.controller;
 import io.anshily.base.core.Result;
 import io.anshily.base.core.ResultGenerator;
-import io.anshily.model.QuestionType;
-import io.anshily.service.QuestionTypeService;
+import io.anshily.model.ExamMessage;
+import io.anshily.service.ExamMessageService;
 import io.anshily.base.core.PageBean;
 import com.github.pagehelper.PageHelper;
 import org.springframework.web.bind.annotation.*;
@@ -16,51 +16,51 @@ import java.util.List;
 * Created by anshi on 2019/08/05.
 */
 @RestController
-@RequestMapping("/question/type")
-public class QuestionTypeController {
+@RequestMapping("/exam/message")
+public class ExamMessageController {
     @Resource
-    private QuestionTypeService questionTypeService;
+    private ExamMessageService examMessageService;
 
     @PostMapping("/add")
-    public Result add(@RequestBody QuestionType questionType) {
-        questionTypeService.save(questionType);
+    public Result add(@RequestBody ExamMessage examMessage) {
+        examMessageService.save(examMessage);
         return ResultGenerator.successResult();
     }
 
     @PostMapping("/delete")
     public Result delete(@RequestBody Integer id) {
-        questionTypeService.deleteById(id);
+        examMessageService.deleteById(id);
         return ResultGenerator.successResult();
     }
 
     @PostMapping("/update")
-    public Result update(@RequestBody QuestionType questionType) {
-        questionTypeService.update(questionType);
+    public Result update(@RequestBody ExamMessage examMessage) {
+        examMessageService.update(examMessage);
         return ResultGenerator.successResult();
     }
 
     @GetMapping("/detail")
     public Result detail(@RequestParam Integer id) {
-        QuestionType questionType = questionTypeService.findById(id);
-        return ResultGenerator.successResult(questionType);
+        ExamMessage examMessage = examMessageService.findById(id);
+        return ResultGenerator.successResult(examMessage);
     }
 
     @GetMapping("/list")
-    public Result list(PageBean<QuestionType> page) {
+    public Result list(PageBean<ExamMessage> page) {
         PageHelper.startPage(page.getPageNum(),page.getSize());
-        List<QuestionType> list = questionTypeService.findAll();
+        List<ExamMessage> list = examMessageService.findAll();
         page.setList(list);
         return ResultGenerator.successResult(page);
     }
 
     @PostMapping("/custom/list")
-    public Result customList(@RequestBody QuestionType questionType) {
-        PageBean<QuestionType> page = new PageBean<QuestionType>();
+    public Result customList(@RequestBody ExamMessage examMessage) {
+        PageBean<ExamMessage> page = new PageBean<ExamMessage>();
     //        PageHelper.startPage(page.getPageNum(),page.getSize());
-    Condition condition = new Condition(QuestionType.class);
+    Condition condition = new Condition(ExamMessage.class);
     Example.Criteria criteria = condition.createCriteria();
     criteria.andLike("id","%1%");
-    List<QuestionType> list = questionTypeService.findByCondition(condition);
+    List<ExamMessage> list = examMessageService.findByCondition(condition);
         page.setList(list);
         return ResultGenerator.successResult(page);
     }

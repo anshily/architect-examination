@@ -1,8 +1,8 @@
 package io.anshily.service.impl;
 
-import io.anshily.dao.QuestionTypeMapper;
-import io.anshily.model.QuestionType;
-import io.anshily.service.QuestionTypeService;
+import io.anshily.dao.ExamMessageMapper;
+import io.anshily.model.ExamMessage;
+import io.anshily.service.ExamMessageService;
 import io.anshily.base.core.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,8 +15,8 @@ import javax.annotation.Resource;
  */
 @Service
 @Transactional
-public class QuestionTypeServiceImpl extends AbstractService<QuestionType> implements QuestionTypeService {
+public class ExamMessageServiceImpl extends AbstractService<ExamMessage> implements ExamMessageService {
     @Resource
-    private QuestionTypeMapper swQuestionTypeMapper;
+    private ExamMessageMapper swExamMessageMapper;
 
 }

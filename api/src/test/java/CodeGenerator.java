@@ -41,9 +41,7 @@ public class CodeGenerator {
 
     public static void main(String[] args) {
 //        genCode("sw_permission", "sw_role_permission", "sw_role", "sw_user", "sw_user_role");
-//        genCode("sw_sqnu_liu");
-//        genCode("qy_permissions","qy_permissions_init","qy_role","qy_role_permission","qy_user","qy_user_role");
-//        genCode("qy_level_score");
+//        genCode("sw_exam_message","sw_question_title","sw_question_type","sw_simple_test");
         //genCodeByCustomModelName("输入表名","输入自定义Model名称");
 //        genCodeByCustomModelName("member","qy_member");
 

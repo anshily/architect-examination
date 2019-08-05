@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.anshily.dao.QuestionTitleMapper">
+  <resultMap id="BaseResultMap" type="io.anshily.model.QuestionTitle">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="q_t_id" jdbcType="INTEGER" property="q_t_id" />
+    <result column="q_t_examid" jdbcType="INTEGER" property="q_t_examid" />
+    <result column="q_t_questionid" jdbcType="INTEGER" property="q_t_questionid" />
+    <result column="statu" jdbcType="INTEGER" property="statu" />
+  </resultMap>
+</mapper>
