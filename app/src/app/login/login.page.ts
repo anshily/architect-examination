@@ -15,17 +15,7 @@ export class LoginPage implements OnInit {
 
   constructor( private http: HttpClient, private router: Router, public toastController: ToastController) { }
 
-  ngOnInit() {
-      this.http.get(ROOT_URL + 'feeds').subscribe(res => {
-          console.log(res);
-          if (res['code'] === 200) {
-              // console.log(res['data']);
-              let token = res['data']['csrf_token'];
-              console.log(token);
-              localStorage.setItem('csxfToken', token);
-          }
-      });
-  }
+  ngOnInit() {}
 
     // 登录
     login() {
@@ -36,29 +26,26 @@ export class LoginPage implements OnInit {
             });
             return;
         }
-        console.log(localStorage.getItem('csxfToken'));
         const params = {
-            name: this.account,
+            identify_card: this.account,
             password: this.pass
         };
-        this.http.post(ROOT_URL + 'login', params, ).subscribe(res => {
+        this.http.post(ROOT_URL + 'user/login', params, ).subscribe(res => {
           console.log(res);
-            if (res['code'] === 200) {
+            if (res['code'] === 0) {
                 console.log(res, '登陆');
-                localStorage.setItem('anshi_cookie', res['data']['cookie']);
-                localStorage.setItem('anshi_id', res['data']['id']);
-                localStorage.setItem('session_id',res['data']['session_id']);
-                // this.goIndex();
-                this.router.navigate(['/login-succeed']).then();
+                // localStorage.setItem('anshi_cookie', res['data']['cookie']);
+                localStorage.setItem('user_id', res['data']);
+                this.router.navigate(['/home']).then();
             }
             else {
-                this.presentToast(res['msg']).then(r => {
+                this.presentToast(res['message']).then(r => {
                     console.log(r);
                 });
             }
         }, (err) => {
             console.log(err);
-            this.presentToast(err['error']['msg']).then(r => {
+            this.presentToast('网络错误').then(r => {
                 console.log(r);
             });
         });

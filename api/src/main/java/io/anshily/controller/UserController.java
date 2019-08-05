@@ -39,6 +39,16 @@ public class UserController {
         return ResultGenerator.successResult();
     }
 
+    @PostMapping("/login")
+    public Result login(@RequestBody User user) {
+        List<User> users =  userService.selectByCSql("identify_card=" + user.getIdentify_card() + " and password=" + user.getPassword());
+        if (users.size() > 0){
+            return ResultGenerator.successResult(users.get(0).getId());
+        }else {
+            return ResultGenerator.errResult(5001, "用户名密码错误");
+        }
+    }
+
     @GetMapping("/detail")
     public Result detail(@RequestParam Integer id) {
         User user = userService.findById(id);

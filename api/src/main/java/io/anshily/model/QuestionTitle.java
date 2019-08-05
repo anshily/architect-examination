@@ -1,21 +1,23 @@
 package io.anshily.model;
 
+import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "sw_question_title")
 public class QuestionTitle {
     @Id
-    private Integer q_t_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     /**
      * 对应考试信息表的id
      */
-    private Integer q_t_examid;
+    private Integer exam_id;
 
     /**
      * 对应的考试题目id
      */
-    private Integer q_t_questionid;
+    private Integer question_id;
 
     /**
      * 状态（1：可用，0：不可用）
@@ -23,53 +25,58 @@ public class QuestionTitle {
     private Integer statu;
 
     /**
-     * @return q_t_id
+     * 新增时间
      */
-    public Integer getQ_t_id() {
-        return q_t_id;
+    private Date add_time;
+
+    /**
+     * @return id
+     */
+    public Integer getId() {
+        return id;
     }
 
     /**
-     * @param q_t_id
+     * @param id
      */
-    public void setQ_t_id(Integer q_t_id) {
-        this.q_t_id = q_t_id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     /**
      * 获取对应考试信息表的id
      *
-     * @return q_t_examid - 对应考试信息表的id
+     * @return exam_id - 对应考试信息表的id
      */
-    public Integer getQ_t_examid() {
-        return q_t_examid;
+    public Integer getExam_id() {
+        return exam_id;
     }
 
     /**
      * 设置对应考试信息表的id
      *
-     * @param q_t_examid 对应考试信息表的id
+     * @param exam_id 对应考试信息表的id
      */
-    public void setQ_t_examid(Integer q_t_examid) {
-        this.q_t_examid = q_t_examid;
+    public void setExam_id(Integer exam_id) {
+        this.exam_id = exam_id;
     }
 
     /**
      * 获取对应的考试题目id
      *
-     * @return q_t_questionid - 对应的考试题目id
+     * @return question_id - 对应的考试题目id
      */
-    public Integer getQ_t_questionid() {
-        return q_t_questionid;
+    public Integer getQuestion_id() {
+        return question_id;
     }
 
     /**
      * 设置对应的考试题目id
      *
-     * @param q_t_questionid 对应的考试题目id
+     * @param question_id 对应的考试题目id
      */
-    public void setQ_t_questionid(Integer q_t_questionid) {
-        this.q_t_questionid = q_t_questionid;
+    public void setQuestion_id(Integer question_id) {
+        this.question_id = question_id;
     }
 
     /**
@@ -88,5 +95,23 @@ public class QuestionTitle {
      */
     public void setStatu(Integer statu) {
         this.statu = statu;
+    }
+
+    /**
+     * 获取新增时间
+     *
+     * @return add_time - 新增时间
+     */
+    public Date getAdd_time() {
+        return add_time;
+    }
+
+    /**
+     * 设置新增时间
+     *
+     * @param add_time 新增时间
+     */
+    public void setAdd_time(Date add_time) {
+        this.add_time = add_time;
     }
 }

@@ -5,9 +5,10 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="q_t_id" jdbcType="INTEGER" property="q_t_id" />
-    <result column="q_t_examid" jdbcType="INTEGER" property="q_t_examid" />
-    <result column="q_t_questionid" jdbcType="INTEGER" property="q_t_questionid" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="exam_id" jdbcType="INTEGER" property="exam_id" />
+    <result column="question_id" jdbcType="INTEGER" property="question_id" />
     <result column="statu" jdbcType="INTEGER" property="statu" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="add_time" />
   </resultMap>
 </mapper>

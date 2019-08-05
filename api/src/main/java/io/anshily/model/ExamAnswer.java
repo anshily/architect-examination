@@ -1,5 +1,6 @@
 package io.anshily.model;
 
+import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "sw_exam_answer")
@@ -8,22 +9,23 @@ public class ExamAnswer {
      * 答案表id
      */
     @Id
-    private Integer e_a_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     /**
      * 对应考试信息表id
      */
-    private Integer e_a_examid;
+    private Integer examid;
 
     /**
      * 对应的体面id
      */
-    private Integer e_a_question_title_id;
+    private Integer question_title_id;
 
     /**
      * 对应的题目答案
      */
-    private String e_a_answer;
+    private String answer;
 
     /**
      * 状态（1：可用，0：不可用）
@@ -31,75 +33,80 @@ public class ExamAnswer {
     private Integer statu;
 
     /**
+     * 新增时间
+     */
+    private Date add_time;
+
+    /**
      * 获取答案表id
      *
-     * @return e_a_id - 答案表id
+     * @return id - 答案表id
      */
-    public Integer getE_a_id() {
-        return e_a_id;
+    public Integer getId() {
+        return id;
     }
 
     /**
      * 设置答案表id
      *
-     * @param e_a_id 答案表id
+     * @param id 答案表id
      */
-    public void setE_a_id(Integer e_a_id) {
-        this.e_a_id = e_a_id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     /**
      * 获取对应考试信息表id
      *
-     * @return e_a_examid - 对应考试信息表id
+     * @return examid - 对应考试信息表id
      */
-    public Integer getE_a_examid() {
-        return e_a_examid;
+    public Integer getExamid() {
+        return examid;
     }
 
     /**
      * 设置对应考试信息表id
      *
-     * @param e_a_examid 对应考试信息表id
+     * @param examid 对应考试信息表id
      */
-    public void setE_a_examid(Integer e_a_examid) {
-        this.e_a_examid = e_a_examid;
+    public void setExamid(Integer examid) {
+        this.examid = examid;
     }
 
     /**
      * 获取对应的体面id
      *
-     * @return e_a_question_title_id - 对应的体面id
+     * @return question_title_id - 对应的体面id
      */
-    public Integer getE_a_question_title_id() {
-        return e_a_question_title_id;
+    public Integer getQuestion_title_id() {
+        return question_title_id;
     }
 
     /**
      * 设置对应的体面id
      *
-     * @param e_a_question_title_id 对应的体面id
+     * @param question_title_id 对应的体面id
      */
-    public void setE_a_question_title_id(Integer e_a_question_title_id) {
-        this.e_a_question_title_id = e_a_question_title_id;
+    public void setQuestion_title_id(Integer question_title_id) {
+        this.question_title_id = question_title_id;
     }
 
     /**
      * 获取对应的题目答案
      *
-     * @return e_a_answer - 对应的题目答案
+     * @return answer - 对应的题目答案
      */
-    public String getE_a_answer() {
-        return e_a_answer;
+    public String getAnswer() {
+        return answer;
     }
 
     /**
      * 设置对应的题目答案
      *
-     * @param e_a_answer 对应的题目答案
+     * @param answer 对应的题目答案
      */
-    public void setE_a_answer(String e_a_answer) {
-        this.e_a_answer = e_a_answer;
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
     /**
@@ -118,5 +125,23 @@ public class ExamAnswer {
      */
     public void setStatu(Integer statu) {
         this.statu = statu;
+    }
+
+    /**
+     * 获取新增时间
+     *
+     * @return add_time - 新增时间
+     */
+    public Date getAdd_time() {
+        return add_time;
+    }
+
+    /**
+     * 设置新增时间
+     *
+     * @param add_time 新增时间
+     */
+    public void setAdd_time(Date add_time) {
+        this.add_time = add_time;
     }
 }

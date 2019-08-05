@@ -5,11 +5,12 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="s_t_id" jdbcType="INTEGER" property="s_t_id" />
-    <result column="s_t_userid" jdbcType="INTEGER" property="s_t_userid" />
-    <result column="s_t_questionid" jdbcType="INTEGER" property="s_t_questionid" />
-    <result column="s_t_answer" jdbcType="VARCHAR" property="s_t_an er" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="user_id" />
+    <result column="question_id" jdbcType="INTEGER" property="question_id" />
+    <result column="answer" jdbcType="VARCHAR" property="an er" />
     <result column="istrue" jdbcType="INTEGER" property="istrue" />
     <result column="statu" jdbcType="INTEGER" property="statu" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="add_time" />
   </resultMap>
 </mapper>

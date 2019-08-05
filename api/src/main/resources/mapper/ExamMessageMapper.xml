@@ -5,11 +5,12 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="e_ m_id" jdbcType="INTEGER" property="e_ m_id" />
-    <result column="e_ m_userid" jdbcType="INTEGER" property="e_ m_userid" />
-    <result column="e_ m_createtime" jdbcType="TIMESTAMP" property="e_ m_createtime" />
-    <result column="e_ m_endtime" jdbcType="TIMESTAMP" property="e_ m_endtime" />
-    <result column="e_ m_grade" jdbcType="INTEGER" property="e_ m_grade" />
-    <result column="e_ m_statu" jdbcType="INTEGER" property="e_ m_statu" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="endtime" jdbcType="TIMESTAMP" property="endtime" />
+    <result column="grade" jdbcType="INTEGER" property="grade" />
+    <result column="statu" jdbcType="INTEGER" property="statu" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="add_time" />
   </resultMap>
 </mapper>

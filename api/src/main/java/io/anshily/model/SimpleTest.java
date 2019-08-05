@@ -1,5 +1,6 @@
 package io.anshily.model;
 
+import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "sw_simple_test")
@@ -8,20 +9,21 @@ public class SimpleTest {
      * 普通练题id
      */
     @Id
-    private Integer s_t_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    private Integer s_t_userid;
+    private Integer user_id;
 
     /**
      * 题目id
      */
-    private Integer s_t_questionid;
+    private Integer question_id;
 
     /**
      * 对应的答案
      */
-    @Column(name = "s_t_answer")
-    private String s_t_an er;
+    @Column(name = "answer")
+    private String answer;
 
     /**
      * 正确性（0：错误，1：正确）
@@ -34,71 +36,76 @@ public class SimpleTest {
     private Integer statu;
 
     /**
+     * 新增时间
+     */
+    private Date add_time;
+
+    /**
      * 获取普通练题id
      *
-     * @return s_t_id - 普通练题id
+     * @return id - 普通练题id
      */
-    public Integer getS_t_id() {
-        return s_t_id;
+    public Integer getId() {
+        return id;
     }
 
     /**
      * 设置普通练题id
      *
-     * @param s_t_id 普通练题id
+     * @param id 普通练题id
      */
-    public void setS_t_id(Integer s_t_id) {
-        this.s_t_id = s_t_id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     /**
-     * @return s_t_userid
+     * @return user_id
      */
-    public Integer getS_t_userid() {
-        return s_t_userid;
+    public Integer getUser_id() {
+        return user_id;
     }
 
     /**
-     * @param s_t_userid
+     * @param user_id
      */
-    public void setS_t_userid(Integer s_t_userid) {
-        this.s_t_userid = s_t_userid;
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 
     /**
      * 获取题目id
      *
-     * @return s_t_questionid - 题目id
+     * @return question_id - 题目id
      */
-    public Integer getS_t_questionid() {
-        return s_t_questionid;
+    public Integer getQuestion_id() {
+        return question_id;
     }
 
     /**
      * 设置题目id
      *
-     * @param s_t_questionid 题目id
+     * @param question_id 题目id
      */
-    public void setS_t_questionid(Integer s_t_questionid) {
-        this.s_t_questionid = s_t_questionid;
+    public void setQuestion_id(Integer question_id) {
+        this.question_id = question_id;
     }
 
     /**
      * 获取对应的答案
      *
-     * @return s_t_answer - 对应的答案
+     * @return answer - 对应的答案
      */
-    public String getS_t_an er() {
-        return s_t_an er;
+    public String getAnswer() {
+        return answer;
     }
 
     /**
      * 设置对应的答案
      *
-     * @param s_t_an er 对应的答案
+     * @param an er 对应的答案
      */
-    public void setS_t_an er(String s_t_an er) {
-        this.s_t_an er = s_t_an er;
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
     /**
@@ -135,5 +142,23 @@ public class SimpleTest {
      */
     public void setStatu(Integer statu) {
         this.statu = statu;
+    }
+
+    /**
+     * 获取新增时间
+     *
+     * @return add_time - 新增时间
+     */
+    public Date getAdd_time() {
+        return add_time;
+    }
+
+    /**
+     * 设置新增时间
+     *
+     * @param add_time 新增时间
+     */
+    public void setAdd_time(Date add_time) {
+        this.add_time = add_time;
     }
 }

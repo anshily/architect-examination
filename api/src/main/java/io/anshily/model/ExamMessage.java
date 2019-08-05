@@ -9,130 +9,148 @@ public class ExamMessage {
      * 考试信息表id
      */
     @Id
-    @Column(name = "`e_ m_id`")
-    private Integer e_ m_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     /**
      * 考试信息表对应的用户id
      */
-    @Column(name = "`e_ m_userid`")
-    private Integer e_ m_userid;
+    private Integer userid;
 
-    @Column(name = "`e_ m_createtime`")
-    private Date e_ m_createtime;
+    private Date createtime;
 
-    @Column(name = "`e_ m_endtime`")
-    private Date e_ m_endtime;
+    private Date endtime;
 
     /**
      * 考试分数
      */
-    @Column(name = "`e_ m_grade`")
-    private Integer e_ m_grade;
+    private Integer grade;
 
     /**
      * 考试信息状态（1：可用，2：不可用）
      */
-    @Column(name = "`e_ m_statu`")
-    private Integer e_ m_statu;
+    private Integer statu;
+
+    /**
+     * 记录的添加时间
+     */
+    private Date add_time;
 
     /**
      * 获取考试信息表id
      *
-     * @return e_ m_id - 考试信息表id
+     * @return id - 考试信息表id
      */
-    public Integer getE_ m_id() {
-        return e_ m_id;
+    public Integer getId() {
+        return id;
     }
 
     /**
      * 设置考试信息表id
      *
-     * @param e_ m_id 考试信息表id
+     * @param id 考试信息表id
      */
-    public void setE_ m_id(Integer e_ m_id) {
-        this.e_ m_id = e_ m_id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     /**
      * 获取考试信息表对应的用户id
      *
-     * @return e_ m_userid - 考试信息表对应的用户id
+     * @return userid - 考试信息表对应的用户id
      */
-    public Integer getE_ m_userid() {
-        return e_ m_userid;
+    public Integer getUserid() {
+        return userid;
     }
 
     /**
      * 设置考试信息表对应的用户id
      *
-     * @param e_ m_userid 考试信息表对应的用户id
+     * @param userid 考试信息表对应的用户id
      */
-    public void setE_ m_userid(Integer e_ m_userid) {
-        this.e_ m_userid = e_ m_userid;
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 
     /**
-     * @return e_ m_createtime
+     * @return createtime
      */
-    public Date getE_ m_createtime() {
-        return e_ m_createtime;
+    public Date getCreatetime() {
+        return createtime;
     }
 
     /**
-     * @param e_ m_createtime
+     * @param createtime
      */
-    public void setE_ m_createtime(Date e_ m_createtime) {
-        this.e_ m_createtime = e_ m_createtime;
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
     }
 
     /**
-     * @return e_ m_endtime
+     * @return endtime
      */
-    public Date getE_ m_endtime() {
-        return e_ m_endtime;
+    public Date getEndtime() {
+        return endtime;
     }
 
     /**
-     * @param e_ m_endtime
+     * @param endtime
      */
-    public void setE_ m_endtime(Date e_ m_endtime) {
-        this.e_ m_endtime = e_ m_endtime;
+    public void setEndtime(Date endtime) {
+        this.endtime = endtime;
     }
 
     /**
      * 获取考试分数
      *
-     * @return e_ m_grade - 考试分数
+     * @return grade - 考试分数
      */
-    public Integer getE_ m_grade() {
-        return e_ m_grade;
+    public Integer getGrade() {
+        return grade;
     }
 
     /**
      * 设置考试分数
      *
-     * @param e_ m_grade 考试分数
+     * @param grade 考试分数
      */
-    public void setE_ m_grade(Integer e_ m_grade) {
-        this.e_ m_grade = e_ m_grade;
+    public void setGrade(Integer grade) {
+        this.grade = grade;
     }
 
     /**
      * 获取考试信息状态（1：可用，2：不可用）
      *
-     * @return e_ m_statu - 考试信息状态（1：可用，2：不可用）
+     * @return statu - 考试信息状态（1：可用，2：不可用）
      */
-    public Integer getE_ m_statu() {
-        return e_ m_statu;
+    public Integer getStatu() {
+        return statu;
     }
 
     /**
      * 设置考试信息状态（1：可用，2：不可用）
      *
-     * @param e_ m_statu 考试信息状态（1：可用，2：不可用）
+     * @param statu 考试信息状态（1：可用，2：不可用）
      */
-    public void setE_ m_statu(Integer e_ m_statu) {
-        this.e_ m_statu = e_ m_statu;
+    public void setStatu(Integer statu) {
+        this.statu = statu;
+    }
+
+    /**
+     * 获取记录的添加时间
+     *
+     * @return add_time - 记录的添加时间
+     */
+    public Date getAdd_time() {
+        return add_time;
+    }
+
+    /**
+     * 设置记录的添加时间
+     *
+     * @param add_time 记录的添加时间
+     */
+    public void setAdd_time(Date add_time) {
+        this.add_time = add_time;
     }
 }
