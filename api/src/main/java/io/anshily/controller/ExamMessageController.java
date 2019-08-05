@@ -2,6 +2,7 @@ package io.anshily.controller;
 import io.anshily.base.core.Result;
 import io.anshily.base.core.ResultGenerator;
 import io.anshily.model.ExamMessage;
+import io.anshily.model.QuestionTitle;
 import io.anshily.service.ExamMessageService;
 import io.anshily.base.core.PageBean;
 import com.github.pagehelper.PageHelper;
@@ -63,5 +64,12 @@ public class ExamMessageController {
     List<ExamMessage> list = examMessageService.findByCondition(condition);
         page.setList(list);
         return ResultGenerator.successResult(page);
+    }
+
+    /*创建考试信息表  同时创建题面表对应考试id,四种题型设置默认值*/
+    @GetMapping("/createExam")
+    public Result createExam(@RequestParam String token,@RequestParam(defaultValue = "24") Integer single,@RequestParam(defaultValue = "24") Integer multi,@RequestParam(defaultValue = "24") Integer judge,@RequestParam(defaultValue = "7") Integer material ) {
+        List<QuestionTitle> list=examMessageService.createExam(token, single, multi, judge, material);
+        return ResultGenerator.successResult(list);
     }
 }
