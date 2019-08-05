@@ -9,5 +9,5 @@ import java.util.List;
  * Created by anshi on 2019/08/02.
  */
 public interface UserService extends Service<User> {
-    List<User> select(User record);
+    User getUserInfoByToken(String token);
 }

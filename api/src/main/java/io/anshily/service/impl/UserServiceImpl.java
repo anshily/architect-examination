@@ -19,4 +19,8 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     @Resource
     private UserMapper swUserMapper;
 
+    @Override
+    public User getUserInfoByToken(String token) {
+        return swUserMapper.getUserInfoByToken(token);
+    }
 }
