@@ -45,6 +45,8 @@ public class CodeGenerator {
           genCode("as_exam_answer");
 //        genCode("qy_permissions","qy_permissions_init","qy_role","qy_role_permission","qy_user","qy_user_role");
 //        genCode("qy_level_score");
+//        genCode("sw_exam_message","sw_question_title","sw_question_type","sw_simple_test");
+//        genCode("as_exam_answer");
         //genCodeByCustomModelName("输入表名","输入自定义Model名称");
 //        genCodeByCustomModelName("member","qy_member");
 

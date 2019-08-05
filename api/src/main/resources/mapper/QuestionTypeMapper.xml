@@ -8,5 +8,6 @@
     <id column="question_type_id" jdbcType="INTEGER" property="question_type_id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="statu" jdbcType="INTEGER" property="statu" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="add_time" />
   </resultMap>
 </mapper>

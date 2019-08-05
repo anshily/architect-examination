@@ -1,5 +1,6 @@
 package io.anshily.model;
 
+import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "sw_question_type")
@@ -16,6 +17,8 @@ public class QuestionType {
      * 状态（1：可用，0：不可用）
      */
     private Integer statu;
+
+    private Date add_time;
 
     /**
      * @return question_type_id
@@ -65,5 +68,19 @@ public class QuestionType {
      */
     public void setStatu(Integer statu) {
         this.statu = statu;
+    }
+
+    /**
+     * @return add_time
+     */
+    public Date getAdd_time() {
+        return add_time;
+    }
+
+    /**
+     * @param add_time
+     */
+    public void setAdd_time(Date add_time) {
+        this.add_time = add_time;
     }
 }

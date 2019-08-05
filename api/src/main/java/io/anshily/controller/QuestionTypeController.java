@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
-* Created by anshi on 2019/08/01.
+* Created by anshi on 2019/08/05.
 */
 @RestController
 @RequestMapping("/question/type")

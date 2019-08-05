@@ -1,0 +1,56 @@
+.CETPracticeType {
+  background: #f8f8f8;
+  padding: 0 .63rem;
+}
+.CETPracticeType .cell-box {
+  margin-top: .94rem;
+  background: #f8f8f8;
+  border-radius: .3rem;
+  padding: .81rem .63rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.CETPracticeType .img-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 2.19rem;
+}
+.CETPracticeType .img-type {
+  height: 4.52rem;
+}
+.CETPracticeType .cell-info{
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.CETPracticeType .cell-info .cell-info-title {
+  font-size: 1rem;
+  color: #272727;
+  margin-bottom: .35rem;
+}
+.CETPracticeType .cell-info .cell-info-time {
+  background: #f55a5e;
+  border-radius: .2rem;
+  color: #fff;
+  font-size: .8rem;
+  display: inline;
+  padding: .19rem .44rem;
+}
+.CETPracticeType .cell-info .cell-info-describe {
+  font-size: .8rem;
+  color: #666;
+  margin-top: .35rem;
+}
+.CETPracticeType .img-right-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.CETPracticeType .img-right-box img{
+  width: .5rem;
+}

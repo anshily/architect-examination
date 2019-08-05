@@ -18,6 +18,10 @@ public class User {
     private String open_id;
 
     /**
+     * 身份证号
+     */
+    private String identify_card;
+    /**
      * 用户名
      */
     private String username;
@@ -102,6 +106,14 @@ public class User {
      */
     public void setOpen_id(String open_id) {
         this.open_id = open_id;
+    }
+
+    public String getIdentify_card() {
+        return identify_card;
+    }
+
+    public void setIdentify_card(String identify_card) {
+        this.identify_card = identify_card;
     }
 
     /**
