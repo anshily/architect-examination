@@ -6,6 +6,7 @@ import io.anshily.model.QuestionTitle;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -14,8 +15,11 @@ import java.util.List;
 public interface ExamMessageService extends Service<ExamMessage> {
 
 
-    List<QuestionTitle> createExam(@RequestParam String token, @RequestParam Integer single,
-                                   @RequestParam Integer multi, @RequestParam Integer judge, @RequestParam Integer material);
+    Map<String,Object> createExam(String token,
+                   Integer single,
+                   Integer multi,
+                   Integer judge,
+                   Integer material);
 
 
 }

@@ -12,6 +12,7 @@ import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
 * Created by anshi on 2019/08/05.
@@ -69,7 +70,7 @@ public class ExamMessageController {
     /*创建考试信息表  同时创建题面表对应考试id,四种题型设置默认值*/
     @GetMapping("/createExam")
     public Result createExam(@RequestParam String token,@RequestParam(defaultValue = "24") Integer single,@RequestParam(defaultValue = "24") Integer multi,@RequestParam(defaultValue = "24") Integer judge,@RequestParam(defaultValue = "7") Integer material ) {
-        List<QuestionTitle> list=examMessageService.createExam(token, single, multi, judge, material);
-        return ResultGenerator.successResult(list);
+        Map<String,Object> resMap = examMessageService.createExam(token, single, multi, judge, material);
+        return ResultGenerator.successResult(resMap);
     }
 }

@@ -323,4 +323,25 @@ public class User {
     public void setRole_name(String role_name) {
         this.role_name = role_name;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", open_id='" + open_id + '\'' +
+                ", identify_card='" + identify_card + '\'' +
+                ", username='" + username + '\'' +
+                ", category_id=" + category_id +
+                ", role_name='" + role_name + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", token='" + token + '\'' +
+                ", salt='" + salt + '\'' +
+                ", add_time=" + add_time +
+                ", update_time=" + update_time +
+                '}';
+    }
 }

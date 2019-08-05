@@ -153,4 +153,17 @@ public class ExamMessage {
     public void setAdd_time(Date add_time) {
         this.add_time = add_time;
     }
+
+    @Override
+    public String toString() {
+        return "ExamMessage{" +
+                "id=" + id +
+                ", userid=" + userid +
+                ", createtime=" + createtime +
+                ", endtime=" + endtime +
+                ", grade=" + grade +
+                ", statu=" + statu +
+                ", add_time=" + add_time +
+                '}';
+    }
 }

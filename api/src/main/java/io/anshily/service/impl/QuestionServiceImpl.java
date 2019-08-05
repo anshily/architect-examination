@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -19,4 +20,8 @@ public class QuestionServiceImpl extends AbstractService<Question> implements Qu
     @Resource
     private QuestionMapper swQuestionMapper;
 
+    @Override
+    public List<Question> getRandomQuestionsByTypeCategoryN(Integer type, Integer category, Integer n) {
+        return swQuestionMapper.getRandomQuestionsByTypeCategoryN(type,category,n);
+    }
 }

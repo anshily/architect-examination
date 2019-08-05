@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.anshily.dao.ExamMessageMapper">
-  <resultMap id="BaseResultMap" type="io.anshily.model.ExamMessage">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="userid" jdbcType="INTEGER" property="userid" />
-    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="endtime" jdbcType="TIMESTAMP" property="endtime" />
-    <result column="grade" jdbcType="INTEGER" property="grade" />
-    <result column="statu" jdbcType="INTEGER" property="statu" />
-    <result column="add_time" jdbcType="TIMESTAMP" property="add_time" />
-  </resultMap>
+    <resultMap id="BaseResultMap" type="io.anshily.model.ExamMessage">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="userid" jdbcType="INTEGER" property="userid"/>
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="endtime" jdbcType="TIMESTAMP" property="endtime"/>
+        <result column="grade" jdbcType="INTEGER" property="grade"/>
+        <result column="statu" jdbcType="INTEGER" property="statu"/>
+        <result column="add_time" jdbcType="TIMESTAMP" property="add_time"/>
+    </resultMap>
+
+    <insert id="insertExamMessage">
+        insert into sw_exam_message(userid) values (#{userid});
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
 </mapper>

@@ -16,4 +16,10 @@
     <result column="isclose" jdbcType="INTEGER" property="isclose" />
     <result column="iddelete" jdbcType="INTEGER" property="iddelete" />
   </resultMap>
+
+  <select id="getRandomQuestionsByTypeCategoryN" resultType="io.anshily.model.Question">
+    select * from (
+      select * from sw_question where question_type_id=#{type} and question_bank_category_id=#{category}
+    ) as sq order by rand() limit #{n}
+  </select>
 </mapper>
