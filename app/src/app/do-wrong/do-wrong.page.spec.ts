@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WelcomePage } from './welcome.page';
+import { DoWrongPage } from './do-wrong.page';
 
-describe('WelcomePage', () => {
-  let component: WelcomePage;
-  let fixture: ComponentFixture<WelcomePage>;
+describe('DoWrongPage', () => {
+  let component: DoWrongPage;
+  let fixture: ComponentFixture<DoWrongPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WelcomePage ],
+      declarations: [ DoWrongPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WelcomePage);
+    fixture = TestBed.createComponent(DoWrongPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

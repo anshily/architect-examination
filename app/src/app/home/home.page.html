@@ -7,33 +7,27 @@
 
 <ion-content>
 
-    <img style="width: 100vw" src="assets/pic_home_banner.e4860e20.jpg">
+    <img style="width: 100vw" src="assets/pic_home_banner.jpg">
 
     <div style="display: flex;justify-content: space-around">
 
-        <div (click)="testNav()">
-            <ion-icon slot="end" name="add-circle-outline"></ion-icon>
+        <div (click)="navTo('/practicing')" class="nav">
+            <img src="assets/icon/free_practicing.jpg">
             <ion-label>自由练习</ion-label>
         </div>
-        <div>
-            <ion-icon slot="end" name="add-circle-outline"></ion-icon>
+        <div (click)="navTo('/do-wrong')" class="nav">
+            <img src="assets/icon/quests_done_wrong.jpg">
             <ion-label>错题本</ion-label>
         </div>
-        <div>
-            <ion-icon slot="end" name="add-circle-outline"></ion-icon>
+        <div (click)="navTo('/history')" class="nav">
+            <img src="assets/icon/history.jpg">
             <ion-label>历史考试</ion-label>
         </div>
-        <div (click)="navTo()">
-            <ion-icon slot="end" name="add-circle-outline"></ion-icon>
+        <div (click)="navTo('/mine')" class="nav">
+            <img src="assets/icon/user.jpg">
             <ion-label>个人中心</ion-label>
         </div>
 
-    </div>
-
-    <ion-nav [root]="'app-test-nav'"></ion-nav>
-
-    <div #hahaha>
-        test
     </div>
 
 </ion-content>
