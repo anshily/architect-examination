@@ -45,7 +45,7 @@ export class AlterPasswordPage implements OnInit {
             }
             else {
                 this.loading = false;
-                this.presentToast(res['msg']);
+                this.presentToast(res['message']);
             }
         }, (err) => {
             this.loading = false;

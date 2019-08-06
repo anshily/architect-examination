@@ -35,7 +35,9 @@ export class LoginPage implements OnInit {
             if (res['code'] === 0) {
                 console.log(res, '登陆');
                 // localStorage.setItem('anshi_cookie', res['data']['cookie']);
-                localStorage.setItem('user_token', res['data']['toekn']);
+                localStorage.setItem('user_token', res['data']['token']);
+                console.log(res['data']);
+                console.log(res['data']['token']);
                 console.log(localStorage.getItem('user_token'));
                 this.router.navigate(['/home']).then();
             }

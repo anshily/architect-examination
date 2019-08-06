@@ -13,7 +13,7 @@ export class ExamPage implements OnInit {
   ngOnInit() {
     this.router.queryParams.subscribe(res => {
       console.log(res);
-    })
+    });
   }
 
 }
