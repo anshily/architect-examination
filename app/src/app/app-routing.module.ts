@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'history', loadChildren: './history/history.module#HistoryPageModule' },
   { path: 'practicing', loadChildren: './practicing/practicing.module#PracticingPageModule' },
   { path: 'do-wrong', loadChildren: './do-wrong/do-wrong.module#DoWrongPageModule' },  { path: 'alter-password', loadChildren: './alter-password/alter-password.module#AlterPasswordPageModule' },
+  { path: 'exam', loadChildren: './exam/exam.module#ExamPageModule' },
 
 
 ];

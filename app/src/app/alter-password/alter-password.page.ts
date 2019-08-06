@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ToastController} from '@ionic/angular';
+import {NavController, ToastController} from '@ionic/angular';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 
@@ -9,44 +9,39 @@ import {Router} from '@angular/router';
   styleUrls: ['./alter-password.page.scss'],
 })
 export class AlterPasswordPage implements OnInit {
-    public name: any;
-    public email: any;
+    public oldPassword: any;
     public password: any;
     public confirmPassword: any;
-    public portocolStatu = true;
     public loading = false;
 
-    constructor( private http: HttpClient, private router: Router, public toastController: ToastController) { }
+    constructor( private http: HttpClient, private router: Router, public toastController: ToastController,
+                 private navCtrl: NavController) { }
 
     ngOnInit() {
     }
 
     // 注册
     alterPassword() {
-        if (!this.name || !this.email) {
-            console.log('帐号/密码不能为空');
-            this.presentToast('帐号/密码不能为空').then();
+        if (!this.oldPassword || !this.password || !this.confirmPassword) {
+            console.log('密码不能为空');
+            this.presentToast('密码不能为空').then();
             return;
         }
         const params = {
-            name: this.name,
-            email: this.email,
-            password: this.password,
-            confirm_password: this.confirmPassword
+            token: localStorage.getItem('user_token'),
+            oldPassword: this.oldPassword,
+            newPassword: this.password
         };
         console.log(params);
 
-        this.loading = true;
-        this.http.post(ROOT_URL + 'register', params).subscribe(res => {
+        this.http.post(ROOT_URL + 'user/alter/password', params).subscribe(res => {
             console.log(res);
-            if (res['code'] === 200) {
-                console.log(res, '注册成功');
-                setTimeout(() => {
-                    this.router.navigate(['/login']).then(res => {
-                        console.log(res);
-                    });
-                    this.loading = false;
-                }, 800);
+            if (res['code'] === 0) {
+                console.log(res, '修改成功');
+                this.presentToast(res['message']).then(r => {
+                    console.log(r);
+                    this.navCtrl.pop().then();
+                });
             }
             else {
                 this.loading = false;

@@ -12,7 +12,7 @@ import java.io.IOException;
  * Created by skyADMIN on 16/7/4.
  */
 @Component
-@WebFilter
+//@WebFilter
 public class AuthInterceptorFilter implements Filter {
 
     @Override
