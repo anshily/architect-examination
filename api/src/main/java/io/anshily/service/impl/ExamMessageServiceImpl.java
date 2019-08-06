@@ -91,6 +91,7 @@ public class ExamMessageServiceImpl extends AbstractService<ExamMessage> impleme
             questionTitle.setStatu(1);
             questionTitles.add(questionTitle);
         }
+        /*在题面表中插入所有题的信息*/
         questionTitleService.save(questionTitles);
 
         Map<String,Object> map = new HashMap<>();
@@ -99,5 +100,14 @@ public class ExamMessageServiceImpl extends AbstractService<ExamMessage> impleme
         map.put("examMessage", examMessage);
         /**/
         return map;
+    }
+
+    @Override
+    public List<ExamMessage> getAllExam(String token) {
+        /*根据用户token查询出当前用户对象*/
+        User user = userService.getUserInfoByToken(token);
+        /*根据用户id查询出当前用户所有场次的考试 切考试场次状态为1*/
+        List<ExamMessage> list=swExamMessageMapper.getAllExam(user.getId());
+        return list;
     }
 }

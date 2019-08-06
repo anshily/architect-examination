@@ -11,4 +11,10 @@
     <result column="statu" jdbcType="INTEGER" property="statu" />
     <result column="add_time" jdbcType="TIMESTAMP" property="add_time" />
   </resultMap>
+
+  <select id="getQuestionTitleByExamid" resultType="io.anshily.model.QuestionTitle">
+    select * from sw_question_title
+         join sw_exam_message on sw_question_title.exam_id=sw_exam_message.id
+    where  sw_exam_message.userid=#{userid} and sw_exam_message.id=#{examid}
+  </select>
 </mapper>

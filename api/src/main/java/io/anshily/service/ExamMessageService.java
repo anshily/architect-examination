@@ -21,5 +21,6 @@ public interface ExamMessageService extends Service<ExamMessage> {
                    Integer judge,
                    Integer material);
 
+    List<ExamMessage> getAllExam(String token);
 
 }
