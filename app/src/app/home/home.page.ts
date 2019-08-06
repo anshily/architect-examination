@@ -9,6 +9,7 @@ import {HttpClient} from '@angular/common/http';
     styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+    examArr = [];
 
     constructor(
                 public route: ActivatedRoute,
@@ -20,8 +21,16 @@ export class HomePage implements OnInit {
 
 
     ngOnInit(): void {
-        this.http.get(ROOT_URL + 'user/userInfo?token=e4487ba4-7016-4cea-b016-8f7de9aa8779').subscribe(res => {
+        let params = {
+            token: localStorage.getItem('user_token')
+        }
+        this.http.get(ROOT_URL + '/exam/message/getAllExam', {
+            params: params
+        }).subscribe(res => {
             console.log(res);
+            if (res['code'] == 0){
+                this.examArr = res['data'];
+            }
         });
     }
 

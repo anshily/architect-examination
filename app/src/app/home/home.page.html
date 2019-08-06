@@ -32,15 +32,12 @@
 
     <!--<ion-list>-->
         <!--<ion-item>-->
-    <div (click)="goExam(1)">
-        <app-exam></app-exam>
-    </div>
-        <!--</ion-item>-->
 
-        <!--<ion-item>-->
+    <div>
+        <div *ngFor="let item of examArr" (click)="goExam(item['id'])">
             <app-exam></app-exam>
-        <!--</ion-item>-->
-    <!--</ion-list>-->
+        </div>
+    </div>
 
 </ion-content>
 
