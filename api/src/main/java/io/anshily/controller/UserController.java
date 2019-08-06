@@ -1,5 +1,6 @@
 package io.anshily.controller;
 import io.anshily.base.core.*;
+import io.anshily.dto.AlterPass;
 import io.anshily.model.User;
 import io.anshily.service.UserService;
 import com.github.pagehelper.PageHelper;
@@ -72,29 +73,29 @@ public class UserController {
     }
 
     @PostMapping("/alter/password")
-    public Result alterPassword(@RequestParam String token,@RequestParam String oldPassword,@RequestParam String newPassword){
+    public Result alterPassword(@RequestBody AlterPass alterPass){
 
-        if(token == null || token.isEmpty())
+        if(alterPass.getToken() == null || alterPass.getToken().isEmpty())
         {
             throw new ServiceException(Constants.CODE_ERR_USER_NAME);
         }
-        if( oldPassword == null || oldPassword.isEmpty())
+        if( alterPass.getOldPassword() == null || alterPass.getOldPassword().isEmpty())
         {
             throw new ServiceException(Constants.CODE_ERR_USER_NAME);
         }
-        if( newPassword == null || newPassword.isEmpty())
+        if( alterPass.getNewPassword() == null || alterPass.getNewPassword().isEmpty())
         {
             throw new ServiceException(Constants.CODE_ERR_USER_NAME);
         }
 
-        User user = userService.findBy("token", token);
+        User user = userService.findBy("token", alterPass.getToken());
         if (user == null) {
             throw new ServiceException(5003, "token有误请重新登录");
         }
-        if (user.getPassword().equals(oldPassword)){
+        if (!user.getPassword().equals(alterPass.getOldPassword())){
             throw new ServiceException(5002, "原密码有误！");
         }
-        user.setPassword(newPassword);
+        user.setPassword(alterPass.getNewPassword());
         user.setUpdate_time(new Date());
         userService.update(user);
         return ResultGenerator.successResult(user);
