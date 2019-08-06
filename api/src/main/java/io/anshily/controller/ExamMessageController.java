@@ -73,4 +73,14 @@ public class ExamMessageController {
         Map<String,Object> resMap = examMessageService.createExam(token, single, multi, judge, material);
         return ResultGenerator.successResult(resMap);
     }
+
+    /*获取当前用户所有考试信息*/
+    @GetMapping("/getAllExam")
+    public Result getAllExam(@RequestParam String token) {
+        List<ExamMessage> list = examMessageService.getAllExam(token);
+        return ResultGenerator.successResult(list);
+    }
+
+
+
 }

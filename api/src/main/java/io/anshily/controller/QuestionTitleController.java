@@ -1,6 +1,8 @@
 package io.anshily.controller;
 import io.anshily.base.core.Result;
 import io.anshily.base.core.ResultGenerator;
+import io.anshily.model.ExamMessage;
+import io.anshily.model.Question;
 import io.anshily.model.QuestionTitle;
 import io.anshily.service.QuestionTitleService;
 import io.anshily.base.core.PageBean;
@@ -63,6 +65,12 @@ public class QuestionTitleController {
     List<QuestionTitle> list = questionTitleService.findByCondition(condition);
         page.setList(list);
         return ResultGenerator.successResult(page);
+    }
+
+    @GetMapping("/getQuestionTitleByExamid")
+    public Result getQuestionTitleByExamid(@RequestParam String token,@RequestParam Integer examid) {
+       List<QuestionTitle> list=questionTitleService.getQuestionTitleByExamid(token, examid);
+        return ResultGenerator.successResult(list);
     }
 
 

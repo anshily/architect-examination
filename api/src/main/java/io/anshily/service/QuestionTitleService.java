@@ -1,6 +1,9 @@
 package io.anshily.service;
 import io.anshily.model.QuestionTitle;
 import io.anshily.base.core.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 
 /**
@@ -8,4 +11,5 @@ import io.anshily.base.core.Service;
  */
 public interface QuestionTitleService extends Service<QuestionTitle> {
 
+    List<QuestionTitle>  getQuestionTitleByExamid(String token,Integer examid);
 }
