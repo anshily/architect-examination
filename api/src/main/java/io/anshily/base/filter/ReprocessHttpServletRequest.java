@@ -54,19 +54,19 @@ public class ReprocessHttpServletRequest extends HttpServletRequestWrapper {
         return super.getParameterNames();
     }
 
-    @Override
-    public String[] getParameterValues(String name) {
-        try{
-            Map<String,List<String>> nameVals = doParseParameter();
-            List<String> list = nameVals.get(name);
-            if(list != null && list.size()>0){
-                return list.toArray(new String[]{});
-            }
-        }catch (UnsupportedEncodingException e){
-            logger.error("获取reques中参数"+name+"对应的值失败",e);
-        }
-        return new String[]{};
-    }
+//    @Override
+//    public String[] getParameterValues(String name) {
+//        try{
+//            Map<String,List<String>> nameVals = doParseParameter();
+//            List<String> list = nameVals.get(name);
+//            if(list != null && list.size()>0){
+//                return list.toArray(new String[]{});
+//            }
+//        }catch (UnsupportedEncodingException e){
+//            logger.error("获取reques中参数"+name+"对应的值失败",e);
+//        }
+//        return new String[]{};
+//    }
     @Override
     public ServletInputStream getInputStream() throws IOException {
         final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bodyBytes);

@@ -32,4 +32,9 @@ export class HomePage implements OnInit {
             }
         );
     }
+
+    goExam(v) {
+        console.log(v);
+        this.navController.navigateForward('/exam',{queryParams: {eid: v}}).then();
+    }
 }

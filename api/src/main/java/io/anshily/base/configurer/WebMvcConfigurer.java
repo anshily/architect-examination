@@ -50,10 +50,10 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
     @Value("${spring.profiles.active}")
     private String env;//当前激活的配置文件
 
-    @Bean
-    public AuthInterceptor myAuthInterceptor() {
-        return new AuthInterceptor();
-    }
+//    @Bean
+//    public AuthInterceptor myAuthInterceptor() {
+//        return new AuthInterceptor();
+//    }
 
     //使用阿里 FastJson 作为JSON MessageConverter
     @Override
@@ -149,7 +149,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 //            });
 //        }
 
-        registry.addInterceptor(myAuthInterceptor());
+//        registry.addInterceptor(myAuthInterceptor());
 
 //        registry.addInterceptor(new HandlerInterceptorAdapter() {
 //            @Override

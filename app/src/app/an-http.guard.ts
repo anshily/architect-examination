@@ -7,9 +7,9 @@ export class AnHttpGuard implements HttpInterceptor  {
   constructor(private injector: Injector) {
   }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const cs = localStorage.getItem('csxfToken');
+        const cs = localStorage.getItem('user_token');
         const jwtReq = req.clone({
-            headers: req.headers.set('X-CSRF-TOKEN', cs)
+            headers: req.headers.set('X-SW-TOKEN', cs)
         });
 
         let url = req.url;

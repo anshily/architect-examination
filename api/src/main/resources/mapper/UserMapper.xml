@@ -21,7 +21,8 @@
   </resultMap>
 
     <select id="getUserInfoByToken" resultType="User" parameterType="String">
-        select sw_role.category as category_id,sw_role.name as role_name, sw_user.id from sw_user
+        select sw_role.category as category_id,sw_role.name as role_name, sw_user.id,
+          sw_user.identify_card, sw_user.username, sw_user.update_time from sw_user
             join sw_user_role on sw_user.id = sw_user_role.uid
             join sw_role on sw_user_role.rid = sw_role.id
         where token = #{token}

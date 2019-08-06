@@ -1,13 +1,20 @@
 import {Component, OnInit} from '@angular/core';
+import {NavController} from '@ionic/angular';
+
 @Component({
-  selector: 'app-mine',
-  templateUrl: './mine.page.html',
-  styleUrls: ['./mine.page.scss'],
+    selector: 'app-mine',
+    templateUrl: './mine.page.html',
+    styleUrls: ['./mine.page.scss'],
 })
 export class MinePage implements OnInit {
 
-  constructor() { }
+    constructor(private navCtrl: NavController) {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
+
+    goAlterPassword() {
+        this.navCtrl.navigateForward('/alter-password').then();
+    }
 }
