@@ -12,4 +12,9 @@
     <result column="statu" jdbcType="INTEGER" property="statu" />
     <result column="add_time" jdbcType="TIMESTAMP" property="add_time" />
   </resultMap>
+
+  <select id="getCountOne" resultType="Integer">
+    select Count(id) from sw_exam_answer
+        join
+  </select>
 </mapper>

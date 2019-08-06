@@ -11,6 +11,7 @@ import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
 * Created by anshi on 2019/08/05.
@@ -63,5 +64,12 @@ public class ExamAnswerController {
     List<ExamAnswer> list = examAnswerService.findByCondition(condition);
         page.setList(list);
         return ResultGenerator.successResult(page);
+    }
+
+    /*用户提交试卷后将分数以及错题信息全部返回*/
+    @GetMapping("/getGrade")
+    public Result getGrade(@RequestParam String token,@RequestParam Integer examid){
+        Map<String,Object> map=examAnswerService.getGrade(token,examid);
+        return ResultGenerator.successResult(map);
     }
 }
