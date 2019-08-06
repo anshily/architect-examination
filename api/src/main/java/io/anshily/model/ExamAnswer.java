@@ -28,9 +28,9 @@ public class ExamAnswer {
     private String answer;
 
     /**
-     * 状态（1：可用，0：不可用）
+     * 是否正确（1：正确，0：不正确）
      */
-    private Integer statu;
+    private Integer istrue;
 
     /**
      * 新增时间
@@ -110,21 +110,21 @@ public class ExamAnswer {
     }
 
     /**
-     * 获取状态（1：可用，0：不可用）
+     * 获取状态（1：正确，0：错误）
      *
      * @return statu - 状态（1：可用，0：不可用）
      */
-    public Integer getStatu() {
-        return statu;
+    public Integer getIstrue() {
+        return istrue;
     }
 
     /**
-     * 设置状态（1：可用，0：不可用）
+     * 设置状态（1：正确，0：错误）
      *
-     * @param statu 状态（1：可用，0：不可用）
+     * @param istrue 状态（1：正确，0：错误）
      */
-    public void setStatu(Integer statu) {
-        this.statu = statu;
+    public void setIstrue(Integer istrue) {
+        this.istrue = istrue;
     }
 
     /**
