@@ -4,8 +4,8 @@
   </ion-card>
 
   <!--<ion-list>-->
-    <div *ngFor="let item of subQuestion">
-      <app-sub-question [questionId]="item['question_bank_id']" (updateResult)="testSubEmit($event)"></app-sub-question>
+    <div *ngFor="let item of subQuestion; let i = index">
+      <app-sub-question [questionId]="item['question_bank_id']" (updateResult)="testSubEmit($event, i)"></app-sub-question>
     </div>
   <!--</ion-list>-->
 </div>
