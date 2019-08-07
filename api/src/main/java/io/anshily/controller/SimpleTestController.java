@@ -1,10 +1,15 @@
 package io.anshily.controller;
 import io.anshily.base.core.Result;
 import io.anshily.base.core.ResultGenerator;
+import io.anshily.base.core.ServiceException;
+import io.anshily.dto.SimpleTestDto;
+import io.anshily.model.ExamAnswer;
 import io.anshily.model.SimpleTest;
+import io.anshily.model.User;
 import io.anshily.service.SimpleTestService;
 import io.anshily.base.core.PageBean;
 import com.github.pagehelper.PageHelper;
+import io.anshily.service.UserService;
 import org.springframework.web.bind.annotation.*;
 import tk.mybatis.mapper.entity.Condition;
 import tk.mybatis.mapper.entity.Example;
@@ -20,6 +25,8 @@ import java.util.List;
 public class SimpleTestController {
     @Resource
     private SimpleTestService simpleTestService;
+    @Resource
+    private UserService userService;
 
     @PostMapping("/add")
     public Result add(@RequestBody SimpleTest simpleTest) {
@@ -63,5 +70,16 @@ public class SimpleTestController {
     List<SimpleTest> list = simpleTestService.findByCondition(condition);
         page.setList(list);
         return ResultGenerator.successResult(page);
+    }
+
+    @PostMapping("/saveSimpleTest")
+    public Result saveSimpleTest(@RequestBody SimpleTestDto simpleTestDto){
+        User user=userService.getUserInfoByToken(simpleTestDto.getToken());
+        if (user == null){
+            throw new ServiceException(3002,"用户未登录！");
+        }
+        simpleTestDto.getSimpleTest().setUser_id(user.getId());
+        simpleTestService.save(simpleTestDto.getSimpleTest());
+        return ResultGenerator.successResult();
     }
 }
