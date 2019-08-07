@@ -66,7 +66,7 @@ public class ExamAnswerController {
         return ResultGenerator.successResult(page);
     }
 
-    /*用户提交试卷后将分数以及错题信息全部返回*/
+    /*用户提交试卷后将分数*/
     @GetMapping("/getGrade")
     public Result getGrade(@RequestParam String token,@RequestParam Integer examid){
         Map<String,Object> map=examAnswerService.getGrade(token,examid);

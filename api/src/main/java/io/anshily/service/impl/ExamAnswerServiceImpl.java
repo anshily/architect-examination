@@ -7,10 +7,12 @@ import io.anshily.model.User;
 import io.anshily.service.ExamAnswerService;
 import io.anshily.base.core.AbstractService;
 import io.anshily.service.UserService;
+import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -35,7 +37,12 @@ public class ExamAnswerServiceImpl extends AbstractService<ExamAnswer> implement
         /*先算出总分*/
         /*分数计算  123类型题目全部1分一题 */
         /*先查询出正确的123类型的题目总数  再查询出正确的6类型的题目总数*/
+        Integer grade=asExamAnswerMapper.getCountOne(examid);
+       /* Integer four=asExamAnswerMapper.getCountSix(examid);*/
+        System.out.print(grade);
 
-        return null;
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("grade",grade);
+        return map;
     }
 }
