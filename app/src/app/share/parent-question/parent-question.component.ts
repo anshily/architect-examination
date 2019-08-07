@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -8,6 +8,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class ParentQuestionComponent implements OnInit {
 
+    @Output() updateResult: EventEmitter<any> = new EventEmitter();
     @Input() questionId;
     answers;
     question;
@@ -28,8 +29,13 @@ export class ParentQuestionComponent implements OnInit {
       });
   }
 
-    testSubEmit(e) {
+    testSubEmit(e,i) {
       console.log(e);
+      this.subQuestion[i]['res'] = e
+      // let sum = {
+      //     result: this.subQuestion
+      // }
+      this.updateResult.emit(this.subQuestion);
     }
 
 }

@@ -3,10 +3,10 @@
   <ion-card *ngIf="question && question['question_type_id'] == 1">
       <ion-card-header>单选* {{question['question_title']}}</ion-card-header>
     <!--<ion-card-header *ngIf="question"><ion-title>单选*</ion-title><div [innerHTML]="question['question_title']"></div></ion-card-header>-->
-    <ion-radio-group>
+    <ion-radio-group  [(ngModel)]="radioModel">
       <ion-list>
         <ion-item *ngFor="let entry of answers">
-          <ion-label>{{entry.name}}</ion-label>
+          <ion-label>{{entry['index_letter'] + entry.name}}</ion-label>
             <!--<ion-label [innerHTML]="entry.name"></ion-label>-->
           <ion-radio (ionSelect)="radioSelect(entry)" slot="start" value="{{entry.index_number}}"></ion-radio>
         </ion-item>
@@ -42,4 +42,8 @@
       </ion-list>
     </ion-radio-group>
   </ion-card>
+
+    <div *ngIf="question && question['question_type_id'] == 6">
+      <app-parent-question [questionId]="questionId" (updateResult)="paraEmit($event)"></app-parent-question>
+    </div>
 </div>
