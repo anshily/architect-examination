@@ -1,6 +1,7 @@
 package io.anshily.controller;
 import io.anshily.base.core.Result;
 import io.anshily.base.core.ResultGenerator;
+import io.anshily.dto.SubmitExamAnswer;
 import io.anshily.model.ExamAnswer;
 import io.anshily.service.ExamAnswerService;
 import io.anshily.base.core.PageBean;
@@ -66,10 +67,17 @@ public class ExamAnswerController {
         return ResultGenerator.successResult(page);
     }
 
-    /*用户提交试卷后将分数以及错题信息全部返回*/
+    /*用户提交试卷后将分数返回*/
     @GetMapping("/getGrade")
     public Result getGrade(@RequestParam String token,@RequestParam Integer examid){
         Map<String,Object> map=examAnswerService.getGrade(token,examid);
         return ResultGenerator.successResult(map);
+    }
+
+    @PostMapping("/examAnswerArr")
+    public Result examAnswerArr(@RequestBody SubmitExamAnswer answer){
+        List<ExamAnswer> examAnswers = answer.getExamAnswers();
+        examAnswerService.save(examAnswers);
+        return ResultGenerator.successResult();
     }
 }
