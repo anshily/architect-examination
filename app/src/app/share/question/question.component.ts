@@ -16,7 +16,6 @@ export class QuestionComponent implements OnInit {
     rightResult;
     userResult;
     showResult = false;
-    radioModel;
 
     constructor(private http: HttpClient) {
     }
@@ -27,16 +26,30 @@ export class QuestionComponent implements OnInit {
     ngOnChanges() {
         // console.log(this.questionId);
         // this.innerQuestionId = this.questionId;
-        this.http.get('https://localhost:8888/question/detail?id=' + this.questionId).subscribe(res => {
-            console.log(res);
-            if (res['code'] === 0) {
-                this.question = res['data']['detail'];
-                this.answers = res['data']['answer'].map(item => {
-                    item['isChecked'] = false;
-                    return item;
-                });
-            }
-        });
+            this.http.get('https://localhost:8888/question/detail?id=' + this.questionId).subscribe(res => {
+                console.log(res);
+                if (res['code'] === 0) {
+                    this.question = res['data']['detail'];
+                    this.answers = res['data']['answer'].map(item => {
+                        item['isChecked'] = false;
+                        return item;
+                    });
+
+                    if (localStorage.getItem(this.questionId)) {
+                        // console.log(localStorage.getItem(this.questionId));
+                        let storage = JSON.parse(localStorage.getItem(this.questionId));
+                        // if (storage['question']) {
+                        //     this.question = storage['question'];
+                        // }
+                        if (storage['answers']) {
+                            this.answers = storage['answers'];
+                        }
+                    }
+                    // localStorage.setItem(this.questionId,JSON.stringify({
+                    //     answers: this.answers
+                    // }));
+                }
+            });
     }
 
     checkChange() {
@@ -74,11 +87,15 @@ export class QuestionComponent implements OnInit {
             rightResult: this.rightResult,
             question: this.question
         });
+        localStorage.setItem(this.questionId,JSON.stringify({
+            answers: this.answers
+        }));
     }
 
     radioSelect(e) {
-        console.log(this.radioModel);
-        // console.log(e);
+        // console.log(this.radioModel);
+        // this.radioModel = e['index_number'];
+        console.log(e);
         let isRight = false;
         let rightResult = [];
         let userResult = [];
@@ -86,10 +103,16 @@ export class QuestionComponent implements OnInit {
         if (e['result'] === 1) {
             isRight = true;
         }
-        this.answers.forEach(item => {
+        this.answers.map(item => {
+            if (e['index_number'] == item['index_number']) {
+                item['isChecked'] = true;
+            }else {
+                item['isChecked'] = false;
+            }
             if (item['result'] === 1) {
                 rightResult.push(item['index_letter']);
             }
+            return item;
         });
         // console.log(isRight, userResult, rightResult);
         this.showResult = true;
@@ -107,6 +130,9 @@ export class QuestionComponent implements OnInit {
             questionResult: subResult
         });
         // console.log(this.testRadio);
+        localStorage.setItem(this.questionId,JSON.stringify({
+            answers: this.answers
+        }));
     }
     paraEmit(e) {
         this.updateResult.emit({

@@ -28,6 +28,17 @@ export class SubQuestionComponent implements OnInit {
                     item['isChecked'] = false;
                     return item;
                 });
+
+                if (localStorage.getItem(this.questionId)) {
+                    // console.log(localStorage.getItem(this.questionId));
+                    let storage = JSON.parse(localStorage.getItem(this.questionId));
+                    // if (storage['question']) {
+                    //     this.question = storage['question'];
+                    // }
+                    if (storage['answers']) {
+                        this.answers = storage['answers'];
+                    }
+                }
             }
         });
     }
@@ -67,6 +78,10 @@ export class SubQuestionComponent implements OnInit {
             rightResult: this.rightResult,
             question: this.question
         });
+
+        localStorage.setItem(this.questionId,JSON.stringify({
+            answers: this.answers
+        }));
     }
 
     radioSelect(e) {
@@ -78,10 +93,21 @@ export class SubQuestionComponent implements OnInit {
         if (e['result'] === 1) {
             isRight = true;
         }
-        this.answers.forEach(item => {
+        // this.answers.forEach(item => {
+        //     if (item['result'] === 1) {
+        //         rightResult.push(item['index_letter']);
+        //     }
+        // });
+        this.answers.map(item => {
+            if (e['index_number'] == item['index_number']) {
+                item['isChecked'] = true;
+            }else {
+                item['isChecked'] = false;
+            }
             if (item['result'] === 1) {
                 rightResult.push(item['index_letter']);
             }
+            return item;
         });
         // console.log(isRight, userResult, rightResult);
         this.showResult = true;
@@ -95,6 +121,10 @@ export class SubQuestionComponent implements OnInit {
             rightResult: this.rightResult,
             question: this.question
         });
+
+        localStorage.setItem(this.questionId,JSON.stringify({
+            answers: this.answers
+        }));
         // console.log(this.testRadio);
     }
 }

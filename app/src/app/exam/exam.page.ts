@@ -49,7 +49,7 @@ export class ExamPage implements OnInit {
     }
 
     nextQuestion() {
-        console.log(this.curQuestionIndex, this.examLength);
+        // console.log(this.curQuestionIndex, this.examLength);
         if (this.curQuestionIndex < this.examLength) {
             this.curQuestionIndex++;
             // this.curQuestion = this.examArr.slice(this.curQuestionIndex, this.curQuestionIndex + 1).pop();
