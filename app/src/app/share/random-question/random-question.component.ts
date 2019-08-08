@@ -3,11 +3,11 @@ import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
-    selector: 'app-question',
-    templateUrl: './question.component.html',
-    styleUrls: ['./question.component.scss'],
+  selector: 'app-random-question',
+  templateUrl: './random-question.component.html',
+  styleUrls: ['./random-question.component.scss'],
 })
-export class QuestionComponent implements OnInit {
+export class RandomQuestionComponent implements OnInit {
     @Output() updateResult: EventEmitter<any> = new EventEmitter();
     @Input() questionId;
     innerQuestionId;
@@ -32,30 +32,30 @@ export class QuestionComponent implements OnInit {
     ngOnChanges() {
         // console.log(this.questionId);
         // this.innerQuestionId = this.questionId;
-            this.http.get('https://localhost:8888/question/detail?id=' + this.questionId).subscribe(res => {
-                console.log(res);
-                if (res['code'] === 0) {
-                    this.question = res['data']['detail'];
-                    this.answers = res['data']['answer'].map(item => {
-                        item['isChecked'] = false;
-                        return item;
-                    });
+        this.http.get('https://localhost:8888/question/detail?id=' + this.questionId).subscribe(res => {
+            console.log(res);
+            if (res['code'] === 0) {
+                this.question = res['data']['detail'];
+                this.answers = res['data']['answer'].map(item => {
+                    item['isChecked'] = false;
+                    return item;
+                });
 
-                    if (localStorage.getItem('exam' + this.examId + 'question' + this.questionId)) {
-                        // console.log(localStorage.getItem(this.questionId));
-                        let storage = JSON.parse(localStorage.getItem('exam' + this.examId + 'question' + this.questionId));
-                        // if (storage['question']) {
-                        //     this.question = storage['question'];
-                        // }
-                        if (storage['answers']) {
-                            this.answers = storage['answers'];
-                        }
+                if (localStorage.getItem('exam' + this.examId + 'question' + this.questionId)) {
+                    // console.log(localStorage.getItem(this.questionId));
+                    let storage = JSON.parse(localStorage.getItem('exam' + this.examId + 'question' + this.questionId));
+                    // if (storage['question']) {
+                    //     this.question = storage['question'];
+                    // }
+                    if (storage['answers']) {
+                        this.answers = storage['answers'];
                     }
-                    // localStorage.setItem(this.questionId,JSON.stringify({
-                    //     answers: this.answers
-                    // }));
                 }
-            });
+                // localStorage.setItem(this.questionId,JSON.stringify({
+                //     answers: this.answers
+                // }));
+            }
+        });
     }
 
     checkChange() {
@@ -145,4 +145,5 @@ export class QuestionComponent implements OnInit {
             childQuestionResult: e
         });
     }
+
 }

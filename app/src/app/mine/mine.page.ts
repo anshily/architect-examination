@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController} from '@ionic/angular';
+import {HttpClient} from '@angular/common/http';
+import {TimeService} from '../time.service';
 
 @Component({
     selector: 'app-mine',
@@ -7,11 +9,20 @@ import {NavController} from '@ionic/angular';
     styleUrls: ['./mine.page.scss'],
 })
 export class MinePage implements OnInit {
-
-    constructor(private navCtrl: NavController) {
+    userInfo;
+    lastLoginTime;
+    constructor(private navCtrl: NavController, private http: HttpClient,
+                private timeService: TimeService) {
     }
 
     ngOnInit() {
+        this.http.get(ROOT_URL + 'user/userInfo?token=' + localStorage.getItem('user_token')).subscribe(res => {
+            console.log(res);
+            if (res['code'] == 0) {
+                this.userInfo = res['data'];
+                this.lastLoginTime = this.timeService.formatDateTime(this.userInfo['update_time']);
+            }
+        });
     }
 
     goAlterPassword() {

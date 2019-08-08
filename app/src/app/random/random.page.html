@@ -1,0 +1,30 @@
+<ion-header>
+  <!--<ion-toolbar>-->
+    <!--<ion-title>random</ion-title>-->
+  <!--</ion-toolbar>-->
+  <app-nav-back [title]="'隨機練習'"></app-nav-back>
+</ion-header>
+
+<ion-content>
+
+  <div *ngFor="let item of questionArr; let i = index;">
+    <div *ngIf="i == curQuestionIndex">
+      <div *ngIf="item['res']">{{item['explanation']}}</div>
+      <app-random-question (updateResult)="updateResult($event, i)" [questionId]="item['question_bank_id']"></app-random-question>
+    </div>
+  </div>
+
+  <div style="position: fixed; bottom: 0;z-index: 99">
+
+    <div style="display: flex;justify-content: space-around;align-items: center; width: 100vw;">
+
+      <ion-button shape="round" (click)="prevQuestion()" [disabled]="curQuestionIndex == 0 ? true : false">上一题</ion-button>
+
+      <ion-button *ngIf="questionLength >= curQuestionIndex" shape="round" (click)="nextQuestion()">下一题</ion-button>
+
+      <ion-button *ngIf="!(questionLength >= curQuestionIndex)" shape="round" (click)="submitResult()">交卷</ion-button>
+
+    </div>
+
+  </div>
+</ion-content>

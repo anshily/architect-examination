@@ -13,7 +13,16 @@
     </ion-item>
   </ion-list>
 
+  <div (click)="startSimulate()">
     <app-simulate-exam></app-simulate-exam>
-    <app-sequence-practice></app-sequence-practice>
+  </div>
+
+  <div (click)="startRandom()">
     <app-random-practice></app-random-practice>
+  </div>
+
+  <div (click)="startSequence()">
+    <app-sequence-practice></app-sequence-practice>
+  </div>
+
 </ion-content>

@@ -11,6 +11,9 @@ import {SequencePracticeComponent} from './sequence-practice/sequence-practice.c
 import {SimulateExamComponent} from './simulate-exam/simulate-exam.component';
 import {WrongQuestionComponent} from './wrong-question/wrong-question.component';
 import {NavBackComponent} from './nav-back/nav-back.component';
+import {RandomQuestionComponent} from './random-question/random-question.component';
+import {RandomSumQuestionComponent} from './random-sum-question/random-sum-question.component';
+import {RandomSubQuestionComponent} from './random-sub-question/random-sub-question.component';
 
 @NgModule({
     declarations: [QuestionComponent,
@@ -21,7 +24,10 @@ import {NavBackComponent} from './nav-back/nav-back.component';
         SequencePracticeComponent,
         SimulateExamComponent,
         WrongQuestionComponent,
-        NavBackComponent],
+        NavBackComponent,
+        RandomQuestionComponent,
+        RandomSumQuestionComponent,
+        RandomSubQuestionComponent],
     entryComponents: [],
     imports: [
         CommonModule,
@@ -36,7 +42,10 @@ import {NavBackComponent} from './nav-back/nav-back.component';
         SequencePracticeComponent,
         SimulateExamComponent,
         WrongQuestionComponent,
-        NavBackComponent]
+        NavBackComponent,
+        RandomQuestionComponent,
+        RandomSumQuestionComponent,
+        RandomSubQuestionComponent]
 })
 export class ShareModule {
 }

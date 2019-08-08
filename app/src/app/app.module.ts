@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {HTTP_INTERCEPTORS, HttpClientJsonpModule, HttpClientModule} from '@angular/common/http';
 import {AnHttpGuard} from './an-http.guard';
 import {HomePageModule} from './home/home.module';
+import {TimeService} from './time.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import {HomePageModule} from './home/home.module';
       AppRoutingModule,
       HomePageModule],
   providers: [
+      TimeService,
       { provide: HTTP_INTERCEPTORS, useClass: AnHttpGuard, multi: true},
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

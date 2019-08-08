@@ -1,15 +1,20 @@
 package io.anshily.controller;
 import io.anshily.base.core.Result;
 import io.anshily.base.core.ResultGenerator;
+import io.anshily.base.core.ServiceException;
+import io.anshily.dto.SumitTestAnswer;
 import io.anshily.model.SimpleTest;
+import io.anshily.model.User;
 import io.anshily.service.SimpleTestService;
 import io.anshily.base.core.PageBean;
 import com.github.pagehelper.PageHelper;
+import io.anshily.service.UserService;
 import org.springframework.web.bind.annotation.*;
 import tk.mybatis.mapper.entity.Condition;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,9 +25,19 @@ import java.util.List;
 public class SimpleTestController {
     @Resource
     private SimpleTestService simpleTestService;
+    @Resource
+    private UserService userService;
 
     @PostMapping("/add")
-    public Result add(@RequestBody SimpleTest simpleTest) {
+    public Result add(@RequestBody SumitTestAnswer sumitTestAnswer) {
+        SimpleTest simpleTest = sumitTestAnswer.getSimpleTest();
+
+        User user = userService.getUserInfoByToken(sumitTestAnswer.getToken());
+        if (user == null){
+            throw new ServiceException(3002,"用户未登录！");
+        }
+        simpleTest.setUser_id(user.getId());
+        simpleTest.setAdd_time(new Date());
         simpleTestService.save(simpleTest);
         return ResultGenerator.successResult();
     }

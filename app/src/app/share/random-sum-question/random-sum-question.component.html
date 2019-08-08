@@ -1,0 +1,11 @@
+<div>
+  <ion-card *ngIf="question">
+    <div [innerHTML]="question['question_title']"></div>
+  </ion-card>
+
+  <!--<ion-list>-->
+  <div *ngFor="let item of subQuestion; let i = index">
+    <app-random-sub-question [questionId]="item['question_bank_id']" (updateResult)="testSubEmit($event, i)"></app-random-sub-question>
+  </div>
+  <!--</ion-list>-->
+</div>

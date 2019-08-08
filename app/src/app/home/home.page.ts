@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NavController, ToastController} from '@ionic/angular';
 import {HttpClient} from '@angular/common/http';
+import {TimeService} from '../time.service';
 
 @Component({
     selector: 'app-home',
@@ -29,7 +30,11 @@ export class HomePage implements OnInit {
         }).subscribe(res => {
             console.log(res);
             if (res['code'] == 0){
-                this.examArr = res['data'];
+                if (res['data'] && res['data'].length > 2) {
+                    this.examArr = res['data'].slice(0, 2);
+                } else {
+                    this.examArr = res['data'];
+                }
             }
         });
     }

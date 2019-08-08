@@ -8,14 +8,14 @@
 <ion-content>
 
     <ion-list>
-        <ion-item>
-            <ion-label>账户</ion-label>
-            <ion-note slot="end">On</ion-note>
+        <ion-item *ngIf="userInfo">
+            <ion-label>身份証</ion-label>
+            <ion-note slot="end">{{userInfo['identify_card']}}</ion-note>
         </ion-item>
 
-        <ion-item>
+        <ion-item *ngIf="userInfo">
             <ion-label>姓名</ion-label>
-            <ion-note slot="end">On</ion-note>
+            <ion-note slot="end">{{userInfo['username']}}</ion-note>
         </ion-item>
 
         <ion-item>
@@ -23,14 +23,14 @@
             <ion-note slot="end">On</ion-note>
         </ion-item>
 
-        <ion-item>
+        <ion-item *ngIf="userInfo">
             <ion-label>最后登录时间</ion-label>
-            <ion-note slot="end">On</ion-note>
+            <ion-note slot="end">{{lastLoginTime}}</ion-note>
         </ion-item>
 
         <ion-item (click)="goAlterPassword()">
             <ion-label>修改密码</ion-label>
-            <ion-note slot="end">On</ion-note>
+            <ion-note slot="end"><img src="assets/icon/arrow.png"></ion-note>
         </ion-item>
 
     </ion-list>

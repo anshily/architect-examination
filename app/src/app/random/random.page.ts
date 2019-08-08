@@ -1,66 +1,47 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
-    selector: 'app-exam',
-    templateUrl: './exam.page.html',
-    styleUrls: ['./exam.page.scss'],
+    selector: 'app-random',
+    templateUrl: './random.page.html',
+    styleUrls: ['./random.page.scss'],
 })
-export class ExamPage implements OnInit {
+export class RandomPage implements OnInit {
     examId;
     examArr = [];
     curQuestion;
     curQuestionIndex = 0;
-    examLength = 0;
+    questionLength = 0;
     resultArr = [];
-    materialResultArr = [];
+    questionArr = [];
+
     constructor(private router: ActivatedRoute, private http: HttpClient) {
     }
 
     ngOnInit() {
-        this.router.queryParams.subscribe(qp => {
-            console.log(qp);
-            this.examId = qp['eid'];
-            let params = {
-                token: localStorage.getItem('user_token'),
-                examid: qp['eid']
-            }
-            this.http.get(ROOT_URL + 'question/title/getQuestionTitleByExamid', {params: params}).subscribe(res => {
-                console.log(res);
-                if (res['code'] == 0) {
-                    this.examArr = res['data'];
 
-                    if (localStorage.getItem('exam' + this.examId)) {
-                        let storage = JSON.parse(localStorage.getItem('exam' + this.examId));
-                        console.log(storage);
-                        if (storage['examArr'] && storage['examArr'].length > 0) {
-                            this.examArr = storage['examArr'];
-                        }
+        this.http.get(ROOT_URL + 'question/list').subscribe(res => {
+            console.log(res);
+            if (res['code'] == 0){
+                this.questionArr = res['data']['list'];
 
-                        if (storage['curQuestionIndex']) {
-                            this.curQuestionIndex = storage['curQuestionIndex'];
-                        }
-                    }
-                    if (this.examArr.length > 0){
-                        this.examLength = this.examArr.length;
-                        this.curQuestion = this.examArr.slice(this.curQuestionIndex, this.curQuestionIndex + 1).pop();
-                    }
-                    // console.log(this.examArr.slice(1,2).pop());
-                    console.log(this.examArr);
+                if (this.questionArr.length > 0) {
+                    this.questionLength = this.questionArr.length;
+                    this.curQuestion = this.questionArr.slice(this.curQuestionIndex, this.curQuestionIndex + 1).pop();
                 }
-            });
+            }
         });
     }
 
-    ngOnDestroy() {
-        console.log('destroy!');
-        let storge = {
-            curQuestionIndex: this.curQuestionIndex,
-            examArr: this.examArr
-        }
-        localStorage.setItem('exam' + this.examId, JSON.stringify(storge));
-    }
+    // ngOnDestroy() {
+    //     console.log('destroy!');
+    //     let storge = {
+    //         curQuestionIndex: this.curQuestionIndex,
+    //         examArr: this.examArr
+    //     }
+    //     localStorage.setItem('exam' + this.examId, JSON.stringify(storge));
+    // }
 
     prevQuestion() {
         if (this.curQuestionIndex > 0) {
@@ -70,24 +51,39 @@ export class ExamPage implements OnInit {
     }
 
     nextQuestion() {
+        if (this.questionArr[this.curQuestionIndex]['res']) {
+            let simple = this.questionArr[this.curQuestionIndex]['res'];
+
+            let params = {
+                token: localStorage.getItem('user_token'),
+                simpleTest: {
+                    question_id: this.questionArr[this.curQuestionIndex]['question_bank_id'],
+                    answer: simple['questionResult']['userResult'].toString(),
+                    istrue: simple['questionResult']['isRight'] ? 1 : 0
+                }
+            }
+            this.http.post(ROOT_URL + 'simple/test/add', params).subscribe(res => {
+                console.log(res);
+            });
+        }
         // console.log(this.curQuestionIndex, this.examLength);
-        if (this.curQuestionIndex < this.examLength) {
+        if (this.curQuestionIndex < this.questionLength) {
             this.curQuestionIndex++;
             // this.curQuestion = this.examArr.slice(this.curQuestionIndex, this.curQuestionIndex + 1).pop();
         }
     }
 
     updateResult(event, i) {
-        console.log(this.examArr[i]['res'] = event);
-        console.log(this.examArr[i]);
+        console.log(this.questionArr[i]['res'] = event);
+        console.log(this.questionArr[i]);
     }
 
     submitResult() {
-        this.examArr.map(item => {
+        this.questionArr.map(item => {
             if (item['res']) {
                 console.log(item['res']);
                 if (item['res']['questionResult']) {
-                    let question  =  item['res']['questionResult'];
+                    let question = item['res']['questionResult'];
                     this.resultArr.push({
                         examid: this.examId,
                         question_title_id: question['question']['question_bank_id'],
@@ -135,5 +131,4 @@ export class ExamPage implements OnInit {
             }
         });
     }
-
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {TimeService} from '../../time.service';
 
 @Component({
   selector: 'app-exam',
@@ -7,8 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExamComponent implements OnInit {
 
-  constructor() { }
+  @Input() createTime;
+  startTime;
+  endTime;
+  status = 0;
 
-  ngOnInit() {}
+  constructor(private timeService: TimeService) { }
+
+  ngOnInit() {
+    this.startTime = this.timeService.formatDateTime(this.createTime);
+    this.endTime = this.timeService.formatDateTime(parseInt(this.createTime) + 90 * 60 * 1000);
+    let curTime = new Date();
+    console.log(curTime.getTime());
+    if (curTime.getTime() > parseInt(this.createTime) + 90 * 60 * 1000) {
+      console.log('已過期！');
+      this.status = 1;
+    }
+  }
 
 }
