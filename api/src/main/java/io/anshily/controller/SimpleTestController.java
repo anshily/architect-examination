@@ -116,5 +116,12 @@ public class SimpleTestController {
         map.put("SimpleTestErrRate",list);
         return ResultGenerator.successResult(map);
     }
+    @GetMapping("/normalTestErrRate")
+    public Result normalTestErrRate(@RequestParam String token) {
+        List<ErrRate> list=simpleTestService.normalTestErr(token);
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("normalTestErrRate",list);
+        return ResultGenerator.successResult(map);
+    }
 
 }

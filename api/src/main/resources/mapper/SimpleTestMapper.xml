@@ -46,4 +46,20 @@
     select count(*) from sw_simple_test where question_id=#{questionid}
   </select>
 
+  <select id="normalTestErr" resultType="io.anshily.model.ExamAnswer">
+    select * from sw_exam_answer
+    join sw_exam_message on sw_exam_message.id=sw_exam_answer.examid
+    where sw_exam_message.userid=#{id} and sw_exam_answer.istrue=0
+    group by sw_exam_answer.question_title_id
+  </select>
+
+  <select id="getNormalErrSumByQuestionId" resultType="Integer">
+    select count(id) from sw_exam_answer where question_title_id=#{questionid} and istrue=0
+  </select>
+
+  <select id="getNormalSumByQuestionId" resultType="Integer">
+    select count(id) from sw_exam_answer where question_title_id=#{questionid}
+  </select>
+
+
 </mapper>
