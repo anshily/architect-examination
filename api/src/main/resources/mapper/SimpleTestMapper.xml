@@ -13,4 +13,37 @@
     <result column="statu" jdbcType="INTEGER" property="statu" />
     <result column="add_time" jdbcType="TIMESTAMP" property="add_time" />
   </resultMap>
+
+  <select id="simpleQuestionTest" resultType="io.anshily.model.Question">
+    select * from sw_question
+        where sw_question.name=#{type}
+    order by RAND() limit 200
+  </select>
+  <select id="orderQuestionTest" resultType="io.anshily.model.Question">
+    select * from sw_question
+    where sw_question.name=#{type}
+  </select>
+
+  <select id="getQuestionType" resultType="String">
+    select sw_role.name from sw_role
+        join sw_user_role on sw_role.id=sw_user_role.rid
+        join sw_user on sw_user_role.uid=sw_user.id
+        where sw_user.id=#{id}
+  </select>
+
+  <select id="simpleTestErr" resultType="io.anshily.model.SimpleTest">
+    select * from sw_simple_test
+    where user_id=#{id} and istrue=0
+    group by question_id
+  </select>
+
+  <select id="getErrSumByQuestionId" resultType="Integer">
+    select count(*) from sw_simple_test where question_id=#{questionid} and istrue=0
+  </select>
+
+
+  <select id="getSumByQuestionId" resultType="Integer">
+    select count(*) from sw_simple_test where question_id=#{questionid}
+  </select>
+
 </mapper>

@@ -2,8 +2,10 @@ package io.anshily.controller;
 import io.anshily.base.core.Result;
 import io.anshily.base.core.ResultGenerator;
 import io.anshily.base.core.ServiceException;
+import io.anshily.dto.ErrRate;
 import io.anshily.dto.SimpleTestDto;
 import io.anshily.dto.SumitTestAnswer;
+import io.anshily.model.Question;
 import io.anshily.model.SimpleTest;
 import io.anshily.model.User;
 import io.anshily.service.SimpleTestService;
@@ -16,7 +18,9 @@ import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
 * Created by anshi on 2019/08/05.
@@ -91,4 +95,26 @@ public class SimpleTestController {
         simpleTestService.save(simpleTestDto.getSimpleTest());
         return ResultGenerator.successResult();
     }
+    @GetMapping("/simpleQuestionTest")
+    public Result simpleQuestionTest(@RequestParam String token) {
+        List<Question> list=simpleTestService.simpleQuestionTest(token);
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("title",list);
+        return ResultGenerator.successResult(map);
+    }
+    @GetMapping("/orderQuestionTest")
+    public Result orderQuestionTest(@RequestParam String token) {
+        List<Question> list=simpleTestService.orderQuestionTest(token);
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("title",list);
+        return ResultGenerator.successResult(map);
+    }
+    @GetMapping("/simpleTestErrRate")
+    public Result simpleTestErr(@RequestParam String token) {
+        List<ErrRate> list=simpleTestService.simpleTestErr(token);
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("SimpleTestErrRate",list);
+        return ResultGenerator.successResult(map);
+    }
+
 }

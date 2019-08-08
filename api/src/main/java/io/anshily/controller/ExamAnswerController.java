@@ -3,9 +3,11 @@ import io.anshily.base.core.Result;
 import io.anshily.base.core.ResultGenerator;
 import io.anshily.dto.SubmitExamAnswer;
 import io.anshily.model.ExamAnswer;
+import io.anshily.model.ExamMessage;
 import io.anshily.service.ExamAnswerService;
 import io.anshily.base.core.PageBean;
 import com.github.pagehelper.PageHelper;
+import io.anshily.service.ExamMessageService;
 import org.springframework.web.bind.annotation.*;
 import tk.mybatis.mapper.entity.Condition;
 import tk.mybatis.mapper.entity.Example;
@@ -22,6 +24,8 @@ import java.util.Map;
 public class ExamAnswerController {
     @Resource
     private ExamAnswerService examAnswerService;
+    @Resource
+    private ExamMessageService examMessageService;
 
     @PostMapping("/add")
     public Result add(@RequestBody ExamAnswer examAnswer) {
@@ -69,8 +73,8 @@ public class ExamAnswerController {
 
     /*用户提交试卷后将分数返回*/
     @GetMapping("/getGrade")
-    public Result getGrade(@RequestParam String token,@RequestParam Integer examid){
-        Map<String,Object> map=examAnswerService.getGrade(token,examid);
+    public Result getGrade(@RequestParam String token){
+        Map<Integer,Integer> map=examAnswerService.getGrade(token);
         return ResultGenerator.successResult(map);
     }
 

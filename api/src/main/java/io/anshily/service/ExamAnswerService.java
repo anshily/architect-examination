@@ -10,6 +10,6 @@ import java.util.Map;
  * Created by anshi on 2019/08/05.
  */
 public interface ExamAnswerService extends Service<ExamAnswer> {
-    Map<String,Object> getGrade( String token, Integer examid);
+    Map<Integer,Integer> getGrade( String token);
 
 }
