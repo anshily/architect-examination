@@ -71,7 +71,7 @@ export class ExamPage implements OnInit {
 
     nextQuestion() {
         // console.log(this.curQuestionIndex, this.examLength);
-        if (this.curQuestionIndex < this.examLength) {
+        if (this.curQuestionIndex + 1 < this.examLength) {
             this.curQuestionIndex++;
             // this.curQuestion = this.examArr.slice(this.curQuestionIndex, this.curQuestionIndex + 1).pop();
         }
@@ -132,7 +132,15 @@ export class ExamPage implements OnInit {
             console.log(res);
             if (res['code'] == 0) {
                 console.log('提交成功');
+                console.log('正在計算分數');
+                this.getGrade();
             }
+        });
+    }
+
+    getGrade() {
+        this.http.get(ROOT_URL + 'exam/answer/getGrade?token=' + localStorage.getItem('user_token') + '&examid=' + this.examId).subscribe(res => {
+            console.log(res);
         });
     }
 

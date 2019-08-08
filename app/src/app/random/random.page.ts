@@ -21,7 +21,7 @@ export class RandomPage implements OnInit {
 
     ngOnInit() {
 
-        this.http.get(ROOT_URL + 'question/list').subscribe(res => {
+        this.http.get(ROOT_URL + 'simple/test/simpleQuestionTest?token=' + localStorage.getItem('user_token')).subscribe(res => {
             console.log(res);
             if (res['code'] == 0){
                 this.questionArr = res['data']['list'];
