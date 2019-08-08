@@ -12,6 +12,8 @@ const routes: Routes = [
   { path: 'practicing', loadChildren: './practicing/practicing.module#PracticingPageModule' },
   { path: 'do-wrong', loadChildren: './do-wrong/do-wrong.module#DoWrongPageModule' },  { path: 'alter-password', loadChildren: './alter-password/alter-password.module#AlterPasswordPageModule' },
   { path: 'exam', loadChildren: './exam/exam.module#ExamPageModule' },
+  { path: 'sequence', loadChildren: './sequence/sequence.module#SequencePageModule' },
+  { path: 'random', loadChildren: './random/random.module#RandomPageModule' },
 
 
 ];

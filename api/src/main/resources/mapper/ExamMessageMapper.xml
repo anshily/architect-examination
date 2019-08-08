@@ -22,6 +22,6 @@
     </insert>
 
     <select id="getAllExam" resultType="io.anshily.model.ExamMessage">
-        select * from sw_exam_message where userid=#{id} and statu=1
+        select * from sw_exam_message where userid=#{id} and statu=1 order by add_time desc
     </select>
 </mapper>

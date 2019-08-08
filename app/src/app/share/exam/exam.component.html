@@ -8,11 +8,11 @@
           <div  class="exam-cell-title">模拟考试</div>
           <div style="justify-content: right;">
             <button type="danger" class="cell-button"
-                    style="background: rgb(221, 97, 97);">已过期
+                    style="background: rgb(221, 97, 97);">{{status == 1 ? '已過期' : '考試中'}}
             </button>
           </div>
         </div>
-        <div class="exam-cell-time">2019-08-04 17:07 ~ 2019-08-04 18:37</div>
+        <div class="exam-cell-time">{{startTime}} ~ {{endTime}}</div>
       </div>
     </div>
   </div>
