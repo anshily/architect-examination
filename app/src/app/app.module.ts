@@ -9,6 +9,7 @@ import {HTTP_INTERCEPTORS, HttpClientJsonpModule, HttpClientModule} from '@angul
 import {AnHttpGuard} from './an-http.guard';
 import {HomePageModule} from './home/home.module';
 import {TimeService} from './time.service';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import {TimeService} from './time.service';
       AppRoutingModule,
       HomePageModule],
   providers: [
+      { provide: LocationStrategy, useClass: HashLocationStrategy },
       { provide: HTTP_INTERCEPTORS, useClass: AnHttpGuard, multi: true},
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

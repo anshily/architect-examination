@@ -2,3 +2,6 @@
 api/.idea
 api/architect.iml
 api/target/
+architectBoot/.mvn/
+app/arch.zip
+app/www.zip

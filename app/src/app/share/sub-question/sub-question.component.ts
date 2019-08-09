@@ -20,7 +20,7 @@ export class SubQuestionComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.http.get('https://localhost:8888/question/detail?id=' + this.questionId).subscribe(res => {
+        this.http.get(ROOT_URL + 'question/detail?id=' + this.questionId).subscribe(res => {
             console.log(res);
             if (res['code'] === 0) {
                 this.question = res['data']['detail'];

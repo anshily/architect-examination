@@ -28,7 +28,7 @@ export class RandomQuestionComponent implements OnInit {
     ngOnChanges() {
         // console.log(this.questionId);
         // this.innerQuestionId = this.questionId;
-        this.http.get('https://localhost:8888/question/detail?id=' + this.questionId).subscribe(res => {
+        this.http.get(ROOT_URL + 'question/detail?id=' + this.questionId).subscribe(res => {
             console.log(res);
             if (res['code'] === 0) {
                 this.question = res['data']['detail'];

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.anshily.architect.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="io.anshily.architect.model.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="open_id" jdbcType="VARCHAR" property="open_id" />
+    <result column="identify_card" jdbcType="VARCHAR" property="identify_card" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="token" jdbcType="VARCHAR" property="token" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="add_time" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="update_time" />
+  </resultMap>
+
+    <select id="getUserInfoByToken" resultType="io.anshily.architect.model.User" parameterType="String">
+        select sw_role.category as category_id,sw_role.name as role_name, sw_user.id,
+          sw_user.identify_card, sw_user.username, sw_user.update_time from sw_user
+            join sw_user_role on sw_user.id = sw_user_role.uid
+            join sw_role on sw_user_role.rid = sw_role.id
+        where token = #{token}
+    </select>
+</mapper>

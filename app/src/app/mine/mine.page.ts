@@ -28,4 +28,9 @@ export class MinePage implements OnInit {
     goAlterPassword() {
         this.navCtrl.navigateForward('/alter-password').then();
     }
+
+    logout() {
+        localStorage.clear();
+        this.navCtrl.navigateForward('/login').then();
+    }
 }
