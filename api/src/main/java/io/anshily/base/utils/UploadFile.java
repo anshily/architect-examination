@@ -3,7 +3,6 @@ package io.anshily.base.utils;
 import io.anshily.base.core.Constants;
 import net.sf.json.JSONArray;
 import sun.misc.BASE64Decoder;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -12,7 +11,6 @@ import java.util.Date;
 import java.util.UUID;
 
 public class UploadFile {
-
     public static String uploadBase64(String data) {
         if (data == null) {
             return null;

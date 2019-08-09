@@ -20,7 +20,6 @@ import {TimeService} from './time.service';
       AppRoutingModule,
       HomePageModule],
   providers: [
-      TimeService,
       { provide: HTTP_INTERCEPTORS, useClass: AnHttpGuard, multi: true},
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

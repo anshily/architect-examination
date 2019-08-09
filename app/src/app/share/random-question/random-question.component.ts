@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
+import {RandomStorageService} from '../../random-storage.service';
 
 @Component({
   selector: 'app-random-question',
@@ -17,16 +18,11 @@ export class RandomQuestionComponent implements OnInit {
     rightResult;
     userResult;
     showResult = false;
-    examId;
 
-    constructor(private http: HttpClient, private router: ActivatedRoute) {
+    constructor(private http: HttpClient, private router: ActivatedRoute, private randomStorage: RandomStorageService) {
     }
 
     ngOnInit() {
-        this.router.queryParams.subscribe(qp => {
-            console.log(qp);
-            this.examId = qp.eid;
-        });
     }
 
     ngOnChanges() {
@@ -40,20 +36,19 @@ export class RandomQuestionComponent implements OnInit {
                     item['isChecked'] = false;
                     return item;
                 });
-
-                if (localStorage.getItem('exam' + this.examId + 'question' + this.questionId)) {
-                    // console.log(localStorage.getItem(this.questionId));
-                    let storage = JSON.parse(localStorage.getItem('exam' + this.examId + 'question' + this.questionId));
-                    // if (storage['question']) {
-                    //     this.question = storage['question'];
-                    // }
+                if (this.randomStorage.getItem(this.questionId)){
+                    let storage = this.randomStorage.getItem(this.questionId);
                     if (storage['answers']) {
                         this.answers = storage['answers'];
                     }
                 }
-                // localStorage.setItem(this.questionId,JSON.stringify({
-                //     answers: this.answers
-                // }));
+                // if (localStorage.getItem('random-question')) {
+                //     // console.log(localStorage.getItem(this.questionId));
+                //     let storage = JSON.parse(localStorage.getItem('random-question'));
+                //     if (storage['answers']) {
+                //         this.answers = storage['answers'];
+                //     }
+                // }
             }
         });
     }
@@ -87,15 +82,22 @@ export class RandomQuestionComponent implements OnInit {
         this.isRight = isRight;
         this.userResult = userResult;
         this.rightResult = rightResult;
+        // this.updateResult.emit();
+
         this.updateResult.emit({
-            isRight: this.isRight,
-            userResult: this.userResult,
-            rightResult: this.rightResult,
-            question: this.question
+            questionResult: {
+                isRight: this.isRight,
+                userResult: this.userResult,
+                rightResult: this.rightResult,
+                question: this.question
+            }
         });
-        localStorage.setItem('exam' + this.examId + 'question' + this.questionId, JSON.stringify({
+        // localStorage.setItem('random-question', JSON.stringify({
+        //     answers: this.answers
+        // }));
+        this.randomStorage.setItem(this.questionId, {
             answers: this.answers
-        }));
+        });
     }
 
     radioSelect(e) {
@@ -135,10 +137,14 @@ export class RandomQuestionComponent implements OnInit {
         this.updateResult.emit({
             questionResult: subResult
         });
-        // console.log(this.testRadio);
-        localStorage.setItem('exam' + this.examId + 'question' + this.questionId, JSON.stringify({
+
+        this.randomStorage.setItem(this.questionId, {
             answers: this.answers
-        }));
+        });
+        // console.log(this.testRadio);
+        // localStorage.setItem('random-question', JSON.stringify({
+        //     answers: this.answers
+        // }));
     }
     paraEmit(e) {
         this.updateResult.emit({

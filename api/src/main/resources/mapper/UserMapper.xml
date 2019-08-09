@@ -20,7 +20,7 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="update_time" />
   </resultMap>
 
-    <select id="getUserInfoByToken" resultType="User" parameterType="String">
+    <select id="getUserInfoByToken" resultType="io.anshily.model.User" parameterType="String">
         select sw_role.category as category_id,sw_role.name as role_name, sw_user.id,
           sw_user.identify_card, sw_user.username, sw_user.update_time from sw_user
             join sw_user_role on sw_user.id = sw_user_role.uid

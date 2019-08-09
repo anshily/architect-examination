@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {RandomStorageService} from '../../random-storage.service';
 
 @Component({
   selector: 'app-random-sub-question',
@@ -16,7 +17,7 @@ export class RandomSubQuestionComponent implements OnInit {
     userResult;
     showResult = false;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private randomStorage: RandomStorageService) {
     }
 
     ngOnInit() {
@@ -29,12 +30,9 @@ export class RandomSubQuestionComponent implements OnInit {
                     return item;
                 });
 
-                if (localStorage.getItem(this.questionId)) {
+                if (this.randomStorage.getItem(this.questionId)) {
                     // console.log(localStorage.getItem(this.questionId));
-                    let storage = JSON.parse(localStorage.getItem(this.questionId));
-                    // if (storage['question']) {
-                    //     this.question = storage['question'];
-                    // }
+                    let storage = this.randomStorage.getItem(this.questionId);
                     if (storage['answers']) {
                         this.answers = storage['answers'];
                     }
@@ -79,9 +77,13 @@ export class RandomSubQuestionComponent implements OnInit {
             question: this.question
         });
 
-        localStorage.setItem(this.questionId,JSON.stringify({
+        // localStorage.setItem('random-question',JSON.stringify({
+        //     answers: this.answers
+        // }));
+
+        this.randomStorage.setItem(this.questionId, {
             answers: this.answers
-        }));
+        });
     }
 
     radioSelect(e) {
@@ -122,9 +124,13 @@ export class RandomSubQuestionComponent implements OnInit {
             question: this.question
         });
 
-        localStorage.setItem(this.questionId,JSON.stringify({
+        this.randomStorage.setItem(this.questionId, {
             answers: this.answers
-        }));
+        });
+
+        // localStorage.setItem('random-question',JSON.stringify({
+        //     answers: this.answers
+        // }));
         // console.log(this.testRadio);
     }
 }

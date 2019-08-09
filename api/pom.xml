@@ -11,7 +11,6 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <jwt.auth0.version>3.2.0</jwt.auth0.version>
     </properties>
 
     <!-- Inherit defaults from Spring Boot-->
@@ -22,16 +21,6 @@
     </parent>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        </dependency>
-
 
         <!-- 使用redis做数据缓存，如果不需要可不依赖 -->
         <dependency>
@@ -39,11 +28,6 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.auth0</groupId>
-            <artifactId>java-jwt</artifactId>
-            <version>${jwt.auth0.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -326,14 +310,6 @@
             <version>3.3.3</version>
         </dependency>
 
-        <!--容联云-->
-        <dependency>
-            <groupId>cn.com</groupId>
-            <artifactId>CCP_REST_SMS_SDK_JAVA_v2.6.3r</artifactId>
-            <version>2.6.3</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/resources/lib/CCP_REST_SMS_SDK_JAVA_v2.6.3r.jar</systemPath>
-        </dependency>
         <!--socket.io-->
         <dependency>
             <groupId>com.corundumstudio.socketio</groupId>
@@ -360,31 +336,6 @@
             <version>1.11.3</version>
         </dependency>
 
-
-        <dependency>
-            <groupId>com.auth0</groupId>
-            <artifactId>java-jwt</artifactId>
-            <version>3.4.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.ipfs</groupId>
-            <artifactId>java-ipfs-api</artifactId>
-            <version>v1.2.2</version>
-        </dependency>
-
-
-        <!--springloaded-->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.boot</groupId>-->
-        <!--<artifactId>spring-boot-devtools</artifactId>-->
-        <!--<optional>true</optional>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework</groupId>-->
-        <!--<artifactId>springloaded</artifactId>-->
-        <!--<version>1.2.6.RELEASE</version>-->
-        <!--</dependency>-->
     </dependencies>
 
 
@@ -471,13 +422,6 @@
             </snapshots>
         </repository>
 
-        <repository>
-            <id>gxchain</id>
-            <url>http://repo.gxchain.cn/repository/maven-public/</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
     </repositories>
 
     <pluginRepositories>
