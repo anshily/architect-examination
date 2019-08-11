@@ -9,8 +9,10 @@ export class RandomStorageService {
     }
 
     setItem(key, value) {
-
-        let wrap = JSON.parse(localStorage.getItem('random-tmp'));
+        let wrap = {};
+        if (localStorage.getItem('random-tmp')){
+            wrap = JSON.parse(localStorage.getItem('random-tmp'));
+        }
         wrap[key] = value;
         localStorage.setItem('random-tmp', JSON.stringify(wrap));
     }

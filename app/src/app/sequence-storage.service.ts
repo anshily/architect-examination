@@ -5,12 +5,17 @@ import { Injectable } from '@angular/core';
 })
 export class SequenceStorageService {
 
-  constructor() { }
-
+  constructor() {
+  }
 
     setItem(key, value) {
 
-        let wrap = JSON.parse(localStorage.getItem('sequence-tmp'));
+      console.log(value);
+        let wrap = {};
+      if (localStorage.getItem('sequence-tmp')) {
+          wrap = JSON.parse(localStorage.getItem('sequence-tmp'));
+      }
+        // let wrap = JSON.parse(localStorage.getItem('sequence-tmp'));
         wrap[key] = value;
         localStorage.setItem('sequence-tmp', JSON.stringify(wrap));
     }
