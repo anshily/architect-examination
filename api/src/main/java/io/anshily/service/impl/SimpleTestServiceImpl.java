@@ -45,7 +45,7 @@ public class SimpleTestServiceImpl extends AbstractService<SimpleTest> implement
     }
 
     @Override
-    public List<Question> orderQuestionTest(String token) {
+    public List<Map<String,Object>> orderQuestionTest(String token) {
        /*先查询token的状态，如果token为null，抛出异常*/
         User user=userService.getUserInfoByToken(token);
         if (user == null){
@@ -53,9 +53,9 @@ public class SimpleTestServiceImpl extends AbstractService<SimpleTest> implement
         }
         /*查询出当前用户的题型权限*/
         String type=swSimpleTestMapper.getQuestionType(user.getId());
-        /*随机从题库中检索200道题目*/
-        List<Question> list=swSimpleTestMapper.orderQuestionTest(type);
-        return list;
+        /**/
+        List<Map<String,Object>> map=swSimpleTestMapper.orderQuestionTest(type);
+        return map;
     }
 
     @Override

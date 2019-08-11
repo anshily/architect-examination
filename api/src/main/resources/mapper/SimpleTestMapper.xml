@@ -19,8 +19,8 @@
         where sw_question.name=#{type}
     order by RAND() limit 200
   </select>
-  <select id="orderQuestionTest" resultType="io.anshily.model.Question">
-    select * from sw_question
+  <select id="orderQuestionTest" resultType="map">
+    select question_bank_id from sw_question
     where sw_question.name=#{type}
   </select>
 
