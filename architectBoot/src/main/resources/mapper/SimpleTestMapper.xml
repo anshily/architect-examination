@@ -37,8 +37,10 @@
     group by question_id
   </select>
 
-  <select id="getErrSumByQuestionId" resultType="Integer">
-    select count(*) from sw_simple_test where question_id=#{questionid} and istrue=0
+  <select id="getErrSumByQuestionId" resultType="map">
+    select q.question_title, q.question_bank_id, e.err from sw_question as q,
+      (select count(*) as err from sw_simple_test where question_id=#{questionid} and istrue=0) as e
+    where q.question_bank_id = #{questionid}
   </select>
 
 

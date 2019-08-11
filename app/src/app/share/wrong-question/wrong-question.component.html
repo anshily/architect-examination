@@ -1,9 +1,9 @@
 <div class="wrong-box">
     <div class="wrong-box-left">
-        <div class="wrong-content cet-html-img">122、下列（ ）选项不属于企业取得安全生产许可证所应当具备的安全生产条件。</div>
+        <div class="wrong-content cet-html-img" [innerHTML]="title"></div>
         <div class="wrong-info-box">
-            <button style="min-width: 5rem;">错误率100%</button>
-            <div class="wrong-info-text">考试次数1/错误次数1</div>
+            <button style="min-width: 5rem;">错误率{{rate}}%</button>
+            <div class="wrong-info-text">考试次数{{all}}/错误次数{{err}}</div>
         </div>
     </div>
     <img

@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import {HTTP_INTERCEPTORS, HttpClientJsonpModule, HttpClientModule} from '@angular/common/http';
 import {AnHttpGuard} from './an-http.guard';
 import {HomePageModule} from './home/home.module';
-import {TimeService} from './time.service';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 @NgModule({

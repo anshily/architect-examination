@@ -6,5 +6,9 @@
 </ion-header>
 
 <ion-content>
-  <app-wrong-question></app-wrong-question>
+
+  <div *ngFor="let item of wrongArr" (click)="goDetail(item)">
+    <app-wrong-question [title]="item['title']" [all]="item['all']" [err]="item['err']" [rate]="item['rate']*100"></app-wrong-question>
+  </div>
+
 </ion-content>

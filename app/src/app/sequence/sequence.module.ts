@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { SequencePage } from './sequence.page';
+import {ShareModule} from '../share/share.module';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+      ShareModule,
     RouterModule.forChild(routes)
   ],
   declarations: [SequencePage]

@@ -14,6 +14,10 @@ import {NavBackComponent} from './nav-back/nav-back.component';
 import {RandomQuestionComponent} from './random-question/random-question.component';
 import {RandomSumQuestionComponent} from './random-sum-question/random-sum-question.component';
 import {RandomSubQuestionComponent} from './random-sub-question/random-sub-question.component';
+import {WrongDetailComponent} from './wrong-detail/wrong-detail.component';
+import {SequenceQuestionComponent} from './sequence-question/sequence-question.component';
+import {SequenceSubQuestionComponent} from './sequence-sub-question/sequence-sub-question.component';
+import {SequenceSumQuestionComponent} from './sequence-sum-question/sequence-sum-question.component';
 
 @NgModule({
     declarations: [QuestionComponent,
@@ -27,7 +31,11 @@ import {RandomSubQuestionComponent} from './random-sub-question/random-sub-quest
         NavBackComponent,
         RandomQuestionComponent,
         RandomSumQuestionComponent,
-        RandomSubQuestionComponent],
+        RandomSubQuestionComponent,
+        WrongDetailComponent,
+        SequenceQuestionComponent,
+        SequenceSubQuestionComponent,
+        SequenceSumQuestionComponent],
     entryComponents: [],
     imports: [
         CommonModule,
@@ -45,7 +53,11 @@ import {RandomSubQuestionComponent} from './random-sub-question/random-sub-quest
         NavBackComponent,
         RandomQuestionComponent,
         RandomSumQuestionComponent,
-        RandomSubQuestionComponent]
+        RandomSubQuestionComponent,
+        WrongDetailComponent,
+        SequenceQuestionComponent,
+        SequenceSubQuestionComponent,
+        SequenceSumQuestionComponent]
 })
 export class ShareModule {
 }

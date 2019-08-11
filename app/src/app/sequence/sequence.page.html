@@ -6,4 +6,25 @@
 
 <ion-content>
 
+  <div *ngFor="let item of questionArr; let i = index;">
+    <div *ngIf="i == curQuestionIndex">
+      <div *ngIf="item['res']">{{item['explanation']}}</div>
+      <app-sequence-question (updateResult)="updateResult($event, i)" [questionId]="item['question_bank_id']"></app-sequence-question>
+    </div>
+  </div>
+
+  <div style="position: fixed; bottom: 0;z-index: 99">
+
+    <div style="display: flex;justify-content: space-around;align-items: center; width: 100vw;">
+
+      <ion-button shape="round" (click)="prevQuestion()" [disabled]="curQuestionIndex == 0 ? true : false">上一题</ion-button>
+
+      <ion-button *ngIf="questionLength >= curQuestionIndex" shape="round" (click)="nextQuestion()">下一题</ion-button>
+
+      <ion-button *ngIf="!(questionLength >= curQuestionIndex)" shape="round" (click)="submitResult()">交卷</ion-button>
+
+    </div>
+
+  </div>
+
 </ion-content>
