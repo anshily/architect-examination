@@ -24,4 +24,8 @@
       join sw_question on sw_question.question_bank_id=sw_question_title.question_id
     where sw_exam_answer.istrue=1 and sw_question.question_type_id=6 and sw_exam_answer.examid=#{examid}
   </select>-->
+
+  <update id="changeStatu">
+    update sw_exam_message set grade=#{grade},statu=2 where id=#{examid}
+  </update>
 </mapper>

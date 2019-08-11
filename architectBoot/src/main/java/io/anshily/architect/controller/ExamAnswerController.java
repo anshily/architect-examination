@@ -80,7 +80,10 @@ public class ExamAnswerController {
     @PostMapping("/examAnswerArr")
     public Result examAnswerArr(@RequestBody SubmitExamAnswer answer){
         List<ExamAnswer> examAnswers = answer.getExamAnswers();
+        /*先将考试答案存入数据库*/
         examAnswerService.save(examAnswers);
+        /*修改考试状态为2，已提交,并计算出分数*/
+        examAnswerService.changeStatu(answer.getExamid());
         return ResultGenerator.successResult();
     }
 }

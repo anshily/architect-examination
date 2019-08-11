@@ -42,13 +42,18 @@ public class ExamAnswerServiceImpl extends AbstractService<ExamAnswer> implement
         Map<Integer,Integer> map=new HashMap<Integer,Integer>();
         for (int i=0;i<list.size();i++){
              /*先算出总分*/
-        /*分数计算  123类型题目全部1分一题 */
-        /*先查询出正确的123类型的题目总数  再查询出正确的6类型的题目总数*/
             Integer grade=asExamAnswerMapper.getCountOne(list.get(i).getId());
             map.put(list.get(i).getId(),grade);
         }
 
 
         return map;
+    }
+
+    @Override
+    public void changeStatu(int examid) {
+        /*查询出当前考试的分数*/
+        int grade=asExamAnswerMapper.getCountOne(examid);
+        asExamAnswerMapper.changeStatu(examid,grade);
     }
 }
