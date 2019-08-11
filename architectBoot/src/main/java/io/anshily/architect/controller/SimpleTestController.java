@@ -105,7 +105,7 @@ public class SimpleTestController {
     }
     @GetMapping("/orderQuestionTest")
     public Result orderQuestionTest(@RequestParam String token) {
-        List<Question> list=simpleTestService.orderQuestionTest(token);
+        List<Map<String,Object>> list=simpleTestService.orderQuestionTest(token);
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("title",list);
         return ResultGenerator.successResult(map);
