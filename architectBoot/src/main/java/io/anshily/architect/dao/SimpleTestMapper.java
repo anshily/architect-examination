@@ -11,7 +11,7 @@ import java.util.Map;
 
 public interface SimpleTestMapper extends Mapper<SimpleTest> {
     List<Question> simpleQuestionTest(String type);
-    List<Question> orderQuestionTest(String type);
+    List<Map<String,Object>> orderQuestionTest(String type);
     String getQuestionType(int id);
     List<SimpleTest> simpleTestErr(int id);
     List<ExamAnswer> normalTestErr(int id);
