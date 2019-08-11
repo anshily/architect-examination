@@ -52,6 +52,7 @@ export class RandomPage implements OnInit {
     }
 
     nextQuestion() {
+        this.questionArr[this.curQuestionIndex]['done'] = true;
         if (this.questionArr[this.curQuestionIndex]['res']) {
             let simple = this.questionArr[this.curQuestionIndex]['res'];
             if (simple['childQuestionResult']) {
