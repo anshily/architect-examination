@@ -11,5 +11,6 @@ import java.util.Map;
  */
 public interface ExamAnswerService extends Service<ExamAnswer> {
     Map<Integer,Integer> getGrade( String token);
+    void changeStatu(int examid);
 
 }

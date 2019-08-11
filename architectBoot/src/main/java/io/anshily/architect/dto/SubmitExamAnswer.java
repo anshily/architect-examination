@@ -10,6 +10,7 @@ import java.util.List;
 public class SubmitExamAnswer {
     String token;
     List<ExamAnswer> examAnswers;
+    private Integer examid;
 
     public String getToken() {
         return token;
@@ -25,5 +26,13 @@ public class SubmitExamAnswer {
 
     public void setExamAnswers(List<ExamAnswer> examAnswers) {
         this.examAnswers = examAnswers;
+    }
+
+    public Integer getExamid() {
+        return examid;
+    }
+
+    public void setExamid(Integer examid) {
+        this.examid = examid;
     }
 }
