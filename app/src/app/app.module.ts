@@ -16,7 +16,9 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
   imports: [      HttpClientModule,
       HttpClientJsonpModule,
       BrowserModule,
-      IonicModule.forRoot(),
+      IonicModule.forRoot({
+          mode: 'ios' // 强制安卓也使用iOS的样式
+      }),
       AppRoutingModule,
       HomePageModule],
   providers: [
