@@ -1,14 +1,26 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>sequence</ion-title>
-  </ion-toolbar>
+  <!--<ion-toolbar>-->
+    <!--<ion-title>sequence</ion-title>-->
+  <!--</ion-toolbar>-->
+  <app-nav-back [title]="'顺序练题'"></app-nav-back>
 </ion-header>
 
 <ion-content>
 
+  <!--<div>性别:-->
+    <!--<label><input type="radio" name="sex" value="男生">男生</label>-->
+    <!--<label><input type="radio" name="sex" value="女生">女生</label>-->
+  <!--</div>-->
+  <!--&lt;!&ndash; 复选框 &ndash;&gt;-->
+  <!--<div>-->
+    <!--爱好：-->
+    <!--<label><input type="checkbox" name="like" value="0">音乐</label>-->
+    <!--<label><input type="checkbox" name="like" value="1">旅游</label>-->
+  <!--</div>-->
+
   <div *ngFor="let item of questionArr; let i = index;">
     <div *ngIf="i == curQuestionIndex">
-      <div *ngIf="item['res']">{{item['explanation']}}</div>
+      <!--<div *ngIf="item['res']">{{item['explanation']}}</div>-->
       <app-sequence-question (updateResult)="updateResult($event, i)" [questionId]="item['question_bank_id']"></app-sequence-question>
     </div>
   </div>

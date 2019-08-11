@@ -6,8 +6,11 @@
     <ion-radio-group>
       <ion-list>
         <ion-item *ngFor="let entry of answers">
-          <ion-label>{{entry['index_letter'] + entry.name}}</ion-label>
+          <!--<ion-label>{{entry['index_letter'] + entry.name}}</ion-label>-->
             <!--<ion-label [innerHTML]="entry.name"></ion-label>-->
+          <div>
+            <span>{{entry['index_letter'] + '、'}}</span><ion-text [innerHTML]="entry.name"></ion-text>
+          </div>
           <ion-radio (ionSelect)="radioSelect(entry)" slot="start" value="{{entry.index_number}}" [checked]="entry.isChecked"></ion-radio>
         </ion-item>
       </ion-list>
@@ -21,8 +24,11 @@
       <ion-card-content>
       <ion-list>
         <ion-item *ngFor="let entry of answers">
-          <ion-label>{{entry.name}}</ion-label>
+          <!--<ion-label>{{entry.name}}</ion-label>-->
           <!--<ion-label [innerHTML]="entry.name"></ion-label>-->
+          <div>
+            <span>{{entry['index_letter'] + '、'}}</span><ion-text [innerHTML]="entry.name"></ion-text>
+          </div>
           <ion-checkbox (ionChange)="checkChange()" slot="start" [(ngModel)]="entry.isChecked"></ion-checkbox>
         </ion-item>
       </ion-list>
@@ -35,8 +41,11 @@
     <ion-radio-group>
       <ion-list>
         <ion-item *ngFor="let entry of answers">
-          <ion-label>{{entry.name}}</ion-label>
+          <!--<ion-label>{{entry.name}}</ion-label>-->
             <!--<ion-label [innerHTML]="entry.name"></ion-label>-->
+          <div>
+            <span>{{entry['index_letter'] + '、'}}</span><ion-text [innerHTML]="entry.name"></ion-text>
+          </div>
           <ion-radio (ionSelect)="radioSelect(entry)" slot="start" value="{{entry.index_number}}" [checked]="entry.isChecked"></ion-radio>
         </ion-item>
       </ion-list>

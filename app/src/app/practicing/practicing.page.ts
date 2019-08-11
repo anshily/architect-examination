@@ -39,7 +39,7 @@ export class PracticingPage implements OnInit {
     async presentLoading() {
         const loading = await this.loadingController.create({
             message: '試卷生成中...',
-            duration: 2000
+            duration: 1000
         });
         await loading.present();
 
