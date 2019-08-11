@@ -123,7 +123,8 @@ export class ExamPage implements OnInit {
 
         let params = {
             token: localStorage.getItem('user_token'),
-            examAnswers: this.resultArr
+            examAnswers: this.resultArr,
+            examid: this.examId
         }
 
         console.log(params);
