@@ -24,6 +24,18 @@ export class SequencePage implements OnInit {
       if (res['code'] == 0){
         this.questionArr = res['data']['title'];
 
+          if (localStorage.getItem('sequence-random-magic')) {
+              let storage = JSON.parse(localStorage.getItem('sequence-random-magic'));
+              console.log(storage);
+              if (storage['questionArr'] && storage['questionArr'].length > 0) {
+                  this.questionArr = storage['questionArr'];
+              }
+
+              if (storage['curQuestionIndex']) {
+                  this.curQuestionIndex = storage['curQuestionIndex'];
+              }
+          }
+
           if (this.questionArr.length > 0) {
               this.questionLength = this.questionArr.length;
               this.curQuestion = this.questionArr.slice(this.curQuestionIndex, this.curQuestionIndex + 1).pop();
@@ -32,7 +44,14 @@ export class SequencePage implements OnInit {
     });
   }
 
-
+    ngOnDestroy() {
+        console.log('destroy!');
+        let storge = {
+            curQuestionIndex: this.curQuestionIndex,
+            questionArr: this.questionArr
+        }
+        localStorage.setItem('sequence-random-magic', JSON.stringify(storge));
+    }
 
     prevQuestion() {
         if (this.curQuestionIndex > 0) {
@@ -42,6 +61,7 @@ export class SequencePage implements OnInit {
     }
 
     nextQuestion() {
+        this.questionArr[this.curQuestionIndex]['done'] = true;
         if (this.questionArr[this.curQuestionIndex]['res']) {
             let simple = this.questionArr[this.curQuestionIndex]['res'];
             if (simple['childQuestionResult']) {
