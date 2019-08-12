@@ -13,7 +13,7 @@
 
   <ion-item>
     <ion-label>报名工种</ion-label>
-    <ion-select placeholder="选择工种">
+    <ion-select placeholder="选择工种" [(ngModel)]="workType" okText="确定" cancelText="取消">
       <ion-select-option value="1">A 类</ion-select-option>
       <ion-select-option value="2">B 类</ion-select-option>
       <ion-select-option value="3">C 类</ion-select-option>
@@ -24,5 +24,7 @@
       <ion-select-option value="8">助工</ion-select-option>
     </ion-select>
   </ion-item>
+
+  <ion-button style="margin-top: 2rem;" expand="block" (click)="add()">添加</ion-button>
 
 </ion-content>
