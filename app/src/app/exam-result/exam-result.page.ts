@@ -33,7 +33,8 @@ export class ExamResultPage implements OnInit {
         if (res['code'] == 0) {
           let startTimeTmp = new Date(res['data']['createtime']).getTime();
           this.startTime = this.timeService.formatDateTime(startTimeTmp);
-          this.endTime = this.timeService.formatDateTime(`${parseInt(startTimeTmp) + 90 * 60 * 1000}`);
+          let afterNine = startTimeTmp + 90 * 60 * 1000;
+          this.endTime = this.timeService.formatDateTime(afterNine.toString());
           this.grade = res['data']['grade'];
         }
       });

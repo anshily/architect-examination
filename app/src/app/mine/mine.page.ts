@@ -20,7 +20,10 @@ export class MinePage implements OnInit {
             console.log(res);
             if (res['code'] == 0) {
                 this.userInfo = res['data'];
-                this.lastLoginTime = this.timeService.formatDateTime(this.userInfo['update_time']);
+                if (this.userInfo['update_time']) {
+                    let tmp = new Date(this.userInfo['update_time']).getTime();
+                    this.lastLoginTime = this.timeService.formatDateTime(tmp);
+                }
             }
         });
     }

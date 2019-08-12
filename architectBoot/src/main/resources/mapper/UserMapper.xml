@@ -28,6 +28,10 @@
         where token = #{token}
     </select>
 
+  <select id="loginByIdAndPass" resultType="io.anshily.architect.model.User" parameterType="String">
+    select id from sw_user where identify_card = #{identify_card} and password = #{password}
+  </select>
+
   <insert id="addRoleToUser">
     insert into sw_user_role(uid,rid) value(#{id},#{role})
   </insert>

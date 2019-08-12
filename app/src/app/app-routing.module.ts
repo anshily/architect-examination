@@ -17,6 +17,8 @@ const routes: Routes = [
   { path: 'exam-result', loadChildren: './exam-result/exam-result.module#ExamResultPageModule' },
   { path: 'question-detail', loadChildren: './question-detail/question-detail.module#QuestionDetailPageModule' },
   { path: 'exam-review', loadChildren: './exam-review/exam-review.module#ExamReviewPageModule' },
+  { path: 'add-member', loadChildren: './add-member/add-member.module#AddMemberPageModule' },
+  { path: 'admin-menu', loadChildren: './admin-menu/admin-menu.module#AdminMenuPageModule' },
 
 
 ];

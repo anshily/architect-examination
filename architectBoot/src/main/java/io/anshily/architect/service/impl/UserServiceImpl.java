@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -22,6 +23,11 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     @Override
     public User getUserInfoByToken(String token) {
         return swUserMapper.getUserInfoByToken(token);
+    }
+
+    @Override
+    public List<User> loginByIdAndPass(String identify_card, String password) {
+        return swUserMapper.loginByIdAndPass(identify_card, password);
     }
 
     @Override

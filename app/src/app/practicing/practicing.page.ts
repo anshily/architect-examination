@@ -9,6 +9,8 @@ import {LoadingController, NavController} from '@ionic/angular';
 })
 export class PracticingPage implements OnInit {
 
+    userType = localStorage.getItem('user_role_name');
+
     constructor(private navController: NavController, private http: HttpClient,
                 public loadingController: LoadingController) {
     }

@@ -58,7 +58,8 @@ public class UserController {
         {
             throw new ServiceException(Constants.CODE_ERR_USER_NAME);
         }
-        List<User> users =  userService.selectByCSql("identify_card=" + user.getIdentify_card() + " and password=" + user.getPassword());
+//        List<User> users =  userService.selectByCSql("identify_card=" + user.getIdentify_card() + " and password=" + user.getPassword());
+        List<User> users =  userService.loginByIdAndPass(user.getIdentify_card(),user.getPassword());
         if (users.size() > 0){
             String newToken = UUID.randomUUID().toString();
 
@@ -68,6 +69,7 @@ public class UserController {
             userService.update(user1);
             Map<String,Object> map = new HashMap<String,Object>();
             map.put("token",newToken);
+            map.put("user",userService.getUserInfoByToken(newToken));
             return ResultGenerator.successResult(map);
         }else {
             return ResultGenerator.errResult(5001, "用户名密码错误");
