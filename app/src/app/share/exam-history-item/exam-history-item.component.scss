@@ -1,0 +1,62 @@
+
+.exam-cell-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 5.31rem;
+  padding: .63rem 0 .63rem 1rem;
+  background: #f8f8f8;
+  border-radius: .31rem;
+  margin-top: .63rem;
+}
+.exam-cell-image {
+  height: 100%;
+  border-radius: .5rem;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.exam-cell-content{
+  margin: 0 0 0 1rem;
+  height: 100%;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  position: relative;
+}
+
+.exam-cell-time{
+  font-size: .81rem;
+  color: #666;
+  position: absolute;
+  bottom: 0;
+  text-align: left;
+  max-width: 14rem;
+}
+
+.exam-cell-title{
+  font-weight: 700;
+  font-size: 1rem;
+  color: #272727;
+  top: 0;
+  text-align: left;
+  max-width: 10rem;
+}
+
+.cell-button {
+  padding: .2rem;
+  width: 3rem;
+  font-size: .8rem;
+  background: #4baaf4;
+  border-radius: .2rem;
+  border: none;
+  color: #fff;
+  outline: none;
+  margin-left: .8rem;
+  margin-right: .63rem;
+  position: absolute;
+  right: 2%;
+}

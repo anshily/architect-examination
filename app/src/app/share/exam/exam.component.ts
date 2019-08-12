@@ -18,14 +18,14 @@ export class ExamComponent implements OnInit {
   ngOnInit() {
     // console.log(this.createTime);
     // console.log(new Date(this.createTime).getTime());
-    this.createTime = new Date(this.createTime).getTime()
+    this.createTime = new Date(this.createTime).getTime();
     this.startTime = this.timeService.formatDateTime(this.createTime);
     this.endTime = this.timeService.formatDateTime(parseInt(this.createTime) + 90 * 60 * 1000);
-    console.log(this.startTime);
+    // console.log(this.startTime);
     let curTime = new Date();
-    console.log(curTime.getTime());
+    // console.log(curTime.getTime());
     if (curTime.getTime() > parseInt(this.createTime) + 90 * 60 * 1000) {
-      console.log('已過期！');
+      // console.log('已過期！');
       this.status = 1;
     }
   }
