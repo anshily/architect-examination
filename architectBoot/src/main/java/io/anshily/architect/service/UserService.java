@@ -9,4 +9,5 @@ import io.anshily.architect.model.User;
  */
 public interface UserService extends Service<User> {
     User getUserInfoByToken(String token);
+    void addRoleToUser(int id,int role);
 }

@@ -56,4 +56,16 @@ public class ExamAnswerServiceImpl extends AbstractService<ExamAnswer> implement
         int grade=asExamAnswerMapper.getCountOne(examid);
         asExamAnswerMapper.changeStatu(examid,grade);
     }
+
+    @Override
+    public List<ExamAnswer> getExamErr(String token, int examid) {
+        /*先查询token的状态，如果token为null，抛出异常*/
+        User user=userService.getUserInfoByToken(token);
+        if (user == null){
+            throw new ServiceException(3002,"用户未登录！");
+        }
+        List<ExamAnswer> list=asExamAnswerMapper.getExamErr(examid);
+        return list;
+
+    }
 }

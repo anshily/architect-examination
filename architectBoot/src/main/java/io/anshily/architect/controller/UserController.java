@@ -26,6 +26,13 @@ public class UserController {
         userService.save(user);
         return ResultGenerator.successResult();
     }
+    @PostMapping("/addUser")
+    public Result addUser(@RequestBody User user,@RequestParam int role) {
+        userService.save(user);
+        /*给用户添加试题权限*/
+        userService.addRoleToUser(user.getId(),role);
+        return ResultGenerator.successResult();
+    }
 
     @PostMapping("/delete")
     public Result delete(@RequestBody Integer id) {

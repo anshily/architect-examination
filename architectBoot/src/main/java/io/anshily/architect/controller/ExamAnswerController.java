@@ -77,6 +77,12 @@ public class ExamAnswerController {
         return ResultGenerator.successResult(map);
     }
 
+    @GetMapping("/getExamErr")
+    public Result getExamErr(@RequestParam String token,@RequestParam int examid){
+        List<ExamAnswer> list=examAnswerService.getExamErr(token,examid);
+        return ResultGenerator.successResult(list);
+    }
+
     @PostMapping("/examAnswerArr")
     public Result examAnswerArr(@RequestBody SubmitExamAnswer answer){
         List<ExamAnswer> examAnswers = answer.getExamAnswers();

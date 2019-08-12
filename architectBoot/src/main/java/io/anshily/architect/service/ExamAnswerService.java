@@ -3,6 +3,7 @@ package io.anshily.architect.service;
 import io.anshily.architect.base.core.Service;
 import io.anshily.architect.model.ExamAnswer;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -12,5 +13,6 @@ import java.util.Map;
 public interface ExamAnswerService extends Service<ExamAnswer> {
     Map<Integer,Integer> getGrade( String token);
     void changeStatu(int examid);
+    List<ExamAnswer> getExamErr(String token,int examid);
 
 }
