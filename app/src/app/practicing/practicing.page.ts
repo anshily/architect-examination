@@ -28,17 +28,31 @@ export class PracticingPage implements OnInit {
     }
 
     startSequence() {
+        this.presentPracticingLoading().then();
         this.navController.navigateForward('/sequence').then();
     }
 
 
     startRandom() {
+        this.presentPracticingLoading().then();
         this.navController.navigateForward('/random').then();
     }
 
     async presentLoading() {
         const loading = await this.loadingController.create({
             message: '試卷生成中...',
+            duration: 1000
+        });
+        await loading.present();
+
+        const {role, data} = await loading.onDidDismiss();
+
+        console.log('Loading dismissed!');
+    }
+
+    async presentPracticingLoading() {
+        const loading = await this.loadingController.create({
+            // message: '試卷生成中...',
             duration: 1000
         });
         await loading.present();

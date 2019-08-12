@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
+import {NavController} from '@ionic/angular';
 
 @Component({
     selector: 'app-exam',
@@ -15,7 +16,7 @@ export class ExamPage implements OnInit {
     examLength = 0;
     resultArr = [];
     materialResultArr = [];
-    constructor(private router: ActivatedRoute, private http: HttpClient) {
+    constructor(private navController: NavController, private router: ActivatedRoute, private http: HttpClient) {
     }
 
     ngOnInit() {
@@ -123,7 +124,8 @@ export class ExamPage implements OnInit {
 
         let params = {
             token: localStorage.getItem('user_token'),
-            examAnswers: this.resultArr
+            examAnswers: this.resultArr,
+            examid: this.examId
         }
 
         console.log(params);
@@ -133,7 +135,9 @@ export class ExamPage implements OnInit {
             if (res['code'] == 0) {
                 console.log('提交成功');
                 console.log('正在計算分數');
-                this.getGrade();
+                // this.getGrade();
+                this.navController.navigateForward('/exam-result', {queryParams: {eid: this.examId}}).then();
+
             }
         });
     }

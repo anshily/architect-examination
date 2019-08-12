@@ -29,7 +29,9 @@ export class HistoryPage implements OnInit {
 
     goExam(v) {
         console.log(v);
-        this.navController.navigateForward('/exam',{queryParams: {eid: v}}).then();
+        this.navController.navigateForward('/exam-result', {queryParams: {eid: v}}).then();
+
+        // this.navController.navigateForward('/exam',{queryParams: {eid: v}}).then();
     }
 
 }
