@@ -15,4 +15,6 @@ public interface UserService extends Service<User> {
     List<User> loginByIdAndPass(String identify_card, String password);
 
     void addRoleToUser(int id, int role);
+
+    Integer nameExist(String name);
 }

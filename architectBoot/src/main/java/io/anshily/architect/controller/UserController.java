@@ -27,6 +27,11 @@ public class UserController {
         userService.save(user);
         return ResultGenerator.successResult();
     }
+    @GetMapping("/nameExist")
+    public Result nameExist(@RequestParam String name) {
+        Integer code=userService.nameExist(name);
+        return ResultGenerator.successResult(code);
+    }
     @PostMapping("/addUser")
     public Result addUser(@RequestBody UserToRole user) {
         userService.save(user.getUser());

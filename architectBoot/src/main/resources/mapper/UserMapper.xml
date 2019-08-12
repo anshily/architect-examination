@@ -35,4 +35,8 @@
   <insert id="addRoleToUser">
     insert into sw_user_role(uid,rid) value(#{id},#{role})
   </insert>
+
+  <select id="nameExist" resultType="io.anshily.architect.model.User">
+    select id from sw_user where identify_card=#{name}
+  </select>
 </mapper>
