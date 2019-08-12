@@ -6,4 +6,23 @@
 
 <ion-content>
 
+  <ion-item>
+    <ion-label position="floating">登录名</ion-label>
+    <ion-input type="text" [(ngModel)]="name" name="name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>报名工种</ion-label>
+    <ion-select placeholder="选择工种">
+      <ion-select-option value="1">A 类</ion-select-option>
+      <ion-select-option value="2">B 类</ion-select-option>
+      <ion-select-option value="3">C 类</ion-select-option>
+      <ion-select-option value="4">特种工</ion-select-option>
+      <ion-select-option value="5">安监特种工</ion-select-option>
+      <ion-select-option value="6">中专学历</ion-select-option>
+      <ion-select-option value="7">大专本科学历</ion-select-option>
+      <ion-select-option value="8">助工</ion-select-option>
+    </ion-select>
+  </ion-item>
+
 </ion-content>
