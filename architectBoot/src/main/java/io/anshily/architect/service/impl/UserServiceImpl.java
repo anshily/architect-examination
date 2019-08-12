@@ -34,4 +34,13 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     public void addRoleToUser(int id, int role) {
         swUserMapper.addRoleToUser(id,role);
     }
+
+    @Override
+    public Integer nameExist(String name) {
+        User user=swUserMapper.nameExist(name);
+        if(null==user){
+            return 0;
+        }
+        return 1;
+    }
 }

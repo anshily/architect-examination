@@ -42,7 +42,9 @@ public class ExamAnswerServiceImpl extends AbstractService<ExamAnswer> implement
         Map<Integer,Integer> map=new HashMap<Integer,Integer>();
         for (int i=0;i<list.size();i++){
              /*先算出总分*/
-            Integer grade=asExamAnswerMapper.getCountOne(list.get(i).getId());
+            Integer all=asExamAnswerMapper.getCountOne(list.get(i).getId());
+            int more=asExamAnswerMapper.getCountSix(list.get(i).getId());
+            int grade=all+more;
             map.put(list.get(i).getId(),grade);
         }
 
@@ -53,7 +55,9 @@ public class ExamAnswerServiceImpl extends AbstractService<ExamAnswer> implement
     @Override
     public void changeStatu(int examid) {
         /*查询出当前考试的分数*/
-        int grade=asExamAnswerMapper.getCountOne(examid);
+        int all=asExamAnswerMapper.getCountOne(examid);
+        int more=asExamAnswerMapper.getCountSix(examid);
+        int grade=all+more;
         asExamAnswerMapper.changeStatu(examid,grade);
     }
 
