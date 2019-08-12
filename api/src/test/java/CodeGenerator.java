@@ -24,7 +24,7 @@ public class CodeGenerator {
     private static final String JDBC_USERNAME = "hang";
     private static final String JDBC_PASSWORD = "hang!@#";
     private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
-    private static final String DB_PREFIX = "as";
+    private static final String DB_PREFIX = "sw";
 
     private static final String PROJECT_PATH = System.getProperty("user.dir");//项目在硬盘上的基础路径
     private static final String TEMPLATE_FILE_PATH = PROJECT_PATH + "/src/test/resources/generator/template";//模板位置
@@ -42,7 +42,7 @@ public class CodeGenerator {
     public static void main(String[] args) {
 //        genCode("sw_permission", "sw_role_permission", "sw_role", "sw_user", "sw_user_role");
 //        genCode("sw_sqnu_liu");
-          genCode("as_exam_answer");
+          genCode("sw_sign_up");
 //        genCode("qy_permissions","qy_permissions_init","qy_role","qy_role_permission","qy_user","qy_user_role");
 //        genCode("qy_level_score");
 //        genCode("sw_exam_message","sw_question_title","sw_question_type","sw_simple_test");
