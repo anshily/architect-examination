@@ -34,6 +34,25 @@ export class AddMemberPage implements OnInit {
         };
         console.log(params);
 
+        this.http.get(ROOT_URL + 'user/nameExist?name=' + this.name).subscribe(res => {
+            console.log(res);
+            if (res['code'] == 0) {
+
+                if (res['data'] == 1) {
+                    console.log('已存在！');
+                    this.presentExistConfirm().then();
+                }
+
+                if (res['data'] == 0) {
+                    this.saveUser(params);
+                }
+            }
+        });
+
+
+    }
+
+    saveUser(params) {
         this.http.post(ROOT_URL + 'user/addUser', params).subscribe(res => {
             console.log(res);
             if (res['code'] === 0) {
@@ -48,7 +67,6 @@ export class AddMemberPage implements OnInit {
                 console.log(r);
             });
         });
-
     }
 
     async presentToast(msg) {
@@ -69,6 +87,25 @@ export class AddMemberPage implements OnInit {
                     text: '我知道了',
                     handler: () => {
                         this.navCtrl.pop().then();
+                        // console.log('Confirm Okay');
+                        // this.scrollToNext();
+                    }
+                }
+            ]
+        });
+
+        await alert.present();
+    }
+
+    async presentExistConfirm() {
+        const alert = await this.alertController.create({
+            header: '用户已存在！',
+            // message: `请注意页面错题：【${err}】`,
+            buttons: [
+                {
+                    text: '我知道了',
+                    handler: () => {
+                        // this.navCtrl.pop().then();
                         // console.log('Confirm Okay');
                         // this.scrollToNext();
                     }
