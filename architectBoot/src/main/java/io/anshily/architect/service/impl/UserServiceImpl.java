@@ -23,4 +23,9 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     public User getUserInfoByToken(String token) {
         return swUserMapper.getUserInfoByToken(token);
     }
+
+    @Override
+    public void addRoleToUser(int id, int role) {
+        swUserMapper.addRoleToUser(id,role);
+    }
 }

@@ -27,4 +27,8 @@
             join sw_role on sw_user_role.rid = sw_role.id
         where token = #{token}
     </select>
+
+  <insert id="addRoleToUser">
+    insert into sw_user_role(uid,rid) value(#{id},#{role})
+  </insert>
 </mapper>

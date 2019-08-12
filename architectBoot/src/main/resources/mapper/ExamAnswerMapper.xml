@@ -28,4 +28,8 @@
   <update id="changeStatu">
     update sw_exam_message set grade=#{grade},statu=2 where id=#{examid}
   </update>
+
+  <select id="getExamErr" resultType="io.anshily.architect.model.ExamAnswer">
+    select question_title_id,answer FROM sw_exam_answer where istrue=0 and examid=#{examid}
+  </select>
 </mapper>
