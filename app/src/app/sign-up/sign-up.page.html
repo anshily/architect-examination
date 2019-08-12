@@ -1,0 +1,96 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>sign-up</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-segment (ionChange)="segmentChanged($event)" color="primary">
+        <ion-segment-button value="e" checked>
+            <ion-label>企业报名</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="p">
+            <ion-label>个人报名</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+
+    <div *ngIf="segmentValue == 'e'">
+        <div>
+
+            <ion-item>
+                <ion-label position="floating">公司名称</ion-label>
+                <ion-input type="text" [(ngModel)]="companyName" name="companyName"></ion-input>
+            </ion-item>
+
+            <!--<ion-item>-->
+                <!--<ion-label position="floating">报名工种</ion-label>-->
+                <!--<ion-input type="text" [(ngModel)]="workType" name="workType"></ion-input>-->
+            <!--</ion-item>-->
+
+            <ion-item>
+                <ion-label>报名工种</ion-label>
+                <ion-select placeholder="选择工种" [(ngModel)]="workType" okText="确定" cancelText="取消">
+                    <ion-select-option value="1">A 类</ion-select-option>
+                    <ion-select-option value="2">B 类</ion-select-option>
+                    <ion-select-option value="3">C 类</ion-select-option>
+                    <ion-select-option value="4">特种工</ion-select-option>
+                    <ion-select-option value="5">安监特种工</ion-select-option>
+                    <ion-select-option value="6">中专学历</ion-select-option>
+                    <ion-select-option value="7">大专本科学历</ion-select-option>
+                    <ion-select-option value="8">助工</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">联系人</ion-label>
+                <ion-input type="password" [(ngModel)]="name" name="name"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">联系方式</ion-label>
+                <ion-input type="password" [(ngModel)]="phone" name="phone"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">备注</ion-label>
+                <ion-input type="password" [(ngModel)]="subscribe" name="subscribe"></ion-input>
+            </ion-item>
+
+            <ion-button style="margin-top: 2rem;" expand="block" (click)="submit()">注册</ion-button>
+
+        </div>
+    </div>
+
+    <div *ngIf="segmentValue == 'p'">
+        <div>
+
+            <ion-item>
+                <ion-label position="floating">公司名称</ion-label>
+                <ion-input type="text" [(ngModel)]="companyName" name="companyName"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">报名工种</ion-label>
+                <ion-input type="text" [(ngModel)]="workType" name="workType"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">联系人</ion-label>
+                <ion-input type="text" [(ngModel)]="name" name="name"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">联系方式</ion-label>
+                <ion-input type="text" [(ngModel)]="phone" name="phone"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">备注</ion-label>
+                <ion-input type="text" [(ngModel)]="subscribe" name="subscribe"></ion-input>
+            </ion-item>
+
+            <ion-button style="margin-top: 2rem;" expand="block" (click)="submit()">注册</ion-button>
+
+        </div>
+    </div>
+</ion-content>

@@ -75,8 +75,8 @@ export class LoginPage implements OnInit {
         });
     }
 
-    goRegister() {
-        this.router.navigate(['/register']).then(res => {
+    goSignUp() {
+        this.router.navigate(['/sign-up']).then(res => {
             console.log(res);
         });
     }
