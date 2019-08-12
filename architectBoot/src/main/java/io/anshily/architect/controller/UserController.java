@@ -3,6 +3,7 @@ package io.anshily.architect.controller;
 import com.github.pagehelper.PageHelper;
 import io.anshily.architect.base.core.*;
 import io.anshily.architect.dto.AlterPass;
+import io.anshily.architect.dto.UserToRole;
 import io.anshily.architect.model.User;
 import io.anshily.architect.service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -27,10 +28,10 @@ public class UserController {
         return ResultGenerator.successResult();
     }
     @PostMapping("/addUser")
-    public Result addUser(@RequestBody User user,@RequestParam int role) {
-        userService.save(user);
+    public Result addUser(@RequestBody UserToRole user) {
+        userService.save(user.getUser());
         /*给用户添加试题权限*/
-        userService.addRoleToUser(user.getId(),role);
+        userService.addRoleToUser(user.getUser().getId(),user.getRole());
         return ResultGenerator.successResult();
     }
 
