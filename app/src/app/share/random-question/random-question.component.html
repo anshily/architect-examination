@@ -53,6 +53,6 @@
   </ion-card>
 
   <div *ngIf="question && question['question_type_id'] == 6">
-    <app-random-sum-question [questionId]="questionId" (updateResult)="paraEmit($event)"></app-random-sum-question>
+    <app-random-sum-question [status]="status" [questionId]="questionId" (updateResult)="paraEmit($event)"></app-random-sum-question>
   </div>
 </div>

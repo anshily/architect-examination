@@ -11,7 +11,7 @@ export class HistoryPage implements OnInit {
 
     examArr = [];
 
-  constructor(private http: HttpClient,private navController: NavController) { }
+  constructor(private http: HttpClient, private navController: NavController) { }
 
   ngOnInit() {
       let params = {

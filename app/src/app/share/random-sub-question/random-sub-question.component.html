@@ -24,6 +24,27 @@
         </ion-item>
       </ion-list>
     </ion-radio-group>
+
+
+    <div>
+      <div *ngIf="status == 1">
+
+        <div style="margin-left: 2rem;">
+          <div>
+            <div class="practice-answer"><span>你的答案&nbsp;</span><span>{{userResult}}</span>
+              <!---->
+              <!--<img *ngIf="isRight"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACyklEQVRIS6WWT0hUURTGv29m7qsQRGpRqG+ghc3YooI2LQosijIxMjAkJELKNhUtg1rWolVELZL+EBUhSUhEmlgR1KJNkC6ap1LBvClqUYgg5Xszc+KNjszMu++N2ezmnnPPd86953fuIwCkGrABkdiBCCKZhO30e2vL/U02qC0SlX3Iy1gikxtmKq56CfYtBhRcStrOheUIWKZxEcT54l7mpZeWqT6A3FwaUESuN9vu6X8RSZnqGslTZXtExpkyjcckDlUGE8jNZNo9SUDChASgFVd9BE/4YggG+akecTdqvAVh+h3kXtJ2jwWJFIKb6i7Jo74kBLbKOdvpGSwT9QLjNYkmjUh/0na7CeTKjhGIWqZ6QLJLk/kU4bQkbXwrCCx00hpG1CuQm3SlJm3nMIGsZxMgZpnGIxId/sxlXPLuruav+OnZFgW8P1OrUZutUSMkt/nvBM+SaacQ0IobgwTaNNW+i826e5t+YWaxkyqd7EasmqUaAblDc7lDC2v7/TZ5WZN3280MfpfayiooGqaAFTnTGATRuqRWFTxJ2E4nAbfSXytQPOeJuPEQQGcVkYFE2ukikNf5BQosiHDCVLdA9mhFRO4kbPd4GCtVBYIgmk+gOoxhRxQMUUk5IuEwagVCCdWcVZiIT0BCCAXwGQIVMFa0xJcJhBEqwEc15+zMGogJjVECG6sRX0ayACqQUMj7lTPu7vXTmPY2falD3Z9a9YLg1gDiDxbHSqECD6ysqZ6S3KOZLW/qHLd13Q/Mltq+r0XNtKGGdcQL5seKBx7nqVXPQbb4g2M4ajsdTcCcjoMw4kVkNGa77d5jcRXgGU0Aj9AjxVKDaPbuLZh4ue/1+phvRC+B0FJBr621xIuMeY/+SYI3SjZcTqadc0sachVOlqmugDxbXBaI9+QCkw3Rtlwk2hMBBv73s8VqNLqF6IhI7nYikxv6C3t6Oriq6JBeAAAAAElFTkSuQmCC" style="width: 12px; height: 12px; margin-left: 5px;">-->
+            </div>
+            <div class="practice-answer"><span>参考答案&nbsp;</span>
+              <span>{{rightResult}}</span>
+            </div>
+            <div class="cet-normal-font cet-display-flex"><div style="white-space: nowrap;">解析&nbsp;</div>
+              <div class="cet-html-img">{{question['explanation']}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </ion-card>
 
   <ion-card *ngIf="question && question['question_type_id'] == 2">
@@ -44,6 +65,27 @@
         </ion-item>
       </ion-list>
     </ion-card-content>
+
+
+    <div>
+      <div *ngIf="status == 1">
+
+        <div style="margin-left: 2rem;">
+          <div>
+            <div class="practice-answer"><span>你的答案&nbsp;</span><span>{{userResult}}</span>
+              <!---->
+              <img *ngIf="isRight"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACyklEQVRIS6WWT0hUURTGv29m7qsQRGpRqG+ghc3YooI2LQosijIxMjAkJELKNhUtg1rWolVELZL+EBUhSUhEmlgR1KJNkC6ap1LBvClqUYgg5Xszc+KNjszMu++N2ezmnnPPd86953fuIwCkGrABkdiBCCKZhO30e2vL/U02qC0SlX3Iy1gikxtmKq56CfYtBhRcStrOheUIWKZxEcT54l7mpZeWqT6A3FwaUESuN9vu6X8RSZnqGslTZXtExpkyjcckDlUGE8jNZNo9SUDChASgFVd9BE/4YggG+akecTdqvAVh+h3kXtJ2jwWJFIKb6i7Jo74kBLbKOdvpGSwT9QLjNYkmjUh/0na7CeTKjhGIWqZ6QLJLk/kU4bQkbXwrCCx00hpG1CuQm3SlJm3nMIGsZxMgZpnGIxId/sxlXPLuruav+OnZFgW8P1OrUZutUSMkt/nvBM+SaacQ0IobgwTaNNW+i826e5t+YWaxkyqd7EasmqUaAblDc7lDC2v7/TZ5WZN3280MfpfayiooGqaAFTnTGATRuqRWFTxJ2E4nAbfSXytQPOeJuPEQQGcVkYFE2ukikNf5BQosiHDCVLdA9mhFRO4kbPd4GCtVBYIgmk+gOoxhRxQMUUk5IuEwagVCCdWcVZiIT0BCCAXwGQIVMFa0xJcJhBEqwEc15+zMGogJjVECG6sRX0ayACqQUMj7lTPu7vXTmPY2falD3Z9a9YLg1gDiDxbHSqECD6ysqZ6S3KOZLW/qHLd13Q/Mltq+r0XNtKGGdcQL5seKBx7nqVXPQbb4g2M4ajsdTcCcjoMw4kVkNGa77d5jcRXgGU0Aj9AjxVKDaPbuLZh4ue/1+phvRC+B0FJBr621xIuMeY/+SYI3SjZcTqadc0sachVOlqmugDxbXBaI9+QCkw3Rtlwk2hMBBv73s8VqNLqF6IhI7nYikxv6C3t6Oriq6JBeAAAAAElFTkSuQmCC" style="width: 12px; height: 12px; margin-left: 5px;">
+            </div>
+            <div class="practice-answer"><span>参考答案&nbsp;</span>
+              <span>{{rightResult}}</span>
+            </div>
+            <div class="cet-normal-font cet-display-flex"><div style="white-space: nowrap;">解析&nbsp;</div>
+              <div class="cet-html-img">{{question['explanation']}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </ion-card>
 
   <ion-card *ngIf="question && question['question_type_id'] == 3">
@@ -62,5 +104,25 @@
         </ion-item>
       </ion-list>
     </ion-radio-group>
+
+    <div>
+      <div *ngIf="status == 1">
+
+        <div style="margin-left: 2rem;">
+          <div>
+            <div class="practice-answer"><span>你的答案&nbsp;</span><span>{{userResult}}</span>
+              <!---->
+              <img *ngIf="isRight"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACyklEQVRIS6WWT0hUURTGv29m7qsQRGpRqG+ghc3YooI2LQosijIxMjAkJELKNhUtg1rWolVELZL+EBUhSUhEmlgR1KJNkC6ap1LBvClqUYgg5Xszc+KNjszMu++N2ezmnnPPd86953fuIwCkGrABkdiBCCKZhO30e2vL/U02qC0SlX3Iy1gikxtmKq56CfYtBhRcStrOheUIWKZxEcT54l7mpZeWqT6A3FwaUESuN9vu6X8RSZnqGslTZXtExpkyjcckDlUGE8jNZNo9SUDChASgFVd9BE/4YggG+akecTdqvAVh+h3kXtJ2jwWJFIKb6i7Jo74kBLbKOdvpGSwT9QLjNYkmjUh/0na7CeTKjhGIWqZ6QLJLk/kU4bQkbXwrCCx00hpG1CuQm3SlJm3nMIGsZxMgZpnGIxId/sxlXPLuruav+OnZFgW8P1OrUZutUSMkt/nvBM+SaacQ0IobgwTaNNW+i826e5t+YWaxkyqd7EasmqUaAblDc7lDC2v7/TZ5WZN3280MfpfayiooGqaAFTnTGATRuqRWFTxJ2E4nAbfSXytQPOeJuPEQQGcVkYFE2ukikNf5BQosiHDCVLdA9mhFRO4kbPd4GCtVBYIgmk+gOoxhRxQMUUk5IuEwagVCCdWcVZiIT0BCCAXwGQIVMFa0xJcJhBEqwEc15+zMGogJjVECG6sRX0ayACqQUMj7lTPu7vXTmPY2falD3Z9a9YLg1gDiDxbHSqECD6ysqZ6S3KOZLW/qHLd13Q/Mltq+r0XNtKGGdcQL5seKBx7nqVXPQbb4g2M4ajsdTcCcjoMw4kVkNGa77d5jcRXgGU0Aj9AjxVKDaPbuLZh4ue/1+phvRC+B0FJBr621xIuMeY/+SYI3SjZcTqadc0sachVOlqmugDxbXBaI9+QCkw3Rtlwk2hMBBv73s8VqNLqF6IhI7nYikxv6C3t6Oriq6JBeAAAAAElFTkSuQmCC" style="width: 12px; height: 12px; margin-left: 5px;">
+            </div>
+            <div class="practice-answer"><span>参考答案&nbsp;</span>
+              <span>{{rightResult}}</span>
+            </div>
+            <div class="cet-normal-font cet-display-flex"><div style="white-space: nowrap;">解析&nbsp;</div>
+              <div class="cet-html-img">{{question['explanation']}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </ion-card>
 </div>

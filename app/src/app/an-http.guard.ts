@@ -34,11 +34,11 @@ export class AnHttpGuard implements HttpInterceptor  {
         // 业务处理：一些通用操作
         switch (ev.status) {
             case 200:
-                console.log(ev);
+                // console.log(ev);
 
                 if (ev instanceof HttpResponse) {
                     const body: any = ev.body;
-                    console.log(body)
+                    // console.log(body)
                     if (body && body.code == 3002) {
 
                         console.error(`未登录或登录已过期，请重新登录。`, ``);

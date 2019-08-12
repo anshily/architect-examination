@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'random', loadChildren: './random/random.module#RandomPageModule' },
   { path: 'exam-result', loadChildren: './exam-result/exam-result.module#ExamResultPageModule' },
   { path: 'question-detail', loadChildren: './question-detail/question-detail.module#QuestionDetailPageModule' },
+  { path: 'exam-review', loadChildren: './exam-review/exam-review.module#ExamReviewPageModule' },
 
 
 ];

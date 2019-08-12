@@ -10,6 +10,7 @@ import {RandomStorageService} from '../../random-storage.service';
 export class RandomSubQuestionComponent implements OnInit {
     @Output() updateResult: EventEmitter<any> = new EventEmitter();
     @Input() questionId;
+    @Input() status;
     question;
     answers;
     isRight;
@@ -35,6 +36,11 @@ export class RandomSubQuestionComponent implements OnInit {
                     let storage = this.randomStorage.getItem(this.questionId);
                     if (storage['answers']) {
                         this.answers = storage['answers'];
+                    }
+                    if (storage['result']) {
+                        this.userResult = storage['result']['userResult'];
+                        this.rightResult = storage['result']['rightResult'];
+                        this.isRight = storage['result']['isRight'];
                     }
                 }
             }
@@ -82,7 +88,13 @@ export class RandomSubQuestionComponent implements OnInit {
         // }));
 
         this.randomStorage.setItem(this.questionId, {
-            answers: this.answers
+            answers: this.answers,
+            result: {
+                isRight: this.isRight,
+                userResult: this.userResult,
+                rightResult: this.rightResult,
+                question: this.question
+            }
         });
     }
 
@@ -125,7 +137,13 @@ export class RandomSubQuestionComponent implements OnInit {
         });
 
         this.randomStorage.setItem(this.questionId, {
-            answers: this.answers
+            answers: this.answers,
+            result: {
+                isRight: this.isRight,
+                userResult: this.userResult,
+                rightResult: this.rightResult,
+                question: this.question
+            }
         });
 
         // localStorage.setItem('random-question',JSON.stringify({

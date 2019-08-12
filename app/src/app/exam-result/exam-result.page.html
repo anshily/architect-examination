@@ -1,15 +1,21 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-title>考试结果</ion-title>
-    </ion-toolbar>
+    <!--<ion-toolbar>-->
+        <!--<ion-title>考试结果</ion-title>-->
+    <!--</ion-toolbar>-->
+    <app-nav-back [title]="'考试结果'"></app-nav-back>
+
 </ion-header>
 
 <ion-content>
 
     <div class="cet-padding">
         <img src="/assets/exam_result_banner.jpg" class="score-img">
-        <div  class="score-text">得分：{{grade}}分</div>
+        <div  class="score-text">得分：{{grade ? grade : 0}}分</div>
         <div  class="exam-name">考试名称：模拟考试</div>
         <div  class="exam-time">考试时间段：{{startTime}}~{{endTime}}</div>
+    </div>
+
+    <div style="position: fixed; bottom: 0;z-index: 99;width: 100vw;color: red;">
+        <ion-button expand="full" fill="clear" (click)="showExamWrongQuestion()">查看错题</ion-button>
     </div>
 </ion-content>

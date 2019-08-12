@@ -1,0 +1,23 @@
+<div class="cet-padding-center" *ngIf="question">
+  <div class="cet-display-flex"><!---->&nbsp;
+    <div class="cet-html-img">
+      {{question['question_title']}}
+    </div>
+  </div>
+  <div class="subject-selection">
+    <div style="display: flex; margin-bottom: 10px; align-items: center;" *ngFor="let item of answers">
+      <div>
+        <span>{{item['index_letter']}}、</span>
+      </div>
+      <div class="cet-html-img" style="line-height: 1.63rem;">{{item['name']}}</div>
+    </div>
+    <div>
+      <div class="practice-answer"><span>参考答案&nbsp;</span>&nbsp;<span>{{rightResult}}</span></div>
+      <div *ngIf="userResult" class="practice-answer"><span>你的答案&nbsp;</span>&nbsp;<span>{{userResult}}</span></div>
+      <div class="cet-normal-font cet-display-flex">
+        <div style="white-space: nowrap;">解析</div>&nbsp;<div class="cet-html-img">{{question['explanation']}}
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

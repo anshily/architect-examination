@@ -23,7 +23,8 @@
       <!--<div *ngIf="item['res']">{{item['explanation']}}</div>-->
       <app-sequence-question (updateResult)="updateResult($event, i)" [questionId]="item['question_bank_id']"></app-sequence-question>
 
-      <div *ngIf="item['done'] && item['res']">
+      <!--<div *ngIf="item['done'] && item['res']">-->
+        <div *ngIf="item['done'] == 1 && item['res'] && item['res']['questionResult']">
 
         <div style="margin-left: 2rem;">
           <div>

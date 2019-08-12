@@ -11,6 +11,7 @@ import {RandomStorageService} from '../../random-storage.service';
 export class RandomQuestionComponent implements OnInit {
     @Output() updateResult: EventEmitter<any> = new EventEmitter();
     @Input() questionId;
+    @Input() status;
     innerQuestionId;
     question;
     answers;

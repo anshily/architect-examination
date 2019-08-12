@@ -1,9 +1,14 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>question-detail</ion-title>
-  </ion-toolbar>
+  <!--<ion-toolbar>-->
+    <!--<ion-title>question-detail</ion-title>-->
+  <!--</ion-toolbar>-->
+  <app-nav-back [title]="'题目详情'"></app-nav-back>
 </ion-header>
 
 <ion-content>
-  <app-wrong-detail [questionId]="questionId"></app-wrong-detail>
+
+  <ion-card>
+    <app-wrong-detail [questionId]="questionId"></app-wrong-detail>
+  </ion-card>
+
 </ion-content>

@@ -9,9 +9,9 @@
 
   <div *ngFor="let item of questionArr; let i = index;">
     <div *ngIf="i == curQuestionIndex">
-      <app-random-question (updateResult)="updateResult($event, i)" [questionId]="item['question_bank_id']"></app-random-question>
+      <app-random-question (updateResult)="updateResult($event, i)" [questionId]="item['question_bank_id']" [status]="item['sumStatus']"></app-random-question>
 
-        <div *ngIf="item['done'] && item['res']">
+        <div *ngIf="item['done'] == 1 && item['res'] && item['res']['questionResult']">
 
             <div style="margin-left: 2rem;">
                 <div>
@@ -27,7 +27,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
   </div>

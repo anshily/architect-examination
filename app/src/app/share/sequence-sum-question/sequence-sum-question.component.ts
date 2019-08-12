@@ -11,6 +11,7 @@ export class SequenceSumQuestionComponent implements OnInit {
 
     @Output() updateResult: EventEmitter<any> = new EventEmitter();
     @Input() questionId;
+    @Input() status;
     answers;
     question;
     subQuestion;

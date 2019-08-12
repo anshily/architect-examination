@@ -19,6 +19,7 @@ import {SequenceQuestionComponent} from './sequence-question/sequence-question.c
 import {SequenceSubQuestionComponent} from './sequence-sub-question/sequence-sub-question.component';
 import {SequenceSumQuestionComponent} from './sequence-sum-question/sequence-sum-question.component';
 import {ExamHistoryItemComponent} from './exam-history-item/exam-history-item.component';
+import {ExamReviewItemComponent} from './exam-review-item/exam-review-item.component';
 
 @NgModule({
     declarations: [QuestionComponent,
@@ -37,7 +38,8 @@ import {ExamHistoryItemComponent} from './exam-history-item/exam-history-item.co
         SequenceQuestionComponent,
         SequenceSubQuestionComponent,
         SequenceSumQuestionComponent,
-        ExamHistoryItemComponent],
+        ExamHistoryItemComponent,
+        ExamReviewItemComponent],
     entryComponents: [],
     imports: [
         CommonModule,
@@ -60,7 +62,8 @@ import {ExamHistoryItemComponent} from './exam-history-item/exam-history-item.co
         SequenceQuestionComponent,
         SequenceSubQuestionComponent,
         SequenceSumQuestionComponent,
-        ExamHistoryItemComponent]
+        ExamHistoryItemComponent,
+        ExamReviewItemComponent]
 })
 export class ShareModule {
 }

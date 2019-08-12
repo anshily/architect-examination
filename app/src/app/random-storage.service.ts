@@ -19,7 +19,7 @@ export class RandomStorageService {
 
     getItem(key) {
         let wrap = JSON.parse(localStorage.getItem('random-tmp'));
-        console.log(wrap);
+        // console.log(wrap);
         return wrap ? wrap[key] : null;
     }
 

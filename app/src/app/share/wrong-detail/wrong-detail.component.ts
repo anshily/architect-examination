@@ -11,6 +11,7 @@ export class WrongDetailComponent implements OnInit {
   @Input() questionId;
     question;
     answers;
+    rightResult = [];
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -21,6 +22,9 @@ export class WrongDetailComponent implements OnInit {
               this.question = res['data']['detail'];
               this.answers = res['data']['answer'].map(item => {
                   item['isChecked'] = false;
+                  if (item['result'] == 1){
+                      this.rightResult.push(item['index_letter']);
+                  }
                   return item;
               });
           }
@@ -28,3 +32,10 @@ export class WrongDetailComponent implements OnInit {
   }
 
 }
+// index_letter: "A"
+// index_number: 0
+// isChecked: false
+// name: "1998年"
+// question_bank_id: 43109
+// question_item_id: 160848
+// result: 1
