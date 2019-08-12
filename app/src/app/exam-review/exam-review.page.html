@@ -2,7 +2,7 @@
   <!--<ion-toolbar>-->
   <!--<ion-title>exam</ion-title>-->
   <!--</ion-toolbar>-->
-  <app-nav-back [title]="'模拟考试'"></app-nav-back>
+  <app-nav-back [title]="'错题回顾'"></app-nav-back>
 </ion-header>
 
 <ion-content>
@@ -11,9 +11,9 @@
   <!--</div>-->
 
   <div *ngFor="let item of examArr; let i = index;">
-    <div *ngIf="i == curQuestionIndex">
-      <app-exam-review-item [userResult]="item['userResult']" [questionId]="item['question_id']"></app-exam-review-item>
-    </div>
+    <ion-card *ngIf="i == curQuestionIndex">
+      <app-exam-review-item [userResult]="item['answer']" [questionId]="item['question_title_id']"></app-exam-review-item>
+    </ion-card>
   </div>
 
   <div style="position: fixed; bottom: 0;z-index: 99">

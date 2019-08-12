@@ -1,7 +1,6 @@
 <div class="cet-padding-center" *ngIf="question">
   <div class="cet-display-flex"><!---->&nbsp;
-    <div class="cet-html-img">
-      {{question['question_title']}}
+    <div class="cet-html-img" [innerHTML]="question['question_title']">
     </div>
   </div>
   <div class="subject-selection">

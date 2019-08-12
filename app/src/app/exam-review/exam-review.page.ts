@@ -26,7 +26,7 @@ export class ExamReviewPage implements OnInit {
               token: localStorage.getItem('user_token'),
               examid: qp['eid']
           }
-          this.http.get(ROOT_URL + 'question/title/getQuestionTitleByExamid', {params: params}).subscribe(res => {
+          this.http.get(ROOT_URL + 'exam/answer/getExamErr', {params: params}).subscribe(res => {
               console.log(res);
               if (res['code'] == 0) {
                   this.examArr = res['data'];
@@ -40,5 +40,20 @@ export class ExamReviewPage implements OnInit {
           });
       });
   }
+
+    prevQuestion() {
+        if (this.curQuestionIndex > 0) {
+            this.curQuestionIndex--;
+            // this.curQuestion = this.examArr.slice(this.curQuestionIndex, this.curQuestionIndex + 1).pop();
+        }
+    }
+
+    nextQuestion() {
+        // console.log(this.curQuestionIndex, this.examLength);
+        if (this.curQuestionIndex + 1 < this.examLength) {
+            this.curQuestionIndex++;
+            // this.curQuestion = this.examArr.slice(this.curQuestionIndex, this.curQuestionIndex + 1).pop();
+        }
+    }
 
 }
