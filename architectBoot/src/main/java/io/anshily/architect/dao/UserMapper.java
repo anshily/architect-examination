@@ -2,6 +2,7 @@ package io.anshily.architect.dao;
 
 import io.anshily.architect.base.core.Mapper;
 import io.anshily.architect.model.ExamMessage;
+import io.anshily.architect.model.SimpleTest;
 import io.anshily.architect.model.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,4 +14,5 @@ public interface UserMapper extends Mapper<User> {
     void addRoleToUser(@Param(value="id")int id,@Param(value="role")int role);
     User nameExist(String name);
     ExamMessage getExamStartTime(int userid);
+    SimpleTest getSimpleTestTime(int userid);
 }
