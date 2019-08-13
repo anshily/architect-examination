@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'admin-menu', loadChildren: './admin-menu/admin-menu.module#AdminMenuPageModule' },
   { path: 'sign-up', loadChildren: './sign-up/sign-up.module#SignUpPageModule' },
   { path: 'user-management', loadChildren: './user-management/user-management.module#UserManagementPageModule' },
+  { path: 'user-detail', loadChildren: './user-detail/user-detail.module#UserDetailPageModule' },
 
 
 ];
