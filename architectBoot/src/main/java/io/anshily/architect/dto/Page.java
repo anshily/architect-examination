@@ -6,6 +6,16 @@ package io.anshily.architect.dto;
 public class Page {
     private Integer pageNum;
     private Integer pageSize;
+    private Integer statu;
+
+
+    public Integer getStatu() {
+        return statu;
+    }
+
+    public void setStatu(Integer statu) {
+        this.statu = statu;
+    }
 
     public Integer getPageNum() {
         return pageNum;
