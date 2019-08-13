@@ -2,13 +2,17 @@ package io.anshily.architect.service.impl;
 
 import io.anshily.architect.base.core.AbstractService;
 import io.anshily.architect.dao.UserMapper;
+import io.anshily.architect.model.ExamMessage;
+import io.anshily.architect.model.SimpleTest;
 import io.anshily.architect.model.User;
 import io.anshily.architect.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -42,5 +46,17 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
             return 0;
         }
         return 1;
+    }
+
+    @Override
+    public Map<String, String> getStudyTime(Integer userid) {
+        /*获取当前用户最后一场考试的开始时间*/
+        ExamMessage examMessage=swUserMapper.getExamStartTime(userid);
+        /*获取当前用户最后一次练题的时间*/
+        SimpleTest simpleTest=swUserMapper.getSimpleTestTime(userid);
+        Map<String,String> map=new HashMap<String,String>();
+        map.put("ExamStartTime",examMessage.getCreatetime().toString());
+        map.put("SimpleTestTime",simpleTest.getAdd_time().toString());
+        return map;
     }
 }

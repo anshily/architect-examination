@@ -39,4 +39,12 @@
   <select id="nameExist" resultType="io.anshily.architect.model.User">
     select id from sw_user where identify_card=#{name}
   </select>
+
+  <select id="getSimpleTestTime" resultType="io.anshily.architect.model.SimpleTest">
+    SELECT max(id),add_time from sw_simple_test where user_id=#{userid}
+  </select>
+
+  <select id="getExamStartTime" resultType="io.anshily.architect.model.ExamMessage">
+    select max(id),createtime from sw_exam_message where userid=#{userid}
+  </select>
 </mapper>
