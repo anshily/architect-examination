@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {ToastController} from '@ionic/angular';
+import {AlertController, NavController, ToastController} from '@ionic/angular';
 
 @Component({
     selector: 'app-sign-up',
@@ -14,11 +14,11 @@ export class SignUpPage implements OnInit {
     companyName;
     workType;
     public name: any;
-    public email: any;
-    public password: any;
-    public confirmPassword: any;
+    public phone: any;
+    public subscribe: any;
 
-    constructor(private http: HttpClient, private router: Router, public toastController: ToastController) {
+    constructor(private http: HttpClient, private router: Router, public toastController: ToastController,
+                private navCtrl: NavController, public alertController: AlertController) {
     }
 
     ngOnInit() {
@@ -31,38 +31,29 @@ export class SignUpPage implements OnInit {
 
     // 报名
     submit() {
-        if (!this.name || !this.email) {
-            console.log('帐号/密码不能为空');
-            this.presentToast('帐号/密码不能为空').then();
+        if (!this.phone || !this.workType) {
+            this.presentToast('请将信息填写完整！').then();
             return;
         }
         const params = {
             company_name: this.companyName,
             work_type: this.workType,
-            name: this.password,
-            phone: this.confirmPassword,
-            subscribe: ''
+            name: this.name,
+            phone: this.phone,
+            subscribe: this.subscribe
         };
         console.log(params);
 
-        this.loading = true;
-        this.http.post(ROOT_URL + 'register', params).subscribe(res => {
+        this.http.post(ROOT_URL + 'sign/up/add', params).subscribe(res => {
             console.log(res);
-            if (res['code'] === 200) {
-                console.log(res, '注册成功');
-                setTimeout(() => {
-                    this.router.navigate(['/login']).then(res => {
-                        console.log(res);
-                    });
-                    this.loading = false;
-                }, 800);
+            if (res['code'] === 0) {
+                console.log(res, '报名成功');
+                this.presentSumAlertConfirm().then();
             }
             else {
-                this.loading = false;
                 this.presentToast(res['msg']);
             }
         }, (err) => {
-            this.loading = false;
             console.log(err);
             this.presentToast(err['error']['msg']).then(r => {
                 console.log(r);
@@ -78,5 +69,29 @@ export class SignUpPage implements OnInit {
             duration: 2000
         });
         toast.present();
+    }
+
+    navBack() {
+        this.navCtrl.pop().then();
+    }
+
+
+    async presentSumAlertConfirm() {
+        const alert = await this.alertController.create({
+            header: '报名成功',
+            // message: `请注意页面错题：【${err}】`,
+            buttons: [
+                {
+                    text: '我知道了',
+                    handler: () => {
+                        this.navCtrl.pop().then();
+                        // console.log('Confirm Okay');
+                        // this.scrollToNext();
+                    }
+                }
+            ]
+        });
+
+        await alert.present();
     }
 }
