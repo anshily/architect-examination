@@ -71,6 +71,9 @@ public class SimpleTestServiceImpl extends AbstractService<SimpleTest> implement
         /*创建存放所有错题以及错误率的list*/
         List<ErrRate> list1=new ArrayList<ErrRate>();
         for(int i=0;i<list.size();i++){
+            if(null==list.get(i).getQuestion_id()){
+                continue;
+            }
             /*先查询出当前错题错误次数*/
             Map<String, Object> map = swSimpleTestMapper.getErrSumByQuestionId(list.get(i).getQuestion_id());
 
