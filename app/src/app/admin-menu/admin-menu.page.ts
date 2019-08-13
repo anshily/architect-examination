@@ -28,4 +28,8 @@ export class AdminMenuPage implements OnInit {
 
     signUpInfo() {
     }
+
+    userManagement(){
+        this.navCtrl.navigateForward('/user-management').then();
+    }
 }
