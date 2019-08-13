@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -19,4 +20,9 @@ public class SignUpServiceImpl extends AbstractService<SignUp> implements SignUp
     @Resource
     private SignUpMapper swSignUpMapper;
 
+    @Override
+    public List<SignUp> getSignUpMessage() {
+        List<SignUp> list=swSignUpMapper.getSignUpMessage();
+        return list;
+    }
 }

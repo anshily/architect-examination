@@ -144,7 +144,7 @@ public class UserController {
         page.setList(list);
         return ResultGenerator.successResult(page);
     }
-    
+
     @PostMapping("/getStudyTime")
     public Result getStudyTime(@RequestParam Integer userid) {
         Map<String,String> map=userService.getStudyTime(userid);

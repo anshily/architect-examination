@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import io.anshily.architect.base.core.PageBean;
 import io.anshily.architect.base.core.Result;
 import io.anshily.architect.base.core.ResultGenerator;
+import io.anshily.architect.dto.Page;
 import io.anshily.architect.model.SignUp;
 import io.anshily.architect.service.SignUpService;
 import org.springframework.web.bind.annotation.*;
@@ -64,5 +65,11 @@ public class SignUpController {
     List<SignUp> list = signUpService.findByCondition(condition);
         page.setList(list);
         return ResultGenerator.successResult(page);
+    }
+    @PostMapping("/getSignUpMessage")
+    public Result getSignUpMessage(@RequestBody Page page) {
+        PageHelper.startPage(page.getPageNum(),page.getPageSize());
+        List<SignUp> list = signUpService.getSignUpMessage();
+        return ResultGenerator.successResult(list);
     }
 }

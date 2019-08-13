@@ -13,4 +13,8 @@
     <result column="statu" jdbcType="INTEGER" property="statu" />
     <result column="subscribe" jdbcType="LONGVARCHAR" property="subscribe" />
   </resultMap>
+
+  <select id="getSignUpMessage" resultType="io.anshily.architect.model.SignUp">
+    select * from sw_sign_up where statu!=0
+  </select>
 </mapper>
