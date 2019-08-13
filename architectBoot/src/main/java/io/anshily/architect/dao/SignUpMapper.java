@@ -6,5 +6,5 @@ import io.anshily.architect.model.SignUp;
 import java.util.List;
 
 public interface SignUpMapper extends Mapper<SignUp> {
-    List<SignUp> getSignUpMessage();
+    List<SignUp> getSignUpMessage(int statu);
 }

@@ -10,5 +10,5 @@ import java.util.List;
  * Created by anshi on 2019/08/12.
  */
 public interface SignUpService extends Service<SignUp> {
-    List<SignUp> getSignUpMessage();
+    List<SignUp> getSignUpMessage(int statu);
 }
