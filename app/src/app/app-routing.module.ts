@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'add-member', loadChildren: './add-member/add-member.module#AddMemberPageModule' },
   { path: 'admin-menu', loadChildren: './admin-menu/admin-menu.module#AdminMenuPageModule' },
   { path: 'sign-up', loadChildren: './sign-up/sign-up.module#SignUpPageModule' },
+  { path: 'user-management', loadChildren: './user-management/user-management.module#UserManagementPageModule' },
 
 
 ];

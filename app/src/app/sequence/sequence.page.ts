@@ -83,7 +83,7 @@ export class SequencePage implements OnInit {
                             this.http.post(ROOT_URL + 'simple/test/add', {
                                 token: localStorage.getItem('user_token'),
                                 simpleTest: {
-                                    question_title_id: question['question']['question_bank_id'],
+                                    question_id: question['question']['question_bank_id'],
                                     answer: question['userResult'].toString(),
                                     istrue: question['isRight'] ? 1 : 0
                                 }
@@ -100,13 +100,6 @@ export class SequencePage implements OnInit {
                     }
                 }
                 if (simple['questionResult']) {
-                    if (!simple['questionResult']['isRight']) {
-                        this.presentAlertConfirm(simple['questionResult']['userResult'].toString(),
-                            simple['questionResult']['rightResult'].toString());
-                    }else {
-                        this.scrollToNext();
-                        return;
-                    }
                     let params = {
                         token: localStorage.getItem('user_token'),
                         simpleTest: {
@@ -118,6 +111,13 @@ export class SequencePage implements OnInit {
                     this.http.post(ROOT_URL + 'simple/test/add', params).subscribe(res => {
                         console.log(res);
                     });
+                    if (!simple['questionResult']['isRight']) {
+                        this.presentAlertConfirm(simple['questionResult']['userResult'].toString(),
+                            simple['questionResult']['rightResult'].toString());
+                    }else {
+                        this.scrollToNext();
+                        return;
+                    }
                 }
             } else {
                 this.scrollToNext();

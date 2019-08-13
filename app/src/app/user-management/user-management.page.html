@@ -1,0 +1,16 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>user-management</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <!-- Animated Searchbar -->
+    <ion-tab-bar>
+        <ion-searchbar animated [(ngModel)]="searchValue"></ion-searchbar>
+        <ion-button shape="round" (click)="nextQuestion()">搜索</ion-button>
+    </ion-tab-bar>
+
+
+    <div>{{searchValue}}</div>
+</ion-content>
