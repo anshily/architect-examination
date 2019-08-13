@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -42,5 +43,13 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
             return 0;
         }
         return 1;
+    }
+
+    @Override
+    public Map<String, String> getStudyTime(Integer userid) {
+        /*获取当前用户最后一场考试的开始时间*/
+
+        /*获取当前用户最后一次练题的时间*/
+        return null;
     }
 }

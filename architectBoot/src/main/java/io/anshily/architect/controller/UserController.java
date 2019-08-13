@@ -3,9 +3,11 @@ package io.anshily.architect.controller;
 import com.github.pagehelper.PageHelper;
 import io.anshily.architect.base.core.*;
 import io.anshily.architect.dto.AlterPass;
+import io.anshily.architect.dto.UserList;
 import io.anshily.architect.dto.UserToRole;
 import io.anshily.architect.model.User;
 import io.anshily.architect.service.UserService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 import tk.mybatis.mapper.entity.Condition;
 import tk.mybatis.mapper.entity.Example;
@@ -132,14 +134,21 @@ public class UserController {
     }
 
     @PostMapping("/custom/list")
-    public Result customList(@RequestBody User user) {
+    public Result customList(@RequestBody UserList userList) {
         PageBean<User> page = new PageBean<User>();
-    //        PageHelper.startPage(page.getPageNum(),page.getSize());
+        PageHelper.startPage(userList.getPageNum(),userList.getPageSize());
     Condition condition = new Condition(User.class);
     Example.Criteria criteria = condition.createCriteria();
-    criteria.andLike("id","%1%");
+    criteria.andLike("name","%name%");
     List<User> list = userService.findByCondition(condition);
         page.setList(list);
         return ResultGenerator.successResult(page);
+    }
+
+
+    @PostMapping("/getStudyTime")
+    public Result getStudyTime(@RequestParam Integer userid) {
+
+        return ResultGenerator.successResult();
     }
 }
