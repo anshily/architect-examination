@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface SignUpMapper extends Mapper<SignUp> {
     List<SignUp> getSignUpMessage(int statu);
+    void changeSignupStatu(int id);
 }

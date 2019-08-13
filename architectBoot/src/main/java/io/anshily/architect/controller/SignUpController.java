@@ -72,4 +72,10 @@ public class SignUpController {
         List<SignUp> list = signUpService.getSignUpMessage(page.getStatu());
         return ResultGenerator.successResult(list);
     }
+    @GetMapping("/changeSignupStatu")
+    public Result changeSignupStatu(@RequestParam Integer id) {
+        signUpService.changeSignupStatu(id);
+        return ResultGenerator.successResult();
+    }
+
 }

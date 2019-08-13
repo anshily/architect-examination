@@ -17,4 +17,8 @@
   <select id="getSignUpMessage" resultType="io.anshily.architect.model.SignUp">
     select * from sw_sign_up where statu=#{statu}
   </select>
+
+  <update id="changeSignupStatu">
+    update sw_sign_up set statu=2 where id=#{id}
+  </update>
 </mapper>
