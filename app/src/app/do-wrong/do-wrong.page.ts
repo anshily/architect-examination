@@ -28,4 +28,18 @@ export class DoWrongPage implements OnInit {
         this.router.navigate(['/question-detail'], {queryParams: {qid: e.id}}).then();
     }
 
+
+
+    loadData(event) {
+        setTimeout(() => {
+            console.log(event);
+            event.target.complete();
+            //
+            //     // App logic to determine if all data is loaded
+            //     // and disable the infinite scroll
+            //     if (data.length == 1000) {
+            //         event.target.disabled = true;
+            //     }
+        }, 500);
+    }
 }

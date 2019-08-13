@@ -11,4 +11,11 @@
     <app-wrong-question [title]="item['title']" [all]="item['all']" [err]="item['err']" [rate]="item['rate']*100"></app-wrong-question>
   </div>
 
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="加载中...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 </ion-content>

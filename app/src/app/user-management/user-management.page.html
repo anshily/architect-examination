@@ -1,16 +1,32 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-title>user-management</ion-title>
-    </ion-toolbar>
+    <!--<ion-toolbar>-->
+        <!--<ion-title>user-management</ion-title>-->
+    <!--</ion-toolbar>-->
+    <app-nav-back [title]="'用户管理'"></app-nav-back>
+
 </ion-header>
 
 <ion-content>
     <!-- Animated Searchbar -->
     <ion-tab-bar>
         <ion-searchbar animated [(ngModel)]="searchValue"></ion-searchbar>
-        <ion-button shape="round" (click)="nextQuestion()">搜索</ion-button>
+        <ion-icon name="search" style="font-size: 2rem;margin-right: 1rem"></ion-icon>
+        <!--<ion-button shape="round" (click)="search()">搜索</ion-button>-->
     </ion-tab-bar>
 
+    <ion-list>
+        <ion-item *ngFor="let user of users">
+            <ion-item-sliding>
+                <ion-button expand="full" fill="clear" (click)="goDetail(user)"> {{user['username'] ? user['username'] : '安石'}}</ion-button>
+            </ion-item-sliding>
+        </ion-item>
+    </ion-list>
 
-    <div>{{searchValue}}</div>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content
+                loadingSpinner="bubbles"
+                loadingText="加载中...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
 </ion-content>
