@@ -145,10 +145,5 @@ export class RandomSubQuestionComponent implements OnInit {
                 question: this.question
             }
         });
-
-        // localStorage.setItem('random-question',JSON.stringify({
-        //     answers: this.answers
-        // }));
-        // console.log(this.testRadio);
     }
 }

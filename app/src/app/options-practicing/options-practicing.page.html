@@ -5,5 +5,11 @@
 </ion-header>
 
 <ion-content>
-<app-question></app-question>
+  <!--
+  43475 1
+  43488 2
+  43699 3
+  44405 6
+  -->
+<app-question [questionId]="'43488'" (updateResult)="updateResult($event, i)"></app-question>
 </ion-content>

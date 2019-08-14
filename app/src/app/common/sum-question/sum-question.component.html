@@ -1,3 +1,11 @@
-<p>
-  sum-question works!
-</p>
+<div>
+  <ion-card *ngIf="question">
+    <div [innerHTML]="question['question_title']"></div>
+  </ion-card>
+
+  <!--<ion-list>-->
+  <div *ngFor="let item of subQuestion; let i = index">
+    <app-sub-question [questionId]="item['question_bank_id']" [status]="status" (updateResult)="testSubEmit($event, i)"></app-sub-question>
+  </div>
+  <!--</ion-list>-->
+</div>

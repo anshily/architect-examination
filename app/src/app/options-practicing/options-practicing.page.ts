@@ -12,4 +12,10 @@ export class OptionsPracticingPage implements OnInit {
   ngOnInit() {
   }
 
+    updateResult(event, i) {
+    console.log(event, i);
+        // console.log(this.questionArr[i]['res'] = event);
+        // console.log(this.questionArr[i]);
+    }
+
 }
