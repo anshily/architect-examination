@@ -22,4 +22,5 @@ public interface SimpleTestMapper extends Mapper<SimpleTest> {
     Integer getNormalErrSumByQuestionId(int questionid);
     Integer getNormalSumByQuestionId(int questionid);
     List<Map<String,Integer>> QuestionTypeTest(@Param(value = "questiontype") int questiontype,@Param(value = "type")String type);
+    List<Map<String,Integer>> getRandomTestByType(@Param(value = "type") int type,@Param(value = "category")Integer category);
 }

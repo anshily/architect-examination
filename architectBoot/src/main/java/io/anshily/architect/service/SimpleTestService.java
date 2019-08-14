@@ -17,5 +17,6 @@ public interface SimpleTestService extends Service<SimpleTest> {
     List<ErrRate>  simpleTestErr(String token);
     List<ErrRate>  normalTestErr(String token);
     List<Map<String,Integer>> QuestionTypeTest(String token,Integer questiontype);
+    List<Map<String,Integer>> getRandomTestByType(String token,Integer type);
 
 }

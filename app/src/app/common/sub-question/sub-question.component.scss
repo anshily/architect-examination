@@ -224,3 +224,22 @@ button, input, optgroup, select, textarea {
   transition: all .1s cubic-bezier(.71,-.46,.88,.6),opacity .1s;
   content: ' ';
 }
+
+.practice-answer{
+  font-size: 16px;
+  color: #f55a5e;
+  margin-bottom: 10px;
+}
+.cet-display-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.cet-normal-font {
+  font-size: 16px;
+  color: #666;
+}
+.cet-html-img {
+  word-wrap: break-word;
+  word-break: break-all;
+}

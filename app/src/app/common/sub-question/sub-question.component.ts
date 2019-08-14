@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {RandomStorageService} from '../../random-storage.service';
+import {CommonStorageService} from '../../common-storage.service';
 
 @Component({
   selector: 'app-sub-question',
@@ -18,8 +19,9 @@ export class SubQuestionComponent implements OnInit {
     rightResult;
     userResult;
     showResult = false;
+    radioValue;
 
-    constructor(private http: HttpClient, private randomStorage: RandomStorageService) {
+    constructor(private http: HttpClient, private commonStorage: CommonStorageService) {
     }
 
     ngOnInit() {
@@ -32,9 +34,9 @@ export class SubQuestionComponent implements OnInit {
                     return item;
                 });
 
-                if (this.randomStorage.getItem(this.questionId)) {
+                if (this.commonStorage.getItem('type', this.questionId)) {
                     // console.log(localStorage.getItem(this.questionId));
-                    let storage = this.randomStorage.getItem(this.questionId);
+                    let storage = this.commonStorage.getItem('type', this.questionId);
                     if (storage['answers']) {
                         this.answers = storage['answers'];
                     }
@@ -43,20 +45,15 @@ export class SubQuestionComponent implements OnInit {
                         this.rightResult = storage['result']['rightResult'];
                         this.isRight = storage['result']['isRight'];
                     }
+                    if (storage['radioValue']) {
+                        this.radioValue = storage['radioValue'];
+                    }
                 }
             }
         });
     }
 
     checkChange() {
-        // let tmp = this.answers.filter(item =>  {
-        //     return item.isChecked === true;
-        // });
-        // console.log(tmp);
-        this.checkResult();
-    }
-
-    checkResult() {
         let isRight = true;
         let rightResult = [];
         let userResult = [];
@@ -88,56 +85,7 @@ export class SubQuestionComponent implements OnInit {
         //     answers: this.answers
         // }));
 
-        this.randomStorage.setItem(this.questionId, {
-            answers: this.answers,
-            result: {
-                isRight: this.isRight,
-                userResult: this.userResult,
-                rightResult: this.rightResult,
-                question: this.question
-            }
-        });
-    }
-
-    radioSelect(e) {
-        // console.log(e);
-        let isRight = false;
-        let rightResult = [];
-        let userResult = [];
-        userResult.push(e['index_letter']);
-        if (e['result'] === 1) {
-            isRight = true;
-        }
-        // this.answers.forEach(item => {
-        //     if (item['result'] === 1) {
-        //         rightResult.push(item['index_letter']);
-        //     }
-        // });
-        this.answers.map(item => {
-            if (e['index_number'] == item['index_number']) {
-                item['isChecked'] = true;
-            }else {
-                item['isChecked'] = false;
-            }
-            if (item['result'] === 1) {
-                rightResult.push(item['index_letter']);
-            }
-            return item;
-        });
-        // console.log(isRight, userResult, rightResult);
-        this.showResult = true;
-        this.isRight = isRight;
-        this.userResult = userResult;
-        this.rightResult = rightResult;
-
-        this.updateResult.emit({
-            isRight: this.isRight,
-            userResult: this.userResult,
-            rightResult: this.rightResult,
-            question: this.question
-        });
-
-        this.randomStorage.setItem(this.questionId, {
+        this.commonStorage.setItem('type', this.questionId, {
             answers: this.answers,
             result: {
                 isRight: this.isRight,
@@ -186,9 +134,16 @@ export class SubQuestionComponent implements OnInit {
             questionResult: subResult
         });
         // console.log(this.testRadio);
-        localStorage.setItem( 'question' + this.questionId, JSON.stringify({
-            answers: this.answers
-        }));
+        this.commonStorage.setItem('type', this.questionId, {
+            answers: this.answers,
+            result: {
+                isRight: this.isRight,
+                userResult: this.userResult,
+                rightResult: this.rightResult,
+                question: this.question
+            },
+            radioValue: this.radioValue
+        });
     }
 
 }

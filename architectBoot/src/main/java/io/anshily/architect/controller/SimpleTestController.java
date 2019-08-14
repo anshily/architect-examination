@@ -130,5 +130,11 @@ public class SimpleTestController {
         return ResultGenerator.successResult(list);
     }
 
+    @GetMapping("/randomTestByType")
+    public Result getRandomTestByType(@RequestParam String token,@RequestParam Integer type) {
+        List<Map<String,Integer>> list=simpleTestService.getRandomTestByType(token, type);
+        return ResultGenerator.successResult(list);
+    }
+
 
 }

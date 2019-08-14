@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
+import {CommonStorageService} from '../../common-storage.service';
 
 @Component({
     selector: 'app-question',
@@ -10,11 +11,9 @@ import {ActivatedRoute} from '@angular/router';
 export class QuestionComponent implements OnInit {
 
     radioValue;
-    checkBoxValue;
-    isChecked;
     @Output() updateResult: EventEmitter<any> = new EventEmitter();
     @Input() questionId;
-    innerQuestionId;
+    @Input() status;
     question;
     answers;
     isRight;
@@ -23,19 +22,14 @@ export class QuestionComponent implements OnInit {
     showResult = false;
     examId;
 
-    constructor(private http: HttpClient, private router: ActivatedRoute) {
+    constructor(private http: HttpClient, private router: ActivatedRoute,
+                private commonStorage: CommonStorageService) {
     }
 
     ngOnInit() {
-        this.router.queryParams.subscribe(qp => {
-            console.log(qp);
-            this.examId = qp.eid;
-        });
     }
 
     ngOnChanges() {
-        // console.log(this.questionId);
-        // this.innerQuestionId = this.questionId;
         this.http.get(ROOT_URL + 'question/detail?id=' + this.questionId).subscribe(res => {
             console.log(res);
             if (res['code'] === 0) {
@@ -44,20 +38,15 @@ export class QuestionComponent implements OnInit {
                     item['isChecked'] = false;
                     return item;
                 });
-
-                if (localStorage.getItem('exam' + this.examId + 'question' + this.questionId)) {
-                    // console.log(localStorage.getItem(this.questionId));
-                    let storage = JSON.parse(localStorage.getItem('exam' + this.examId + 'question' + this.questionId));
-                    // if (storage['question']) {
-                    //     this.question = storage['question'];
-                    // }
+                if (this.commonStorage.getItem('type', this.questionId)) {
+                    let storage = this.commonStorage.getItem('type', this.questionId);
                     if (storage['answers']) {
                         this.answers = storage['answers'];
                     }
+                    if (storage['radioValue']){
+                        this.radioValue = storage['radioValue'];
+                    }
                 }
-                // localStorage.setItem(this.questionId,JSON.stringify({
-                //     answers: this.answers
-                // }));
             }
         });
     }
@@ -90,52 +79,9 @@ export class QuestionComponent implements OnInit {
             rightResult: this.rightResult,
             question: this.question
         });
-        localStorage.setItem('exam' + this.examId + 'question' + this.questionId, JSON.stringify({
+        this.commonStorage.setItem('type', this.questionId, {
             answers: this.answers
-        }));
-    }
-
-    radioSelect(e) {
-        // console.log(this.radioModel);
-        // this.radioModel = e['index_number'];
-        console.log(e);
-        let isRight = false;
-        let rightResult = [];
-        let userResult = [];
-        userResult.push(e['index_letter']);
-        if (e['result'] === 1) {
-            isRight = true;
-        }
-        this.answers.map(item => {
-            if (e['index_number'] == item['index_number']) {
-                item['isChecked'] = true;
-            } else {
-                item['isChecked'] = false;
-            }
-            if (item['result'] === 1) {
-                rightResult.push(item['index_letter']);
-            }
-            return item;
         });
-        // console.log(isRight, userResult, rightResult);
-        this.showResult = true;
-        this.isRight = isRight;
-        this.userResult = userResult;
-        this.rightResult = rightResult;
-
-        let subResult = {
-            isRight: this.isRight,
-            userResult: this.userResult,
-            rightResult: this.rightResult,
-            question: this.question
-        }
-        this.updateResult.emit({
-            questionResult: subResult
-        });
-        // console.log(this.testRadio);
-        localStorage.setItem('exam' + this.examId + 'question' + this.questionId, JSON.stringify({
-            answers: this.answers
-        }));
     }
 
     paraEmit(e) {
@@ -181,9 +127,10 @@ export class QuestionComponent implements OnInit {
         this.updateResult.emit({
             questionResult: subResult
         });
-        // console.log(this.testRadio);
-        localStorage.setItem('exam' + this.examId + 'question' + this.questionId, JSON.stringify({
-            answers: this.answers
-        }));
+
+        this.commonStorage.setItem('type', this.questionId, {
+            answers: this.answers,
+            radioValue: this.radioValue
+        });
     }
 }
