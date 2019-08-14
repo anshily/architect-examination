@@ -49,14 +49,14 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     }
 
     @Override
-    public Map<String, String> getStudyTime(Integer userid) {
+    public Map<String, Object> getStudyTime(Integer userid) {
         /*获取当前用户最后一场考试的开始时间*/
         ExamMessage examMessage=swUserMapper.getExamStartTime(userid);
         /*获取当前用户最后一次练题的时间*/
         SimpleTest simpleTest=swUserMapper.getSimpleTestTime(userid);
-        Map<String,String> map=new HashMap<String,String>();
-        map.put("ExamStartTime",examMessage.getCreatetime().toString());
-        map.put("SimpleTestTime",simpleTest.getAdd_time().toString());
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("ExamStartTime",examMessage);
+        map.put("SimpleTestTime",simpleTest);
         return map;
     }
 }

@@ -29,7 +29,7 @@
     </select>
 
   <select id="loginByIdAndPass" resultType="io.anshily.architect.model.User" parameterType="String">
-    select id from sw_user where identify_card = #{identify_card} and password = #{password}
+    select id from sw_user where identify_card = #{identify_card} and password = #{password} and statu=1
   </select>
 
   <insert id="addRoleToUser">

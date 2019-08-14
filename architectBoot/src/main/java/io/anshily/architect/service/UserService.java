@@ -19,5 +19,5 @@ public interface UserService extends Service<User> {
 
     Integer nameExist(String name);
 
-    Map<String,String> getStudyTime(Integer userid);
+    Map<String,Object> getStudyTime(Integer userid);
 }
