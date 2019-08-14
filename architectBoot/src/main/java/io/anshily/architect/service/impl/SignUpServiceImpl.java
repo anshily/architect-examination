@@ -21,8 +21,13 @@ public class SignUpServiceImpl extends AbstractService<SignUp> implements SignUp
     private SignUpMapper swSignUpMapper;
 
     @Override
-    public List<SignUp> getSignUpMessage() {
-        List<SignUp> list=swSignUpMapper.getSignUpMessage();
+    public List<SignUp> getSignUpMessage(int statu) {
+        List<SignUp> list=swSignUpMapper.getSignUpMessage(statu);
         return list;
+    }
+
+    @Override
+    public void changeSignupStatu(int id) {
+        swSignUpMapper.changeSignupStatu(id);
     }
 }

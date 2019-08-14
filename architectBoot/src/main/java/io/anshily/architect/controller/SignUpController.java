@@ -69,7 +69,13 @@ public class SignUpController {
     @PostMapping("/getSignUpMessage")
     public Result getSignUpMessage(@RequestBody Page page) {
         PageHelper.startPage(page.getPageNum(),page.getPageSize());
-        List<SignUp> list = signUpService.getSignUpMessage();
+        List<SignUp> list = signUpService.getSignUpMessage(page.getStatu());
         return ResultGenerator.successResult(list);
     }
+    @GetMapping("/changeSignupStatu")
+    public Result changeSignupStatu(@RequestParam Integer id) {
+        signUpService.changeSignupStatu(id);
+        return ResultGenerator.successResult();
+    }
+
 }
