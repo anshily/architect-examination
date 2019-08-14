@@ -1,0 +1,57 @@
+<ion-header>
+  <!--<ion-toolbar>-->
+    <!--<ion-title>sign-up-detail</ion-title>-->
+  <!--</ion-toolbar>-->
+  <app-nav-back [title]="'报名信息'"></app-nav-back>
+</ion-header>
+
+<ion-content>
+
+  <ion-item *ngIf="user && user['company_name']">
+    <ion-label>公司名称</ion-label>
+    <ion-note slot="end">
+      {{user['company_name']}}
+    </ion-note>
+  </ion-item>
+
+  <ion-item *ngIf="user && user['name']">
+    <ion-label>联系人</ion-label>
+    <ion-note slot="end">
+      {{user['name']}}
+    </ion-note>
+  </ion-item>
+
+  <ion-item *ngIf="user && user['phone']">
+    <ion-label>联系方式</ion-label>
+    <ion-note slot="end">
+      {{user['phone']}}
+    </ion-note>
+  </ion-item>
+
+  <ion-item *ngIf="user && user['work_type']">
+    <ion-label>工种</ion-label>
+    <ion-note slot="end">
+      {{user['work_type']}}
+    </ion-note>
+  </ion-item>
+
+  <ion-item *ngIf="user && user['subscribe']">
+    <ion-label>备注</ion-label>
+    <ion-note slot="end">
+      {{user['subscribe']}}
+    </ion-note>
+  </ion-item>
+
+
+  <div style="position: fixed; bottom: 0;z-index: 99;width: 100vw;color: red;">
+    <ion-button expand="full" fill="clear" (click)="read()">已查看</ion-button>
+  </div>
+
+  <!--company_name: "桃李科技"-->
+  <!--id: 1-->
+  <!--name: "安石"-->
+  <!--phone: "1523333333"-->
+  <!--statu: 1-->
+  <!--subscribe: "ahahahha"-->
+  <!--work_type: "A 类"-->
+</ion-content>

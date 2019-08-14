@@ -5,15 +5,13 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {IonicModule} from '@ionic/angular';
 
-import {UserManagementPage} from './user-management.page';
-import {ShareModule} from '../share/share.module';
-import {AuthGuard} from '../auth/auth.guard';
+import {OptionsPracticingPage} from './options-practicing.page';
+import {SwCommonModule} from '../common/sw-common.module';
 
 const routes: Routes = [
     {
         path: '',
-        component: UserManagementPage,
-        canActivate: [AuthGuard]
+        component: OptionsPracticingPage
     }
 ];
 
@@ -22,10 +20,10 @@ const routes: Routes = [
         CommonModule,
         FormsModule,
         IonicModule,
-        ShareModule,
+        SwCommonModule,
         RouterModule.forChild(routes)
     ],
-    declarations: [UserManagementPage]
+    declarations: [OptionsPracticingPage]
 })
-export class UserManagementPageModule {
+export class OptionsPracticingPageModule {
 }

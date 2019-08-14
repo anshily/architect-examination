@@ -15,11 +15,21 @@
     </ion-tab-bar>
 
     <ion-list>
-        <ion-item *ngFor="let user of users">
-            <ion-item-sliding>
-                <ion-button expand="full" fill="clear" (click)="goDetail(user)"> {{user['username'] ? user['username'] : '安石'}}</ion-button>
-            </ion-item-sliding>
-        </ion-item>
+
+
+            <div *ngFor="let user of users">
+
+                <ion-item (click)="goDetail(user)">
+                    <ion-label>{{user['username'] ? user['username'] : '安石'}}</ion-label>
+                    <ion-note slot="end">
+                        <img src="assets/icon/arrow.png">
+                        <!--查看-->
+                        <!--<ion-badge color="danger">1</ion-badge>-->
+                    </ion-note>
+                </ion-item>
+
+            </div>
+
     </ion-list>
 
     <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">

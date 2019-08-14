@@ -34,6 +34,11 @@ export class PracticingPage implements OnInit {
         this.navController.navigateForward('/sequence').then();
     }
 
+    optionsPracticing() {
+        this.presentPracticingLoading().then();
+        this.navController.navigateForward('/options-practicing').then();
+    }
+
 
     startRandom() {
         this.presentPracticingLoading().then();

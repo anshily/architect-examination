@@ -1,0 +1,55 @@
+<ion-header>
+  <!--<ion-toolbar>-->
+    <!--<ion-title>sign-up-management</ion-title>-->
+  <!--</ion-toolbar>-->
+  <app-nav-back [title]="'报名信息管理'"></app-nav-back>
+</ion-header>
+
+<ion-content>
+  <!-- Animated Searchbar -->
+  <ion-tab-bar>
+    <ion-searchbar animated [(ngModel)]="searchValue"></ion-searchbar>
+    <ion-icon name="search" style="font-size: 2rem;margin-right: .5rem"></ion-icon>
+  </ion-tab-bar>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label>筛选</ion-label>
+      <ion-select placeholder="选择消息状态" [(ngModel)]="workType" okText="确定" cancelText="取消">
+        <ion-select-option value="1">已读</ion-select-option>
+        <ion-select-option value="2">未读</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <div *ngFor="let user of users">
+
+      <ion-item (click)="goDetail(user)">
+        <ion-label>{{user['name'] ? user['name'] : '安石'}}</ion-label>
+        <ion-note slot="end">
+          <img *ngIf="user['statu'] == 2" src="assets/icon/arrow.png">
+          <!--查看-->
+          <ion-badge *ngIf="user['statu'] == 1" color="danger">1</ion-badge>
+        </ion-note>
+      </ion-item>
+
+    </div>
+
+    <!--company_name: ""-->
+    <!--id: 2-->
+    <!--name: "涂志杰"-->
+    <!--phone: "18125762486"-->
+    <!--statu: 1-->
+    <!--subscribe: null-->
+    <!--work_type: "3"-->
+
+  </ion-list>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="加载中...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,9 +1,52 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>user-detail</ion-title>
-  </ion-toolbar>
+  <!--<ion-toolbar>-->
+    <!--<ion-title>user-detail</ion-title>-->
+  <!--</ion-toolbar>-->
+  <app-nav-back [title]="'用户数据'"></app-nav-back>
 </ion-header>
 
 <ion-content>
+
+  <ion-item *ngIf="user && user['username']">
+    <ion-label>姓名</ion-label>
+    <ion-note slot="end">
+      {{user['username']}}
+    </ion-note>
+  </ion-item>
+
+  <ion-item *ngIf="user">
+    <ion-label>身份证号</ion-label>
+    <ion-note slot="end">
+      {{user['identify_card']}}
+    </ion-note>
+  </ion-item>
+
+  <ion-item *ngIf="user">
+    <ion-label>联系方式</ion-label>
+    <ion-note slot="end">
+      {{user['phone']}}
+    </ion-note>
+  </ion-item>
+
+  <ion-item *ngIf="user">
+    <ion-label>最后登录时间</ion-label>
+    <ion-note slot="end">
+      {{user['update_time']}}
+    </ion-note>
+  </ion-item>
+
+  <ion-item *ngIf="userDate">
+    <ion-label>最后考试时间</ion-label>
+    <ion-note slot="end">
+      {{userDate['ExamStartTime']}}
+    </ion-note>
+  </ion-item>
+
+  <ion-item *ngIf="userDate">
+    <ion-label>最后练题时间</ion-label>
+    <ion-note slot="end">
+      {{userDate['SimpleTestTime']}}
+    </ion-note>
+  </ion-item>
 
 </ion-content>

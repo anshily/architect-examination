@@ -5,14 +5,14 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {IonicModule} from '@ionic/angular';
 
-import {UserManagementPage} from './user-management.page';
+import {SignUpManagementPage} from './sign-up-management.page';
 import {ShareModule} from '../share/share.module';
 import {AuthGuard} from '../auth/auth.guard';
 
 const routes: Routes = [
     {
         path: '',
-        component: UserManagementPage,
+        component: SignUpManagementPage,
         canActivate: [AuthGuard]
     }
 ];
@@ -23,9 +23,10 @@ const routes: Routes = [
         FormsModule,
         IonicModule,
         ShareModule,
-        RouterModule.forChild(routes)
-    ],
-    declarations: [UserManagementPage]
+    RouterModule.forChild(routes)
+],
+declarations: [SignUpManagementPage]
 })
-export class UserManagementPageModule {
+
+export class SignUpManagementPageModule {
 }

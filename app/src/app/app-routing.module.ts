@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: 'feeds', loadChildren: './feeds/feeds.module#FeedsPageModule' },
   { path: 'history', loadChildren: './history/history.module#HistoryPageModule' },
   { path: 'practicing', loadChildren: './practicing/practicing.module#PracticingPageModule' },
-  { path: 'do-wrong', loadChildren: './do-wrong/do-wrong.module#DoWrongPageModule' },  { path: 'alter-password', loadChildren: './alter-password/alter-password.module#AlterPasswordPageModule' },
+  { path: 'do-wrong', loadChildren: './do-wrong/do-wrong.module#DoWrongPageModule' },
+  { path: 'alter-password', loadChildren: './alter-password/alter-password.module#AlterPasswordPageModule' },
   { path: 'exam', loadChildren: './exam/exam.module#ExamPageModule' },
   { path: 'sequence', loadChildren: './sequence/sequence.module#SequencePageModule' },
   { path: 'random', loadChildren: './random/random.module#RandomPageModule' },
@@ -22,6 +23,8 @@ const routes: Routes = [
   { path: 'sign-up', loadChildren: './sign-up/sign-up.module#SignUpPageModule' },
   { path: 'user-management', loadChildren: './user-management/user-management.module#UserManagementPageModule' },
   { path: 'user-detail', loadChildren: './user-detail/user-detail.module#UserDetailPageModule' },
+  { path: 'sign-up-management', loadChildren: './sign-up-management/sign-up-management.module#SignUpManagementPageModule' },
+  { path: 'sign-up-detail', loadChildren: './sign-up-detail/sign-up-detail.module#SignUpDetailPageModule' },  { path: 'options-practicing', loadChildren: './options-practicing/options-practicing.module#OptionsPracticingPageModule' },
 
 
 ];

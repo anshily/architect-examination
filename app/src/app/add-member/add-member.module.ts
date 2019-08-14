@@ -7,11 +7,13 @@ import {IonicModule} from '@ionic/angular';
 
 import {AddMemberPage} from './add-member.page';
 import {ShareModule} from '../share/share.module';
+import {AuthGuard} from '../auth/auth.guard';
 
 const routes: Routes = [
     {
         path: '',
-        component: AddMemberPage
+        component: AddMemberPage,
+        canActivate: [AuthGuard]
     }
 ];
 
