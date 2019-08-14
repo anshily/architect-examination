@@ -13,7 +13,7 @@ import {CommonModule} from '@angular/common';
     imports: [
         CommonModule,
         FormsModule,
-        IonicModule
+        IonicModule,
     ],
     exports: [QuestionComponent,
         SubQuestionComponent,

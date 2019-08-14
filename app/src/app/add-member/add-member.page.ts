@@ -12,6 +12,7 @@ export class AddMemberPage implements OnInit {
 
     name;
     workType;
+    idCard;
 
     constructor(private http: HttpClient, private router: Router, public toastController: ToastController,
                 public alertController: AlertController, private navCtrl: NavController) {
@@ -22,13 +23,14 @@ export class AddMemberPage implements OnInit {
 
     // 注册用户
     add() {
-        if (!this.name || !this.workType) {
+        if (!this.name || !this.workType || !this.idCard) {
             this.presentToast('请将信息填写完整！').then();
             return;
         }
         const params = {
             user: {
-                identify_card: this.name
+                identify_card: this.idCard,
+                username: this.name
             },
             role: this.workType
         };
