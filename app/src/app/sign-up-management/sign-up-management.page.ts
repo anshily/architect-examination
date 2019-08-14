@@ -11,7 +11,7 @@ export class SignUpManagementPage implements OnInit {
 
     searchValue;
     users = [];
-    workType;
+    workType = 1;
 
     constructor(private http: HttpClient,
                 private navCtrl: NavController) {
@@ -20,7 +20,8 @@ export class SignUpManagementPage implements OnInit {
     ngOnInit() {
         this.http.post(ROOT_URL + 'sign/up/getSignUpMessage', {
             pageNum: 1,
-            pageSize: 10
+            pageSize: 10,
+            statu: 1
         }).subscribe(res => {
             console.log(res)
             if (res['code'] == 0) {
