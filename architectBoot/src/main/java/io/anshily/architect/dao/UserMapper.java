@@ -15,4 +15,5 @@ public interface UserMapper extends Mapper<User> {
     User nameExist(String name);
     ExamMessage getExamStartTime(int userid);
     SimpleTest getSimpleTestTime(int userid);
+    void deleteUser(Integer userid);
 }
