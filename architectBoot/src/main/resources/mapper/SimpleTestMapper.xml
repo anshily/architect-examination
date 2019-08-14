@@ -63,5 +63,8 @@
     select count(id) from sw_exam_answer where question_title_id=#{questionid}
   </select>
 
+  <select id="QuestionTypeTest" resultType="map">
+    select question_bank_id from sw_question where type=#{name} and question_type_id=#{questiontype} order by rand()
+  </select>
 
 </mapper>

@@ -5,6 +5,8 @@ import io.anshily.architect.base.core.Mapper;
 import io.anshily.architect.model.ExamAnswer;
 import io.anshily.architect.model.Question;
 import io.anshily.architect.model.SimpleTest;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
@@ -19,4 +21,5 @@ public interface SimpleTestMapper extends Mapper<SimpleTest> {
     Integer getSumByQuestionId(int questionid);
     Integer getNormalErrSumByQuestionId(int questionid);
     Integer getNormalSumByQuestionId(int questionid);
+    List<Map<String,Integer>> QuestionTypeTest(@Param(value = "questiontype") int questiontype,@Param(value = "type")String type);
 }
