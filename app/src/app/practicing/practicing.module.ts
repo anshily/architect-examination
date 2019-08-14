@@ -7,6 +7,7 @@ import {IonicModule} from '@ionic/angular';
 
 import {PracticingPage} from './practicing.page';
 import {ShareModule} from '../share/share.module';
+import {PopoverComponent} from './popover/popover.component';
 
 const routes: Routes = [
     {
@@ -23,7 +24,8 @@ const routes: Routes = [
         ShareModule,
         RouterModule.forChild(routes)
     ],
-    declarations: [PracticingPage]
+    entryComponents: [PopoverComponent],
+    declarations: [PracticingPage, PopoverComponent]
 })
 export class PracticingPageModule {
 }

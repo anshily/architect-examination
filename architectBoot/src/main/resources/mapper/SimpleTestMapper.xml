@@ -64,7 +64,11 @@
   </select>
 
   <select id="QuestionTypeTest" resultType="map">
-    select question_bank_id from sw_question where type=#{name} and question_type_id=#{questiontype} order by rand()
+    select question_bank_id from sw_question where name=#{type} and question_type_id=#{questiontype} order by rand()
+  </select>
+
+  <select id="getRandomTestByType" resultType="map">
+    select question_bank_id from sw_question where question_bank_category_id=#{category} and question_type_id=#{type} order by rand()
   </select>
 
 </mapper>

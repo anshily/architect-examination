@@ -22,7 +22,7 @@ export class CommonStorageService {
         return wrap ? wrap[key] : null;
     }
 
-    clearRandomStorage(primary = 'anshi') {
+    clearStorage(primary = 'anshi') {
         localStorage.setItem(primary, '{}');
     }
 }

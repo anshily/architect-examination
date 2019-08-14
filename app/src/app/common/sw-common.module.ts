@@ -5,11 +5,13 @@ import {SumQuestionComponent} from './sum-question/sum-question.component';
 import {FormsModule} from '@angular/forms';
 import {IonicModule} from '@ionic/angular';
 import {CommonModule} from '@angular/common';
+import {NavBackComponent} from './nav-back/nav-back.component';
 
 @NgModule({
     declarations: [QuestionComponent,
         SubQuestionComponent,
-        SumQuestionComponent],
+        SumQuestionComponent,
+        NavBackComponent],
     imports: [
         CommonModule,
         FormsModule,
@@ -17,7 +19,8 @@ import {CommonModule} from '@angular/common';
     ],
     exports: [QuestionComponent,
         SubQuestionComponent,
-        SumQuestionComponent]
+        SumQuestionComponent,
+        NavBackComponent]
 })
 export class SwCommonModule {
 }

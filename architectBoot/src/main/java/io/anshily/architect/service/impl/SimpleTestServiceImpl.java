@@ -145,4 +145,14 @@ public class SimpleTestServiceImpl extends AbstractService<SimpleTest> implement
         List<Map<String,Integer>> list=swSimpleTestMapper.QuestionTypeTest(questiontype,type);
         return list;
     }
+
+    @Override
+    public List<Map<String, Integer>> getRandomTestByType(String token, Integer type) {
+        User user=userService.getUserInfoByToken(token);
+        if (user == null){
+            throw new ServiceException(3002,"用户未登录！");
+        }
+        List<Map<String,Integer>> list=swSimpleTestMapper.getRandomTestByType(type,user.getCategory_id());
+        return list;
+    }
 }
