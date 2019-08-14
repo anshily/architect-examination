@@ -7,11 +7,13 @@ import {IonicModule} from '@ionic/angular';
 
 import {AdminMenuPage} from './admin-menu.page';
 import {ShareModule} from '../share/share.module';
+import {AuthGuard} from '../auth/auth.guard';
 
 const routes: Routes = [
     {
         path: '',
-        component: AdminMenuPage
+        component: AdminMenuPage,
+        canActivate: [AuthGuard]
     }
 ];
 

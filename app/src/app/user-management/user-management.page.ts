@@ -10,6 +10,8 @@ import {NavController} from '@ionic/angular';
 export class UserManagementPage implements OnInit {
 
     searchValue;
+    pages;
+    pageNum;
     users = [];
   constructor(private http: HttpClient,
               private navCtrl: NavController) { }
@@ -19,6 +21,8 @@ export class UserManagementPage implements OnInit {
       console.log(res)
         if (res['code'] == 0){
         this.users = res['data']['list'];
+        this.pages = res['data']['pages'];
+        this.pageNum = res['data']['pageNum'];
         }
     });
   }
@@ -27,7 +31,7 @@ export class UserManagementPage implements OnInit {
     console.log(u);
     this.navCtrl.navigateForward('/user-detail',{queryParams: {
         uid: u.id
-        }})
+        }}).then();
     }
 
     search(){
@@ -35,15 +39,26 @@ export class UserManagementPage implements OnInit {
     }
 
     loadData(event) {
-        setTimeout(() => {
-            console.log(event);
-            event.target.complete();
-        //
-        //     // App logic to determine if all data is loaded
-        //     // and disable the infinite scroll
-        //     if (data.length == 1000) {
-        //         event.target.disabled = true;
-        //     }
-        }, 500);
+      if (this.pageNum < this.pages) {
+          let tmp = ++this.pageNum;
+          this.http.get(ROOT_URL + 'user/list?pageNum=' + tmp).subscribe(res => {
+              console.log(res)
+              if (res['code'] == 0){
+                  this.users = this.users.concat(res['data']['list']);
+                  this.pages = res['data']['pages'];
+                  this.pageNum = res['data']['pageNum'];
+
+                  event.target.complete();
+              }
+          });
+      } else {
+          event.target.complete();
+      }
     }
+
+    // pageNum: 1
+    // pageSize: 10
+    // pages: 6
+    // size: 10
+    // total: 51
 }
