@@ -124,5 +124,11 @@ public class SimpleTestController {
         map.put("normalTestErrRate",list);
         return ResultGenerator.successResult(map);
     }
+    @GetMapping("/QuestionTypeTest")
+    public Result QuestionTypeTest(@RequestParam String token,@RequestParam Integer questiontype) {
+        List<Map<String,Integer>> list=simpleTestService.QuestionTypeTest(token,questiontype);
+        return ResultGenerator.successResult(list);
+    }
+
 
 }

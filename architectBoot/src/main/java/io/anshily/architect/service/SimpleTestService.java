@@ -16,5 +16,6 @@ public interface SimpleTestService extends Service<SimpleTest> {
     List<Map<String,Object>> orderQuestionTest(String token);
     List<ErrRate>  simpleTestErr(String token);
     List<ErrRate>  normalTestErr(String token);
+    List<Map<String,Integer>> QuestionTypeTest(String token,Integer questiontype);
 
 }

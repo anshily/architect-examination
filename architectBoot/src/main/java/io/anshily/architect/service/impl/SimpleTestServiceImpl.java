@@ -132,4 +132,17 @@ public class SimpleTestServiceImpl extends AbstractService<SimpleTest> implement
 
         return list1;
     }
+
+    @Override
+    public List<Map<String,Integer>> QuestionTypeTest(String token, Integer questiontype) {
+        /*先查询token的状态，如果token为null，抛出异常*/
+        User user=userService.getUserInfoByToken(token);
+        if (user == null){
+            throw new ServiceException(3002,"用户未登录！");
+        }
+         /*查询出当前用户的题型权限*/
+        String type=swSimpleTestMapper.getQuestionType(user.getId());
+        List<Map<String,Integer>> list=swSimpleTestMapper.QuestionTypeTest(questiontype,type);
+        return list;
+    }
 }
