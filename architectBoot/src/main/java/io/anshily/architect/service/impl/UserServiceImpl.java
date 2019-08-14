@@ -59,4 +59,9 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
         map.put("SimpleTestTime",simpleTest);
         return map;
     }
+
+    @Override
+    public void deleteUser(Integer userid) {
+        swUserMapper.deleteUser(userid);
+    }
 }

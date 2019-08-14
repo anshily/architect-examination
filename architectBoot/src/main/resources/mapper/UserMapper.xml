@@ -47,4 +47,8 @@
   <select id="getExamStartTime" resultType="io.anshily.architect.model.ExamMessage">
     select max(id),createtime from sw_exam_message where userid=#{userid}
   </select>
+
+  <update id="deleteUser">
+    update sw_user set statu=0 where id=#{userid}
+  </update>
 </mapper>

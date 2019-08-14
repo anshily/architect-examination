@@ -150,4 +150,10 @@ public class UserController {
         Map<String,Object> map=userService.getStudyTime(userid);
         return ResultGenerator.successResult(map);
     }
+    @GetMapping("/deleteUser")
+    public Result deleteUser(@RequestParam Integer userid) {
+        userService.deleteUser(userid);
+        return ResultGenerator.successResult();
+    }
+
 }
