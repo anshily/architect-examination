@@ -147,7 +147,7 @@ public class UserController {
 
     @GetMapping("/getStudyTime")
     public Result getStudyTime(@RequestParam Integer userid) {
-        Map<String,String> map=userService.getStudyTime(userid);
+        Map<String,Object> map=userService.getStudyTime(userid);
         return ResultGenerator.successResult(map);
     }
 }
