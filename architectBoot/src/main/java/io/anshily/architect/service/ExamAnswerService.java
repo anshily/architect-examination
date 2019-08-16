@@ -14,5 +14,6 @@ public interface ExamAnswerService extends Service<ExamAnswer> {
     Map<Integer,Integer> getGrade( String token);
     void changeStatu(int examid);
     List<ExamAnswer> getExamErr(String token,int examid);
+    Integer getExamStatu(int examid);
 
 }
