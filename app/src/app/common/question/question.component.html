@@ -77,6 +77,6 @@
     </ion-card>
 
     <div *ngIf="question && question['question_type_id'] == 6">
-        <app-sum-question [questionId]="questionId" (updateResult)="paraEmit($event)" [status]="status"></app-sum-question>
+        <app-sum-question [storageKey]="storageKey"  [questionId]="questionId" (updateResult)="paraEmit($event)" [status]="status"></app-sum-question>
     </div>
 </div>

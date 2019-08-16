@@ -84,6 +84,7 @@ export class ExamPage implements OnInit {
     }
 
     submitResult() {
+        this.resultArr = [];
         this.examArr.map(item => {
             if (item['res']) {
                 console.log(item['res']);
@@ -94,7 +95,7 @@ export class ExamPage implements OnInit {
                         question_title_id: question['question']['question_bank_id'],
                         answer: question['userResult'].toString(),
                         istrue: question['isRight'] ? 1 : 0
-                    })
+                    });
 
                     // res 結構
                     // isRight: true

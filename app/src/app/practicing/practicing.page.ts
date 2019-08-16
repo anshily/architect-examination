@@ -51,7 +51,7 @@ export class PracticingPage implements OnInit {
 
     startRandom() {
         this.presentPracticingLoading().then();
-        this.navController.navigateForward('/random').then();
+        this.navController.navigateForward('/random-practicing').then();
     }
 
     async presentLoading() {
@@ -154,7 +154,7 @@ export class PracticingPage implements OnInit {
                 text: '继续答题',
                 handler: () => {
                     this.presentPracticingLoading().then();
-                    this.navController.navigateForward('/sequence').then();
+                    this.navController.navigateForward('/sequence-practicing').then();
                 }
             }, {
                 text: '重新开始',
@@ -163,7 +163,7 @@ export class PracticingPage implements OnInit {
                     localStorage.setItem('sequence-random-magic', '');
                     this.sequenceStorage.clearRandomStorage();
                     this.presentPracticingLoading().then();
-                    this.navController.navigateForward('/sequence').then();
+                    this.navController.navigateForward('/sequence-practicing').then();
                 }
             }, {
                 text: '取消',

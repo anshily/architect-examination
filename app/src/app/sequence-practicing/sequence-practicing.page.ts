@@ -1,15 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
-import {AlertController} from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
 import {CommonStorageService} from '../common-storage.service';
+import {AlertController} from '@ionic/angular';
+import {HttpClient} from '@angular/common/http';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
-    selector: 'app-options-practicing',
-    templateUrl: './options-practicing.page.html',
-    styleUrls: ['./options-practicing.page.scss'],
+  selector: 'app-sequence-practicing',
+  templateUrl: './sequence-practicing.page.html',
+  styleUrls: ['./sequence-practicing.page.scss'],
 })
-export class OptionsPracticingPage implements OnInit {
+export class SequencePracticingPage implements OnInit {
 
     type;
     questionArr = [];
@@ -22,15 +22,27 @@ export class OptionsPracticingPage implements OnInit {
     }
 
     ngOnInit() {
-        localStorage.setItem('type', '{}');
-        this.route.queryParams.subscribe(qp => {
-            console.log(qp);
-            this.type = qp['type'];
-            this.http.get(ROOT_URL + 'simple/test/randomTestByType?token=' + localStorage.getItem('user_token')
-                + '&type=' + this.type).subscribe(res => {
+        // localStorage.setItem('type', '{}');
+        // this.route.queryParams.subscribe(qp => {
+        //     console.log(qp);
+        //     this.type = qp['type'];
+            this.http.get(ROOT_URL + 'simple/test/orderQuestionTest?token=' + localStorage.getItem('user_token'))
+                .subscribe(res => {
                 console.log(res);
                 if (res['code'] == 0) {
-                    this.questionArr = res['data'];
+                    this.questionArr = res['data']['title'];
+
+                    if (localStorage.getItem('sequence-random-magic')) {
+                        let storage = JSON.parse(localStorage.getItem('sequence-random-magic'));
+                        console.log(storage);
+                        if (storage['questionArr'] && storage['questionArr'].length > 0) {
+                            this.questionArr = storage['questionArr'];
+                        }
+
+                        if (storage['curQuestionIndex']) {
+                            this.curQuestionIndex = storage['curQuestionIndex'];
+                        }
+                    }
 
                     if (this.questionArr.length > 0) {
                         this.questionLength = this.questionArr.length;
@@ -38,7 +50,16 @@ export class OptionsPracticingPage implements OnInit {
                     }
                 }
             });
-        });
+        // });
+    }
+
+    ngOnDestroy() {
+        console.log('destroy!');
+        let storge = {
+            curQuestionIndex: this.curQuestionIndex,
+            questionArr: this.questionArr
+        }
+        localStorage.setItem('sequence-random-magic', JSON.stringify(storge));
     }
 
     prevQuestion() {
@@ -174,4 +195,5 @@ export class OptionsPracticingPage implements OnInit {
 
         await alert.present();
     }
+
 }

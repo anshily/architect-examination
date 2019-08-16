@@ -14,6 +14,7 @@ export class QuestionComponent implements OnInit {
     @Output() updateResult: EventEmitter<any> = new EventEmitter();
     @Input() questionId;
     @Input() status;
+    @Input() storageKey;
     question;
     answers;
     isRight;
@@ -38,12 +39,12 @@ export class QuestionComponent implements OnInit {
                     item['isChecked'] = false;
                     return item;
                 });
-                if (this.commonStorage.getItem('type', this.questionId)) {
-                    let storage = this.commonStorage.getItem('type', this.questionId);
+                if (this.commonStorage.getItem(this.storageKey, this.questionId)) {
+                    let storage = this.commonStorage.getItem(this.storageKey, this.questionId);
                     if (storage['answers']) {
                         this.answers = storage['answers'];
                     }
-                    if (storage['radioValue']){
+                    if (storage['radioValue']) {
                         this.radioValue = storage['radioValue'];
                     }
                 }
@@ -73,13 +74,16 @@ export class QuestionComponent implements OnInit {
         this.isRight = isRight;
         this.userResult = userResult;
         this.rightResult = rightResult;
-        this.updateResult.emit({
+        let subResult = {
             isRight: this.isRight,
             userResult: this.userResult,
             rightResult: this.rightResult,
             question: this.question
+        }
+        this.updateResult.emit({
+            questionResult: subResult
         });
-        this.commonStorage.setItem('type', this.questionId, {
+        this.commonStorage.setItem(this.storageKey, this.questionId, {
             answers: this.answers
         });
     }
@@ -128,7 +132,7 @@ export class QuestionComponent implements OnInit {
             questionResult: subResult
         });
 
-        this.commonStorage.setItem('type', this.questionId, {
+        this.commonStorage.setItem(this.storageKey, this.questionId, {
             answers: this.answers,
             radioValue: this.radioValue
         });

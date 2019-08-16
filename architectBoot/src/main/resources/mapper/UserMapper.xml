@@ -6,6 +6,7 @@
       WARNING - @mbg.generated
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="statu" jdbcType="INTEGER" property="statu" />
     <result column="open_id" jdbcType="VARCHAR" property="open_id" />
     <result column="identify_card" jdbcType="VARCHAR" property="identify_card" />
     <result column="username" jdbcType="VARCHAR" property="username" />

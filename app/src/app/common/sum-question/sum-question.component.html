@@ -5,7 +5,7 @@
 
   <!--<ion-list>-->
   <div *ngFor="let item of subQuestion; let i = index">
-    <app-sub-question [questionId]="item['question_bank_id']" [status]="status" (updateResult)="testSubEmit($event, i)"></app-sub-question>
+    <app-sub-question [storageKey]="storageKey" [questionId]="item['question_bank_id']" [status]="status" (updateResult)="testSubEmit($event, i)"></app-sub-question>
   </div>
   <!--</ion-list>-->
 </div>
