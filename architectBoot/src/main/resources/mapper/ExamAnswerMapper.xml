@@ -20,8 +20,7 @@
 
   <select id="getCountMore" resultType="Integer">
     select Count(sw_exam_answer.id) from sw_exam_answer
-      join sw_question_title on sw_question_title.exam_id=sw_exam_answer.examid
-      join sw_question on sw_question.question_bank_id=sw_question_title.question_id
+      join sw_question on sw_question.question_bank_id=sw_exam_answer.question_title_id
     where sw_exam_answer.istrue=1 and sw_question.question_type_id=2 and sw_exam_answer.examid=#{examid}
   </select>
 

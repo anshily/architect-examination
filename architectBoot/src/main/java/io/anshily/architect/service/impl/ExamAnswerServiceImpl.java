@@ -43,7 +43,7 @@ public class ExamAnswerServiceImpl extends AbstractService<ExamAnswer> implement
         for (int i=0;i<list.size();i++){
              /*先算出总分*/
             Integer all=asExamAnswerMapper.getCountOne(list.get(i).getId());
-            int more=asExamAnswerMapper.getCountMore(list.get(i).getId());
+            Integer more=asExamAnswerMapper.getCountMore(list.get(i).getId());
             int grade=all+more;
             map.put(list.get(i).getId(),grade);
         }
