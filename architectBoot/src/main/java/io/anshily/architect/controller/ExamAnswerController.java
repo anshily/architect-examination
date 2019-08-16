@@ -2,6 +2,7 @@ package io.anshily.architect.controller;
 import io.anshily.architect.base.core.PageBean;
 import io.anshily.architect.base.core.Result;
 import io.anshily.architect.base.core.ResultGenerator;
+import io.anshily.architect.base.core.ServiceException;
 import io.anshily.architect.dto.SubmitExamAnswer;
 import io.anshily.architect.model.ExamAnswer;
 import io.anshily.architect.service.ExamAnswerService;
@@ -86,6 +87,14 @@ public class ExamAnswerController {
     @PostMapping("/examAnswerArr")
     public Result examAnswerArr(@RequestBody SubmitExamAnswer answer){
         List<ExamAnswer> examAnswers = answer.getExamAnswers();
+        /*先判断当前考试的状态是否为已提交，如果为2就抛出异常*/
+        if(examAnswers.size()==0){
+            throw new ServiceException(5001,"考试答案为空！");
+        }
+        int statu=examAnswerService.getExamStatu(examAnswers.get(0).getExamid());
+        if(2==statu){
+            throw new ServiceException(5002,"考试数据已经提交！");
+        }
         /*先将考试答案存入数据库*/
         examAnswerService.save(examAnswers);
         /*修改考试状态为2，已提交,并计算出分数*/

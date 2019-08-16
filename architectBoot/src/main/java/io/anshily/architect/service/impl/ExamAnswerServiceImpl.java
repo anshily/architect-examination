@@ -72,4 +72,9 @@ public class ExamAnswerServiceImpl extends AbstractService<ExamAnswer> implement
         return list;
 
     }
+
+    @Override
+    public Integer getExamStatu(int examid) {
+        return asExamAnswerMapper.getExamStatu(examid);
+    }
 }

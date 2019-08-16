@@ -31,4 +31,8 @@
   <select id="getExamErr" resultType="io.anshily.architect.model.ExamAnswer">
     select question_title_id,answer FROM sw_exam_answer where istrue=0 and examid=#{examid}
   </select>
+
+  <select id="getExamStatu" resultType="Integer">
+    select statu from sw_exam_message where id=#{examid}
+  </select>
 </mapper>

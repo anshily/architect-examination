@@ -14,4 +14,5 @@ public interface ExamAnswerMapper extends Mapper<ExamAnswer> {
     Integer getExamGrade(int examid);
     void changeStatu(@Param(value="examid") int examid,@Param(value = "grade") int grade);
     List<ExamAnswer> getExamErr(int examid);
+    Integer getExamStatu(int examid);
 }
