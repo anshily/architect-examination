@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {NavController, ToastController} from '@ionic/angular';
+import {ActionSheetController, NavController, ToastController} from '@ionic/angular';
 import {HttpClient} from '@angular/common/http';
 import {TimeService} from '../time.service';
 
@@ -17,7 +17,8 @@ export class HomePage implements OnInit {
                 private router: Router,
                 public http: HttpClient,
                 private navController: NavController,
-                public toastController: ToastController) {
+                public toastController: ToastController,
+                public actionSheetController: ActionSheetController) {
     }
 
 
@@ -48,7 +49,48 @@ export class HomePage implements OnInit {
     }
 
     goExam(v) {
+
+        let isOverTime = 0;
+        let createTime = new Date(v['createtime']).getTime();
+        // console.log(this.startTime);
+        let curTime = new Date();
+        // console.log(curTime.getTime());
+        if (curTime.getTime() > createTime + 90 * 60 * 1000) {
+            // console.log('已過期！');
+            isOverTime = 1;
+        }
         console.log(v);
-        this.navController.navigateForward('/exam',{queryParams: {eid: v}}).then();
+        if (v['statu'] == 1 && isOverTime == 0) {
+            // this.navController.navigateForward('/exam', {queryParams: {eid: v['id']}}).then();
+            this.presentSequenceActionSheet(v['id']).then();
+        } else {
+            this.navController.navigateForward('/exam-result', {queryParams: {eid: v}}).then();
+        }
+    }
+
+    async presentSequenceActionSheet(id) {
+        const actionSheet = await this.actionSheetController.create({
+            buttons: [{
+                text: '继续答题',
+                handler: () => {
+                    this.navController.navigateForward('/exam', {queryParams: {eid: id}}).then();
+                }
+            }, {
+                text: '重新开始',
+                handler: () => {
+                    // localStorage.getItem('sequence-random-magic');
+                    localStorage.setItem('exam' + id, '{}');
+                    this.navController.navigateForward('/exam', {queryParams: {eid: id}}).then();
+                }
+            }, {
+                text: '取消',
+                icon: 'close',
+                role: 'cancel',
+                handler: () => {
+                    console.log('Cancel clicked');
+                }
+            }]
+        });
+        await actionSheet.present();
     }
 }
