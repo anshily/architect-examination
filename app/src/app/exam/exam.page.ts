@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {NavController} from '@ionic/angular';
+import {LoadingController, NavController} from '@ionic/angular';
 
 @Component({
     selector: 'app-exam',
@@ -16,7 +16,8 @@ export class ExamPage implements OnInit {
     examLength = 0;
     resultArr = [];
     materialResultArr = [];
-    constructor(private navController: NavController, private router: ActivatedRoute, private http: HttpClient) {
+    constructor(private navController: NavController, private router: ActivatedRoute, private http: HttpClient,
+                public loadingController: LoadingController) {
     }
 
     ngOnInit() {
@@ -131,6 +132,7 @@ export class ExamPage implements OnInit {
 
         console.log(params);
 
+        this.presentLoading().then();
         this.http.post(ROOT_URL + 'exam/answer/examAnswerArr', params).subscribe(res => {
             console.log(res);
             if (res['code'] == 0) {
@@ -138,7 +140,6 @@ export class ExamPage implements OnInit {
                 console.log('正在計算分數');
                 // this.getGrade();
                 this.navController.navigateForward('/exam-result', {queryParams: {eid: this.examId}}).then();
-
             }
         });
     }
@@ -147,6 +148,18 @@ export class ExamPage implements OnInit {
         this.http.get(ROOT_URL + 'exam/answer/getGrade?token=' + localStorage.getItem('user_token') + '&examid=' + this.examId).subscribe(res => {
             console.log(res);
         });
+    }
+
+    async presentLoading() {
+        const loading = await this.loadingController.create({
+            message: '正在計算分數...',
+            duration: 1000
+        });
+        await loading.present();
+
+        const {role, data} = await loading.onDidDismiss();
+
+        console.log('Loading dismissed!');
     }
 
 }
