@@ -13,6 +13,7 @@ export class SubQuestionComponent implements OnInit {
     @Output() updateResult: EventEmitter<any> = new EventEmitter();
     @Input() questionId;
     @Input() status;
+    @Input() storageKey;
     question;
     answers;
     isRight;
@@ -34,9 +35,9 @@ export class SubQuestionComponent implements OnInit {
                     return item;
                 });
 
-                if (this.commonStorage.getItem('type', this.questionId)) {
+                if (this.commonStorage.getItem(this.storageKey, this.questionId)) {
                     // console.log(localStorage.getItem(this.questionId));
-                    let storage = this.commonStorage.getItem('type', this.questionId);
+                    let storage = this.commonStorage.getItem(this.storageKey, this.questionId);
                     if (storage['answers']) {
                         this.answers = storage['answers'];
                     }
@@ -85,7 +86,7 @@ export class SubQuestionComponent implements OnInit {
         //     answers: this.answers
         // }));
 
-        this.commonStorage.setItem('type', this.questionId, {
+        this.commonStorage.setItem(this.storageKey, this.questionId, {
             answers: this.answers,
             result: {
                 isRight: this.isRight,
@@ -134,7 +135,7 @@ export class SubQuestionComponent implements OnInit {
             questionResult: subResult
         });
         // console.log(this.testRadio);
-        this.commonStorage.setItem('type', this.questionId, {
+        this.commonStorage.setItem(this.storageKey, this.questionId, {
             answers: this.answers,
             result: {
                 isRight: this.isRight,

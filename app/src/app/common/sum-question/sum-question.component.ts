@@ -11,6 +11,7 @@ export class SumQuestionComponent implements OnInit {
     @Output() updateResult: EventEmitter<any> = new EventEmitter();
     @Input() questionId;
     @Input() status;
+    @Input() storageKey;
     answers;
     question;
     subQuestion;

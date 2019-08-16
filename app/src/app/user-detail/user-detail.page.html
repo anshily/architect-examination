@@ -50,7 +50,7 @@
   </ion-item>
 
   <div style="position: fixed; bottom: 0;z-index: 99;width: 100vw;color: red;">
-    <ion-button expand="full" fill="clear" (click)="forbid()">禁用</ion-button>
+    <ion-button expand="full" fill="clear" (click)="forbid()" *ngIf="user && user['statu'] == 1">禁用</ion-button>
   </div>
 
 </ion-content>

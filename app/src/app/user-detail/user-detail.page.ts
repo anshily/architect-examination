@@ -57,6 +57,10 @@ export class UserDetailPage implements OnInit {
     }
 
     forbid() {
-        
+        this.http.get(ROOT_URL + 'user/deleteUser?userid=' + this.uid).subscribe(res => {
+           if (res['code'] == 0){
+               confirm('删除成功！');
+           }
+        });
     }
 }

@@ -15,7 +15,7 @@
     <!--<app-question [questionId]="'43488'" (updateResult)="updateResult($event, i)"></app-question>-->
     <div *ngFor="let item of questionArr; let i = index;">
         <div *ngIf="i == curQuestionIndex">
-            <app-question (updateResult)="updateResult($event, i)" [questionId]="item['question_bank_id']"
+            <app-question [storageKey]="'type'"  (updateResult)="updateResult($event, i)" [questionId]="item['question_bank_id']"
                                  [status]="item['sumStatus']"></app-question>
 
             <div *ngIf="item['done'] == 1 && item['res'] && item['res']['questionResult']">

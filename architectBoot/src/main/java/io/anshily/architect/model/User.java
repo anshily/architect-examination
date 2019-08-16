@@ -12,6 +12,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    private Integer statu;
+
     /**
      * openid
      */
@@ -322,6 +324,14 @@ public class User {
 
     public void setRole_name(String role_name) {
         this.role_name = role_name;
+    }
+
+    public Integer getStatu() {
+        return statu;
+    }
+
+    public void setStatu(Integer statu) {
+        this.statu = statu;
     }
 
     @Override
