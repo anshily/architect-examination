@@ -17,7 +17,7 @@ export class UserManagementPage implements OnInit {
               private navCtrl: NavController) { }
 
   ngOnInit() {
-    this.http.get(ROOT_URL+ 'user/list').subscribe(res => {
+    this.http.get(ROOT_URL + 'user/list').subscribe(res => {
       console.log(res)
         if (res['code'] == 0){
         this.users = res['data']['list'];
@@ -25,6 +25,22 @@ export class UserManagementPage implements OnInit {
         this.pageNum = res['data']['pageNum'];
         }
     });
+
+    let params = {
+        user: {
+            username: '1'
+        },
+        pageNum: 1,
+        pageSize: 10
+    };
+      this.http.post(ROOT_URL + 'user/custom/list', params).subscribe(res => {
+          console.log(res)
+          if (res['code'] == 0){
+              // this.users = res['data']['list'];
+              // this.pages = res['data']['pages'];
+              // this.pageNum = res['data']['pageNum'];
+          }
+      });
   }
 
     goDetail(u){

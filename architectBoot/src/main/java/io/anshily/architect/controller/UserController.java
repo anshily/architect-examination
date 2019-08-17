@@ -139,8 +139,8 @@ public class UserController {
         PageHelper.startPage(userList.getPageNum(),userList.getPageSize());
     Condition condition = new Condition(User.class);
     Example.Criteria criteria = condition.createCriteria();
-    criteria.andLike("name","%name%");
-        criteria.andCondition("statu","statu=1");
+    criteria.andLike("username","%" + userList.getUser().getUsername() + "%");
+        criteria.andCondition("statu = 1");
     List<User> list = userService.findByCondition(condition);
         page.setList(list);
         return ResultGenerator.successResult(page);
