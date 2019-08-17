@@ -87,11 +87,21 @@ export class QuestionComponent implements OnInit {
         this.isRight = isRight;
         this.userResult = userResult;
         this.rightResult = rightResult;
-        this.updateResult.emit({
+        // this.updateResult.emit({
+        //     isRight: this.isRight,
+        //     userResult: this.userResult,
+        //     rightResult: this.rightResult,
+        //     question: this.question
+        // });
+
+        let subResult = {
             isRight: this.isRight,
             userResult: this.userResult,
             rightResult: this.rightResult,
             question: this.question
+        }
+        this.updateResult.emit({
+            questionResult: subResult
         });
         localStorage.setItem('exam' + this.examId + 'question' + this.questionId, JSON.stringify({
             answers: this.answers

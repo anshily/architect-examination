@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {LoadingController, NavController} from '@ionic/angular';
+import {AlertController, LoadingController, NavController} from '@ionic/angular';
 
 @Component({
     selector: 'app-exam',
@@ -17,7 +17,7 @@ export class ExamPage implements OnInit {
     resultArr = [];
     materialResultArr = [];
     constructor(private navController: NavController, private router: ActivatedRoute, private http: HttpClient,
-                public loadingController: LoadingController) {
+                public loadingController: LoadingController, public alertController: AlertController) {
     }
 
     ngOnInit() {
@@ -123,25 +123,30 @@ export class ExamPage implements OnInit {
         });
         // console.log(this.materialResultArr);
         console.log(this.resultArr);
+        if (this.resultArr.length > 0) {
 
-        let params = {
-            token: localStorage.getItem('user_token'),
-            examAnswers: this.resultArr,
-            examid: this.examId
+            let params = {
+                token: localStorage.getItem('user_token'),
+                examAnswers: this.resultArr,
+                examid: this.examId
+            };
+
+            console.log(params);
+
+            this.presentLoading().then();
+            this.http.post(ROOT_URL + 'exam/answer/examAnswerArr', params).subscribe(res => {
+                console.log(res);
+                if (res['code'] == 0) {
+                    console.log('提交成功');
+                    console.log('正在計算分數');
+                    // this.getGrade();
+                    this.navController.navigateForward('/exam-result', {queryParams: {eid: this.examId}}).then();
+                }
+            });
+        }else {
+            this.presentSumAlertConfirm().then();
         }
 
-        console.log(params);
-
-        this.presentLoading().then();
-        this.http.post(ROOT_URL + 'exam/answer/examAnswerArr', params).subscribe(res => {
-            console.log(res);
-            if (res['code'] == 0) {
-                console.log('提交成功');
-                console.log('正在計算分數');
-                // this.getGrade();
-                this.navController.navigateForward('/exam-result', {queryParams: {eid: this.examId}}).then();
-            }
-        });
     }
 
     getGrade() {
@@ -153,13 +158,32 @@ export class ExamPage implements OnInit {
     async presentLoading() {
         const loading = await this.loadingController.create({
             message: '正在計算分數...',
-            duration: 1000
+            duration: 2000
         });
         await loading.present();
 
         const {role, data} = await loading.onDidDismiss();
 
         console.log('Loading dismissed!');
+    }
+
+
+    async presentSumAlertConfirm() {
+        const alert = await this.alertController.create({
+            header: '警告',
+            message: `请先完成试题！！！`,
+            buttons: [
+                {
+                    text: '我知道了',
+                    handler: () => {
+                        // console.log('Confirm Okay');
+                        // this.scrollToNext();
+                    }
+                }
+            ]
+        });
+
+        await alert.present();
     }
 
 }
