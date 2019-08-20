@@ -24,9 +24,11 @@ const routes: Routes = [
   { path: 'user-management', loadChildren: './user-management/user-management.module#UserManagementPageModule' },
   { path: 'user-detail', loadChildren: './user-detail/user-detail.module#UserDetailPageModule' },
   { path: 'sign-up-management', loadChildren: './sign-up-management/sign-up-management.module#SignUpManagementPageModule' },
-  { path: 'sign-up-detail', loadChildren: './sign-up-detail/sign-up-detail.module#SignUpDetailPageModule' },  { path: 'options-practicing', loadChildren: './options-practicing/options-practicing.module#OptionsPracticingPageModule' },
+  { path: 'sign-up-detail', loadChildren: './sign-up-detail/sign-up-detail.module#SignUpDetailPageModule' },
+  { path: 'options-practicing', loadChildren: './options-practicing/options-practicing.module#OptionsPracticingPageModule' },
   { path: 'random-practicing', loadChildren: './random-practicing/random-practicing.module#RandomPracticingPageModule' },
   { path: 'sequence-practicing', loadChildren: './sequence-practicing/sequence-practicing.module#SequencePracticingPageModule' },
+  { path: 'sw-exam', loadChildren: './sw-exam/sw-exam.module#SwExamPageModule' },
 
 
 ];

@@ -64,7 +64,7 @@ export class HomePage implements OnInit {
             // this.navController.navigateForward('/exam', {queryParams: {eid: v['id']}}).then();
             this.presentSequenceActionSheet(v['id']).then();
         } else {
-            this.navController.navigateForward('/exam-result', {queryParams: {eid: v}}).then();
+            this.navController.navigateForward('/exam-result', {queryParams: {eid: v['id']}}).then();
         }
     }
 
@@ -73,14 +73,14 @@ export class HomePage implements OnInit {
             buttons: [{
                 text: '继续答题',
                 handler: () => {
-                    this.navController.navigateForward('/exam', {queryParams: {eid: id}}).then();
+                    this.navController.navigateForward('/sw-exam', {queryParams: {eid: id}}).then();
                 }
             }, {
                 text: '重新开始',
                 handler: () => {
                     // localStorage.getItem('sequence-random-magic');
                     localStorage.setItem('exam' + id, '{}');
-                    this.navController.navigateForward('/exam', {queryParams: {eid: id}}).then();
+                    this.navController.navigateForward('/sw-exam', {queryParams: {eid: id}}).then();
                 }
             }, {
                 text: '取消',

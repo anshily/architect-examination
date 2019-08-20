@@ -9,8 +9,8 @@
 <ion-content>
     <!-- Animated Searchbar -->
     <ion-tab-bar>
-        <ion-searchbar animated [(ngModel)]="searchValue"></ion-searchbar>
-        <ion-icon name="search" style="font-size: 2rem;margin-right: 1rem"></ion-icon>
+        <ion-searchbar animated [(ngModel)]="searchValue" (ionClear)="clear()"></ion-searchbar>
+        <ion-icon name="search" (click)="search()" style="font-size: 2rem;margin-right: 1rem"></ion-icon>
         <!--<ion-button shape="round" (click)="search()">搜索</ion-button>-->
     </ion-tab-bar>
 

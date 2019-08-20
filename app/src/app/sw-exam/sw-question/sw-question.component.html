@@ -1,0 +1,83 @@
+<div style="width: 100vw;display: flex;flex-direction: column">
+
+  <ion-card *ngIf="question && question['question_type_id'] == 1">
+    <ion-card-header>单选* {{question['question_title']}}</ion-card-header>
+    <!--<ion-card-header *ngIf="question"><ion-title>单选*</ion-title><div [innerHTML]="question['question_title']"></div></ion-card-header>-->
+    <ion-radio-group>
+      <ion-list>
+        <ion-item *ngFor="let entry of answers">
+
+          <label class="ant-radio-wrapper">
+                        <span class="ant-radio" [class]="radioValue == entry.index_number ? 'ant-radio-checked' : ''">
+                            <input class="ant-radio-input" (change)="radioChange(entry)" type="radio" name="rd"
+                                   value="{{entry.index_number}}" [(ngModel)]="radioValue">
+                            <span class="ant-radio-inner"></span>
+                        </span>
+            <span>
+                            <span>{{entry['index_letter'] + '、'}}</span><ion-text [innerHTML]="entry.name"></ion-text>
+                        </span>
+          </label>
+
+          <!--<div>-->
+            <!--<span>{{entry['index_letter'] + '、'}}</span><ion-text [innerHTML]="entry.name"></ion-text>-->
+          <!--</div>-->
+          <!--<ion-radio (ionSelect)="radioSelect(entry)" slot="start" value="{{entry.index_number}}" [checked]="entry.isChecked"></ion-radio>-->
+        </ion-item>
+      </ion-list>
+    </ion-radio-group>
+  </ion-card>
+
+  <ion-card *ngIf="question && question['question_type_id'] == 2">
+    <ion-card-header>多选* {{question['question_title']}}</ion-card-header>
+    <!--<ion-card-header *ngIf="question"><ion-title>多选*</ion-title><div [innerHTML]="question['question_title']"></div></ion-card-header>-->
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let entry of answers">
+
+          <label class="ant-checkbox-wrapper">
+                        <span
+                                class="ant-checkbox" [class]=" entry.isChecked ? 'ant-checkbox-checked' : ''">
+                            <input class="ant-checkbox-input" (change)="checkChange()"
+                                   type="checkbox" [(ngModel)]="entry.isChecked">
+                            <span
+                                    class="ant-checkbox-inner"></span>
+                        </span>
+            <span>
+                            <span>{{entry['index_letter'] + '、'}}</span>
+                            <ion-text [innerHTML]="entry.name"></ion-text>
+                        </span>
+          </label>
+
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="question && question['question_type_id'] == 3">
+    <ion-card-header *ngIf="question">判断*{{question['question_title']}}</ion-card-header>
+    <!--<ion-card-header *ngIf="question"><ion-title>判断*</ion-title><div [innerHTML]="question['question_title']"></div></ion-card-header>-->
+    <ion-radio-group>
+      <ion-list>
+        <ion-item *ngFor="let entry of answers">
+
+          <label class="ant-radio-wrapper">
+                        <span class="ant-radio" [class]="radioValue == entry.index_number ? 'ant-radio-checked' : ''">
+                            <input class="ant-radio-input" (change)="radioChange(entry)" type="radio" name="rd"
+                                   value="{{entry.index_number}}" [(ngModel)]="radioValue">
+                            <span class="ant-radio-inner"></span>
+                        </span>
+            <span>
+                            <span>{{entry['index_letter'] + '、'}}</span><ion-text [innerHTML]="entry.name"></ion-text>
+                        </span>
+          </label>
+
+        </ion-item>
+      </ion-list>
+    </ion-radio-group>
+  </ion-card>
+
+  <div *ngIf="question && question['question_type_id'] == 6">
+    <app-sw-sum-question [questionId]="questionId" (updateResult)="paraEmit($event)"></app-sw-sum-question>
+  </div>
+</div>
