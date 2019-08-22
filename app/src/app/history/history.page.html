@@ -9,7 +9,7 @@
 
   <div>
     <div *ngFor="let item of examArr" (click)="goExam(item['id'])">
-      <app-exam-history-item [createTime]="item['createtime']"></app-exam-history-item>
+      <app-exam-history-item [grade]="item['grade']" [createTime]="item['createtime']"></app-exam-history-item>
     </div>
   </div>
 </ion-content>
