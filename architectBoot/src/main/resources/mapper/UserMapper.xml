@@ -38,7 +38,7 @@
   </insert>
 
   <select id="nameExist" resultType="io.anshily.architect.model.User">
-    select id from sw_user where identify_card=#{name}
+    select id from sw_user where identify_card=#{name} and statu=1
   </select>
 
   <select id="getSimpleTestTime" resultType="io.anshily.architect.model.SimpleTest">
