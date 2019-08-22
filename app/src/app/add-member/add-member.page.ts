@@ -36,7 +36,7 @@ export class AddMemberPage implements OnInit {
         };
         console.log(params);
 
-        this.http.get(ROOT_URL + 'user/nameExist?name=' + this.name).subscribe(res => {
+        this.http.get(ROOT_URL + 'user/nameExist?name=' + this.idCard).subscribe(res => {
             console.log(res);
             if (res['code'] == 0) {
 

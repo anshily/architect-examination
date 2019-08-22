@@ -32,7 +32,7 @@ export class PracticingPage implements OnInit {
             console.log(res);
             if (res['code'] == 0) {
                 let examId = res['data']['examMessage']['id'];
-                this.navController.navigateForward('/exam', {queryParams: {eid: examId}}).then();
+                this.navController.navigateForward('/sw-exam', {queryParams: {eid: examId}}).then();
             }
         });
     }

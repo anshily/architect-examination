@@ -1,0 +1,39 @@
+<ion-header>
+  <!--<ion-toolbar>-->
+    <!--<ion-title>exam</ion-title>-->
+  <!--</ion-toolbar>-->
+  <!--<app-nav-back [title]="'模拟考试'"></app-nav-back>-->
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" (click)="navBack()">
+      <ion-icon name="arrow-back" style="font-size: 2rem"></ion-icon>
+    </ion-buttons>
+    <ion-title>模拟考试</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--<div *ngIf="curQuestion">-->
+    <!--<app-question (updateResult)="updateResult($event)" [questionId]="curQuestion['question_id']"></app-question>-->
+  <!--</div>-->
+
+  <div *ngFor="let item of examArr; let i = index;">
+    <div *ngIf="i == curQuestionIndex">
+      <app-sw-question (updateResult)="updateResult($event, i)" [questionId]="item['question_id']"></app-sw-question>
+    </div>
+  </div>
+
+  <div style="position: fixed; bottom: 0;z-index: 99">
+
+    <div style="display: flex;justify-content: space-around;align-items: center; width: 100vw;">
+
+      <ion-button shape="round" (click)="prevQuestion()" [disabled]="curQuestionIndex == 0 ? true : false">上一题</ion-button>
+
+      <ion-button *ngIf="examLength > curQuestionIndex + 1" shape="round" (click)="nextQuestion()">下一题</ion-button>
+
+      <ion-button *ngIf="examLength <= curQuestionIndex + 1" shape="round" (click)="submitResult()">交卷</ion-button>
+
+    </div>
+
+  </div>
+  <div style="height: 3rem"></div>
+</ion-content>

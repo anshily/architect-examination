@@ -17,28 +17,28 @@ export class UserManagementPage implements OnInit {
               private navCtrl: NavController) { }
 
   ngOnInit() {
-    this.http.get(ROOT_URL + 'user/list').subscribe(res => {
-      console.log(res)
-        if (res['code'] == 0){
-        this.users = res['data']['list'];
-        this.pages = res['data']['pages'];
-        this.pageNum = res['data']['pageNum'];
-        }
-    });
+    // this.http.get(ROOT_URL + 'user/list').subscribe(res => {
+    //   console.log(res)
+    //     if (res['code'] == 0){
+    //     this.users = res['data']['list'];
+    //     this.pages = res['data']['pages'];
+    //     this.pageNum = res['data']['pageNum'];
+    //     }
+    // });
 
     let params = {
         user: {
-            username: '1'
+            username: ''
         },
         pageNum: 1,
-        pageSize: 10
+        pageSize: 20
     };
       this.http.post(ROOT_URL + 'user/custom/list', params).subscribe(res => {
           console.log(res)
           if (res['code'] == 0){
-              // this.users = res['data']['list'];
-              // this.pages = res['data']['pages'];
-              // this.pageNum = res['data']['pageNum'];
+              this.users = res['data']['list'];
+              this.pages = res['data']['pages'];
+              this.pageNum = res['data']['pageNum'];
           }
       });
   }
@@ -50,16 +50,43 @@ export class UserManagementPage implements OnInit {
         }}).then();
     }
 
-    search(){
+    search() {
+        let params = {
+            user: {
+                username: this.searchValue ? this.searchValue : ''
+            },
+            pageNum: 1,
+            pageSize: 20
+        };
 
+        this.http.post(ROOT_URL + 'user/custom/list', params).subscribe(res => {
+            console.log(res)
+            if (res['code'] == 0){
+                this.users = res['data']['list'];
+                this.pages = res['data']['pages'];
+                this.pageNum = res['data']['pageNum'];
+            }
+        });
     }
 
     loadData(event) {
       if (this.pageNum < this.pages) {
           let tmp = ++this.pageNum;
-          this.http.get(ROOT_URL + 'user/list?pageNum=' + tmp).subscribe(res => {
+
+          let params = {
+              user: {
+                  username: this.searchValue ? this.searchValue : ''
+              },
+              pageNum: tmp,
+              pageSize: 20
+          };
+          this.http.post(ROOT_URL + 'user/custom/list', params).subscribe(res => {
               console.log(res)
               if (res['code'] == 0){
+                  // this.users = res['data']['list'];
+                  // this.pages = res['data']['pages'];
+                  // this.pageNum = res['data']['pageNum'];
+
                   this.users = this.users.concat(res['data']['list']);
                   this.pages = res['data']['pages'];
                   this.pageNum = res['data']['pageNum'];
@@ -67,6 +94,17 @@ export class UserManagementPage implements OnInit {
                   event.target.complete();
               }
           });
+
+          // this.http.get(ROOT_URL + 'user/list?pageNum=' + tmp).subscribe(res => {
+          //     console.log(res)
+          //     if (res['code'] == 0){
+          //         this.users = this.users.concat(res['data']['list']);
+          //         this.pages = res['data']['pages'];
+          //         this.pageNum = res['data']['pageNum'];
+          //
+          //         event.target.complete();
+          //     }
+          // });
       } else {
           event.target.complete();
       }
@@ -77,4 +115,23 @@ export class UserManagementPage implements OnInit {
     // pages: 6
     // size: 10
     // total: 51
+
+    clear() {
+      console.log('clear');
+        let params = {
+            user: {
+                username: ''
+            },
+            pageNum: 1,
+            pageSize: 20
+        };
+        this.http.post(ROOT_URL + 'user/custom/list', params).subscribe(res => {
+            console.log(res)
+            if (res['code'] == 0){
+                this.users = res['data']['list'];
+                this.pages = res['data']['pages'];
+                this.pageNum = res['data']['pageNum'];
+            }
+        });
+    }
 }
