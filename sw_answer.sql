@@ -20,14 +20,14 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `sw_answer`;
 CREATE TABLE `sw_answer` (
-  `question_item_id` int(10) NOT NULL,
+  `question_item_id` int(10) NOT NULL AUTO_INCREMENT,
   `question_bank_id` int(10) DEFAULT NULL COMMENT '答案对应的问题id',
   `name` varchar(255) DEFAULT NULL COMMENT '答案内容',
   `result` int(1) DEFAULT NULL COMMENT '正确性（1：正确，2：错误）',
   `index_number` int(1) DEFAULT NULL COMMENT '选项（1,2，3,4）',
   `index_letter` varchar(10) DEFAULT NULL COMMENT 'ABCD四个选项',
   PRIMARY KEY (`question_item_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=162000 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of sw_answer

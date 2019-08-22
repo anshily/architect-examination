@@ -5,3 +5,4 @@ api/target/
 architectBoot/.mvn/
 app/arch.zip
 app/www.zip
+dataFilter/node_modules/
