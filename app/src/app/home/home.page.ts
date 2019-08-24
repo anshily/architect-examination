@@ -26,7 +26,7 @@ export class HomePage implements OnInit {
 
         // console.log(localStorage.getItem('user_category'));
 
-        if (localStorage.getItem('user_category') && localStorage.getItem('user_category') == 1) {
+        if (localStorage.getItem('user_category') && localStorage.getItem('user_category') == '1') {
             console.log(localStorage.getItem('user_category'));
             this.router.navigate(['/admin-menu']).then();
         }

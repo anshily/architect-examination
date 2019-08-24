@@ -13,17 +13,10 @@
     </ion-item>
   </ion-list>
 
-  <div (click)="startSimulate()">
-    <app-simulate-exam></app-simulate-exam>
-  </div>
-
-  <div (click)="startRandom()">
-    <app-random-practice></app-random-practice>
-  </div>
-
   <div (click)="startSequence()">
     <app-sequence-practice></app-sequence-practice>
   </div>
+
 
   <div (click)="optionsPracticing()">
     <div class="CETPracticeType">
@@ -43,5 +36,15 @@
       </div>
     </div>
   </div>
+
+  <div (click)="startSimulate()">
+    <app-simulate-exam></app-simulate-exam>
+  </div>
+
+  <div (click)="startRandom()">
+    <app-random-practice></app-random-practice>
+  </div>
+
+
 
 </ion-content>
