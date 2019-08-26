@@ -43,7 +43,6 @@ public class ExamMessageServiceImpl extends AbstractService<ExamMessage> impleme
         if (user == null){
             throw new ServiceException(3002,"用户未登录！");
         }
-        System.out.println(user.toString());
        ExamMessage examMessage = new ExamMessage();
        examMessage.setAdd_time(new Date());
        examMessage.setCreatetime(new Date());
