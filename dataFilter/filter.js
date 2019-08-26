@@ -3,13 +3,13 @@ var readline = require('readline');
 
 var mysql  = require('mysql');
 
-var connection = mysql.createConnection({
-    host     : '47.93.226.47',
-    user     : 'hang',
-    password : 'hang!@#',
-    port: '3306',
-    database: 'architect'
-});
+// var connection = mysql.createConnection({
+//     host     : '47.93.226.47',
+//     user     : 'hang',
+//     password : 'hang!@#',
+//     port: '3306',
+//     database: 'architect'
+// });
 dealQuestionDLDX();
 function dealQuestionDL() {
 
@@ -97,7 +97,8 @@ function dealQuestionDL() {
 
 function dealQuestionDLDX() {
 
-    var curQuestion = 0;
+    var curQuestion = -1;
+    var questionArr = new Array(200);
 
     var fRead = fs.createReadStream('吊篮(单选).txt');
     var objReadline = readline.createInterface({
@@ -134,30 +135,100 @@ function dealQuestionDLDX() {
         // console.log(line.slice(3));
         var numIndex = line.search(/\b\d/);
         if (numIndex == 0){
-            console.log('this is a question: ' + line.split('、')[0]);
-            console.log('this answer is ' + new RegExp(/[ABCD]/).exec(line));
-            console.log(++curQuestion)
+            // console.log('this is a question: ' + line.split('、')[0]);
+            // console.log('this answer is ' + new RegExp(/[ABCD]/).exec(line));
+            // console.log(++curQuestion)
+            console.log(line.match(/[(][ABCD][)]/))
+            questionArr[++curQuestion] = {
+                question: line.split('、')[1],
+                result: line.match(/[(][ABCD][)]/),
+                answer: []
+            }
         }else {
-            var reg = new RegExp(/\b[ABCD]/g)
+            let reg = new RegExp(/\b[ABCD]/g)
+            let prevAnswerArr = [];
+            let tmp = line.replace(/\s/g, "")
+
             // console.log('this answer exec ' + reg.exec(line))
             // console.log(reg.lastIndex);
-            var result;
+            let result;
             while ((result = reg.exec(line)) != null)  {
-                console.log('result ' + result);
-                console.log('index ' + result.index);
-                console.log('lastIndex ' + reg.lastIndex);
-                // document.write(result);
-                // document.write("<br />");
-                // document.write(patt.lastIndex);
+                // console.log('result ' + result);
+                // console.log('index ' + result.index);
+                prevAnswerArr.push({
+                    index: result.index,
+                    letter: result.input
+                })
             }
-            var tmp = line.replace(/\s/g, "")
-            console.log(line.replace(/\s/g, ""))
-            console.log('this answer deal ' + tmp.split(/[ABCD]/).length, 'sp' + tmp.split(/[ABCD]/)[1])
+            // console.log(prevAnswerArr)
+            if (prevAnswerArr.length == 0){
+                // 格式错误行
+                console.log(questionArr[curQuestion])
+            }
+            let tmpQuestion = questionArr[curQuestion];
+
+            if (prevAnswerArr.length == 1){
+                // console.log(prevAnswerArr[0]['index'])
+                // console.log(line.slice(prevAnswerArr[0]['index'],-1));
+
+                tmpQuestion['answer'].push({
+                    letter: line.slice(prevAnswerArr[0]['index'],prevAnswerArr[0]['index']+1),
+                    title: line.slice(prevAnswerArr[0]['index'],line.length)
+                });
+            }
+            if (prevAnswerArr.length == 2){
+                // console.log(prevAnswerArr[0]['index'])
+                // console.log(prevAnswerArr[1]['index'])
+                // console.log(line.slice(prevAnswerArr[0]['index'],prevAnswerArr[1]['index']))
+                // console.log(line.slice(prevAnswerArr[1]['index'],-1))
+
+                tmpQuestion['answer'].push({
+                    letter: line.slice(prevAnswerArr[0]['index'],prevAnswerArr[0]['index']+1),
+                    title: line.slice(prevAnswerArr[0]['index'],prevAnswerArr[1]['index'])
+                });
+                tmpQuestion['answer'].push({
+                    letter: line.slice(prevAnswerArr[1]['index'],prevAnswerArr[1]['index']+1),
+                    title: line.slice(prevAnswerArr[1]['index'],line.length)
+                });
+            }
+            if (prevAnswerArr.length == 4){
+                // console.log(prevAnswerArr[0]['index'])
+                // console.log(prevAnswerArr[1]['index'])
+                // console.log(prevAnswerArr[2]['index'])
+                // console.log(prevAnswerArr[3]['index'])
+                // console.log(line.slice(prevAnswerArr[0]['index'],prevAnswerArr[1]['index']))
+                // console.log(line.slice(prevAnswerArr[1]['index'],prevAnswerArr[2]['index']))
+                // console.log(line.slice(prevAnswerArr[2]['index'],prevAnswerArr[3]['index']))
+                // console.log(line.slice(prevAnswerArr[3]['index'],line.length))
+
+                tmpQuestion['answer'].push({
+                    letter: line.slice(prevAnswerArr[0]['index'],prevAnswerArr[0]['index']+1),
+                    title: line.slice(prevAnswerArr[0]['index'],prevAnswerArr[1]['index'])
+                });
+                tmpQuestion['answer'].push({
+                    letter: line.slice(prevAnswerArr[1]['index'],prevAnswerArr[1]['index']+1),
+                    title: line.slice(prevAnswerArr[1]['index'],prevAnswerArr[2]['index'])
+                });
+                tmpQuestion['answer'].push({
+                    letter: line.slice(prevAnswerArr[2]['index'],prevAnswerArr[2]['index']+1),
+                    title: line.slice(prevAnswerArr[2]['index'],prevAnswerArr[3]['index'])
+                });
+                tmpQuestion['answer'].push({
+                    letter: line.slice(prevAnswerArr[1]['index'],prevAnswerArr[1]['index']+1),
+                    title: line.slice(prevAnswerArr[1]['index'],line.length)
+                });
+            }
+
+            questionArr[curQuestion]['answer'] = tmpQuestion['answer']
+            console.log(tmpQuestion['answer'],tmpQuestion['answer'].length)
+            // console.log('this answer deal ' + tmp.split(/[ABCD]/).length, 'sp' + tmp.split(/[ABCD]/)[1])
         }
         // console.log(line.search(/\b\d/))
     });
     objReadline.on('close', function () {
         console.log('done');
+        appendTofile('questionDLQX.json', JSON.stringify(questionArr))
+        // console.log(questionArr)
         // callback(arr);
     });
 }
