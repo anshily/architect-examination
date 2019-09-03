@@ -79,10 +79,10 @@ function dealQuestionDL() {
                     indexLetter: "B"
                 }]
         }
-        console.log(answer)
+       /* console.log(answer)*/
         questionObj['answer'] = answer;
         questionObj['questionTitle'] = line.slice(3);
-        console.log(questionObj);
+        /*console.log(questionObj);*/
         appendTofile('questionsDL.txt', JSON.stringify(questionObj));
         // var index = line.search('、');
         // console.log(line.slice(4, index));
@@ -138,7 +138,7 @@ function dealQuestionDLDX() {
             // console.log('this is a question: ' + line.split('、')[0]);
             // console.log('this answer is ' + new RegExp(/[ABCD]/).exec(line));
             // console.log(++curQuestion)
-            console.log(line.match(/[(][ABCD][)]/))
+           /* console.log(line.match(/[(][ABCD][)]/))*/
             questionArr[++curQuestion] = {
                 question: line.split('、')[1],
                 result: line.match(/[(][ABCD][)]/),
@@ -163,7 +163,7 @@ function dealQuestionDLDX() {
             // console.log(prevAnswerArr)
             if (prevAnswerArr.length == 0){
                 // 格式错误行
-                console.log(questionArr[curQuestion])
+              /*  console.log(questionArr[curQuestion])*/
             }
             let tmpQuestion = questionArr[curQuestion];
 
@@ -220,15 +220,16 @@ function dealQuestionDLDX() {
             }
 
             questionArr[curQuestion]['answer'] = tmpQuestion['answer']
-            console.log(tmpQuestion['answer'],tmpQuestion['answer'].length)
+           /* console.log(tmpQuestion['answer'],tmpQuestion['answer'].length)*/
             // console.log('this answer deal ' + tmp.split(/[ABCD]/).length, 'sp' + tmp.split(/[ABCD]/)[1])
         }
         // console.log(line.search(/\b\d/))
     });
     objReadline.on('close', function () {
         console.log('done');
-        appendTofile('questionDLQX.json', JSON.stringify(questionArr))
-        // console.log(questionArr)
+       /* appendTofile('questionDLQX.json', JSON.stringify(questionArr))*/
+
+        console.log(questionArr);
         // callback(arr);
     });
 }
