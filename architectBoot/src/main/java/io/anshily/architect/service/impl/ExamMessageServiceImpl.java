@@ -49,13 +49,24 @@ public class ExamMessageServiceImpl extends AbstractService<ExamMessage> impleme
        examMessage.setUserid(user.getId());
        examMessage.setStatu(1);
        swExamMessageMapper.insert(examMessage);
-
-        System.out.println(examMessage.toString());
-
-       List<Question> singleQuestions = questionService.getRandomQuestionsByTypeCategoryN(1,user.getCategory_id(),single);
-       List<Question> multiQuestions = questionService.getRandomQuestionsByTypeCategoryN(2,user.getCategory_id(),multi);
-       List<Question> judgeQuestions = questionService.getRandomQuestionsByTypeCategoryN(3,user.getCategory_id(),judge);
-       List<Question> materialQuestions = questionService.getRandomQuestionsByTypeCategoryN(6,user.getCategory_id(),material);
+        judge=50;
+        single=40;
+        multi=5;
+        List<Question> singleQuestions=new ArrayList<Question>();
+        List<Question> multiQuestions=new ArrayList<Question>();
+        List<Question> judgeQuestions=new ArrayList<Question>();
+        List<Question> materialQuestions=new ArrayList<Question>();
+       /*当用户角色为特种工时  categoryid在15和25之间*/
+        if(user.getCategory_id()>=15&&user.getCategory_id()<=25){
+            singleQuestions = questionService.getRandomQuestionsByTypeCategoryN(1,user.getCategory_id(),single);
+            multiQuestions = questionService.getRandomQuestionsByTypeCategoryN(2,user.getCategory_id(),multi);
+            judgeQuestions = questionService.getRandomQuestionsByTypeCategoryN(3,user.getCategory_id(),judge);
+        }else{
+             singleQuestions = questionService.getRandomQuestionsByTypeCategoryN(1,user.getCategory_id(),single);
+             multiQuestions = questionService.getRandomQuestionsByTypeCategoryN(2,user.getCategory_id(),multi);
+             judgeQuestions = questionService.getRandomQuestionsByTypeCategoryN(3,user.getCategory_id(),judge);
+             materialQuestions = questionService.getRandomQuestionsByTypeCategoryN(6,user.getCategory_id(),material);
+        }
 
        List<QuestionTitle> questionTitles = new ArrayList<QuestionTitle>();
 
