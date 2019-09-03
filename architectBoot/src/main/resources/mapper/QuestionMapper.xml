@@ -19,7 +19,7 @@
 
   <select id="getRandomQuestionsByTypeCategoryN" resultType="io.anshily.architect.model.Question">
     select * from (
-      select * from sw_question where question_type_id=#{type}and parent_id=0 and question_bank_category_id=#{category}
+      select * from sw_question where question_type_id=#{type} and parent_id=0 and question_bank_category_id=#{category}
     ) as sq order by rand() limit #{n}
   </select>
 </mapper>
