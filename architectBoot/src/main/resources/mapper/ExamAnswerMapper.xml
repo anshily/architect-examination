@@ -35,4 +35,15 @@
   <select id="getExamStatu" resultType="Integer">
     select statu from sw_exam_message where id=#{examid}
   </select>
+
+  <select id="getRecord" resultType="io.anshily.architect.model.Record">
+    select id from sw_record where userid=#{userid}
+  </select>
+
+  <insert id="insertRecord">
+    insert into sw_record(userid,questionid,position) VALUES(#{testRecord.userid},#{testRecord.questionid},#{testRecord.position})
+  </insert>
+  <update id="updateRecord">
+    update sw_record set questionid=#{testRecord.questionid},position=#{testRecord.position} where userid=#{testRecord.userid}
+  </update>
 </mapper>

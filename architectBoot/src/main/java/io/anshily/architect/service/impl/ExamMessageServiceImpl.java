@@ -49,7 +49,7 @@ public class ExamMessageServiceImpl extends AbstractService<ExamMessage> impleme
        examMessage.setUserid(user.getId());
        examMessage.setStatu(1);
        swExamMessageMapper.insert(examMessage);
-        
+
         List<Question> singleQuestions=new ArrayList<Question>();
         List<Question> multiQuestions=new ArrayList<Question>();
         List<Question> judgeQuestions=new ArrayList<Question>();

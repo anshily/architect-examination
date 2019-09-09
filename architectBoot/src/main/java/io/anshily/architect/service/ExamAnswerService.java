@@ -1,7 +1,10 @@
 package io.anshily.architect.service;
 
+import io.anshily.architect.base.core.Result;
 import io.anshily.architect.base.core.Service;
+import io.anshily.architect.dto.TestRecord;
 import io.anshily.architect.model.ExamAnswer;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
@@ -15,5 +18,6 @@ public interface ExamAnswerService extends Service<ExamAnswer> {
     void changeStatu(int examid);
     List<ExamAnswer> getExamErr(String token,int examid);
     Integer getExamStatu(int examid);
+    void saveRecord(String token, TestRecord testRecord);
 
 }

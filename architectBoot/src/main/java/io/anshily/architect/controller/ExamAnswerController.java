@@ -4,6 +4,7 @@ import io.anshily.architect.base.core.Result;
 import io.anshily.architect.base.core.ResultGenerator;
 import io.anshily.architect.base.core.ServiceException;
 import io.anshily.architect.dto.SubmitExamAnswer;
+import io.anshily.architect.dto.TestRecord;
 import io.anshily.architect.model.ExamAnswer;
 import io.anshily.architect.service.ExamAnswerService;
 import com.github.pagehelper.PageHelper;
@@ -99,6 +100,12 @@ public class ExamAnswerController {
         examAnswerService.save(examAnswers);
         /*修改考试状态为2，已提交,并计算出分数*/
         examAnswerService.changeStatu(answer.getExamid());
+        return ResultGenerator.successResult();
+    }
+
+    @GetMapping("/saveRecord")
+    public Result saveRecord(@RequestParam String token, @RequestBody TestRecord testRecord){
+        examAnswerService.saveRecord(token, testRecord);
         return ResultGenerator.successResult();
     }
 }

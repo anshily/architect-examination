@@ -4,8 +4,10 @@ import io.anshily.architect.base.core.AbstractService;
 import io.anshily.architect.base.core.ServiceException;
 import io.anshily.architect.dao.ExamAnswerMapper;
 import io.anshily.architect.dao.ExamMessageMapper;
+import io.anshily.architect.dto.TestRecord;
 import io.anshily.architect.model.ExamAnswer;
 import io.anshily.architect.model.ExamMessage;
+import io.anshily.architect.model.Record;
 import io.anshily.architect.model.User;
 import io.anshily.architect.service.ExamAnswerService;
 import io.anshily.architect.service.UserService;
@@ -77,4 +79,27 @@ public class ExamAnswerServiceImpl extends AbstractService<ExamAnswer> implement
     public Integer getExamStatu(int examid) {
         return asExamAnswerMapper.getExamStatu(examid);
     }
+
+    @Override
+    public void saveRecord(String token, TestRecord testRecord) {
+          /*先查询token的状态，如果token为null，抛出异常*/
+        User user=userService.getUserInfoByToken(token);
+        if (user == null){
+            throw new ServiceException(3002,"用户未登录！");
+        }
+        testRecord.setUserid(user.getId());
+
+        /*先判断当前用户是否在记录表中存有记录*/
+        Record record=asExamAnswerMapper.getRecord(user.getId());
+        if(null!=record){
+            /*用户已经存在练题记录  对用户的练题记录进行更新*/
+            asExamAnswerMapper.updateRecord(testRecord);
+        }else{
+            /*当前用户不存在练题记录，在练题记录表中插入一条数据*/
+            asExamAnswerMapper.insertRecord(testRecord);
+        }
+
+    }
+
+
 }

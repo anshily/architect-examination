@@ -1,7 +1,9 @@
 package io.anshily.architect.dao;
 
 import io.anshily.architect.base.core.Mapper;
+import io.anshily.architect.dto.TestRecord;
 import io.anshily.architect.model.ExamAnswer;
+import io.anshily.architect.model.Record;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -15,4 +17,7 @@ public interface ExamAnswerMapper extends Mapper<ExamAnswer> {
     void changeStatu(@Param(value="examid") int examid,@Param(value = "grade") int grade);
     List<ExamAnswer> getExamErr(int examid);
     Integer getExamStatu(int examid);
+    Record getRecord(int userid);
+    void updateRecord(@Param(value = "testRecord")TestRecord testRecord);
+    void insertRecord(@Param(value = "testRecord")TestRecord testRecord);
 }
