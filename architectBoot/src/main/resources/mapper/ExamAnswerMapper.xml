@@ -46,4 +46,8 @@
   <update id="updateRecord">
     update sw_record set questionid=#{testRecord.questionid},position=#{testRecord.position} where userid=#{testRecord.userid}
   </update>
+
+  <select id="selectRecord" resultType="io.anshily.architect.model.Record">
+    select * from sw_record where userid=#{userid}
+  </select>
 </mapper>

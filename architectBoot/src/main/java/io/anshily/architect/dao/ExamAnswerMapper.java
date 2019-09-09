@@ -20,4 +20,5 @@ public interface ExamAnswerMapper extends Mapper<ExamAnswer> {
     Record getRecord(int userid);
     void updateRecord(@Param(value = "testRecord")TestRecord testRecord);
     void insertRecord(@Param(value = "testRecord")TestRecord testRecord);
+    Record selectRecord(int userid);
 }

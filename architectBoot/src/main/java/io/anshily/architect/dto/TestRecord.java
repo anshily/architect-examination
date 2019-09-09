@@ -4,9 +4,18 @@ package io.anshily.architect.dto;
  * Created by ASUS on 2019/9/9.
  */
 public class TestRecord {
+    private String token;
     private Integer userid;
     private Integer questionid;
     private Integer position;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public Integer getUserid() {
         return userid;

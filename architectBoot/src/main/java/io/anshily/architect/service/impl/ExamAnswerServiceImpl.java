@@ -81,9 +81,9 @@ public class ExamAnswerServiceImpl extends AbstractService<ExamAnswer> implement
     }
 
     @Override
-    public void saveRecord(String token, TestRecord testRecord) {
+    public void saveRecord( TestRecord testRecord) {
           /*先查询token的状态，如果token为null，抛出异常*/
-        User user=userService.getUserInfoByToken(token);
+        User user=userService.getUserInfoByToken(testRecord.getToken());
         if (user == null){
             throw new ServiceException(3002,"用户未登录！");
         }
@@ -99,6 +99,18 @@ public class ExamAnswerServiceImpl extends AbstractService<ExamAnswer> implement
             asExamAnswerMapper.insertRecord(testRecord);
         }
 
+    }
+
+    @Override
+    public Record selectRecord(String token) {
+        /*先查询token的状态，如果token为null，抛出异常*/
+        User user=userService.getUserInfoByToken(token);
+        if (user == null){
+            throw new ServiceException(3002,"用户未登录！");
+        }
+        /*根据当前用户的id查询出用户的练题记录*/
+        Record record=asExamAnswerMapper.selectRecord(user.getId());
+        return record;
     }
 
 

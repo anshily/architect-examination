@@ -6,6 +6,7 @@ import io.anshily.architect.base.core.ServiceException;
 import io.anshily.architect.dto.SubmitExamAnswer;
 import io.anshily.architect.dto.TestRecord;
 import io.anshily.architect.model.ExamAnswer;
+import io.anshily.architect.model.Record;
 import io.anshily.architect.service.ExamAnswerService;
 import com.github.pagehelper.PageHelper;
 import io.anshily.architect.service.ExamMessageService;
@@ -104,8 +105,14 @@ public class ExamAnswerController {
     }
 
     @GetMapping("/saveRecord")
-    public Result saveRecord(@RequestParam String token, @RequestBody TestRecord testRecord){
-        examAnswerService.saveRecord(token, testRecord);
+    public Result saveRecord(@RequestBody TestRecord testRecord){
+        examAnswerService.saveRecord(testRecord);
         return ResultGenerator.successResult();
+    }
+
+    @GetMapping("/selectRecord")
+    public Result selectRecord(@RequestParam String token){
+        Record record=examAnswerService.selectRecord(token);
+        return ResultGenerator.successResult(record);
     }
 }
