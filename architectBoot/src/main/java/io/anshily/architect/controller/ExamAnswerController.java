@@ -104,7 +104,7 @@ public class ExamAnswerController {
         return ResultGenerator.successResult();
     }
 
-    @GetMapping("/saveRecord")
+    @PostMapping("/saveRecord")
     public Result saveRecord(@RequestBody TestRecord testRecord){
         examAnswerService.saveRecord(testRecord);
         return ResultGenerator.successResult();

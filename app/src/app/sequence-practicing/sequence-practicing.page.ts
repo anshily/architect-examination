@@ -45,6 +45,20 @@ export class SequencePracticingPage implements OnInit {
                     }
 
                     if (this.questionArr.length > 0) {
+
+                        this.http.get(ROOT_URL + 'exam/answer/selectRecord?token=' + localStorage.getItem('user_token'))
+                            .subscribe(res => {
+                                console.log(res);
+                                if (res['code'] == 0){
+                                    console.log('done');
+                                    let cur = res['data']['position'];
+                                    if (cur < this.questionArr.length){
+                                        this.curQuestionIndex = cur;
+                                        this.questionLength = this.questionArr.length;
+                                        this.curQuestion = this.questionArr.slice(this.curQuestionIndex, this.curQuestionIndex + 1).pop();
+                                    }
+                                }
+                            });
                         this.questionLength = this.questionArr.length;
                         this.curQuestion = this.questionArr.slice(this.curQuestionIndex, this.curQuestionIndex + 1).pop();
                     }
@@ -141,6 +155,24 @@ export class SequencePracticingPage implements OnInit {
     scrollToNext() {
         if (this.curQuestionIndex < this.questionLength) {
             this.curQuestionIndex++;
+            let question = this.questionArr.slice(this.curQuestionIndex, this.curQuestionIndex + 1).pop()
+            console.log(this.questionArr.slice(this.curQuestionIndex, this.curQuestionIndex + 1).pop());
+            this.http.post(ROOT_URL + 'exam/answer/saveRecord', {
+                token: localStorage.getItem('user_token'),
+                questionid: question['question_bank_id'],
+                position: this.curQuestionIndex
+            }).subscribe(res => {
+               console.log(res);
+               if (res['code'] == 0){
+                   console.log('done');
+               }
+            });
+
+            let storge = {
+                curQuestionIndex: this.curQuestionIndex,
+                questionArr: this.questionArr
+            }
+            localStorage.setItem('sequence-random-magic', JSON.stringify(storge));
             // this.curQuestion = this.examArr.slice(this.curQuestionIndex, this.curQuestionIndex + 1).pop();
         }
     }
