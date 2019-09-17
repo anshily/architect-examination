@@ -72,18 +72,18 @@ public class SimpleTestServiceImpl extends AbstractService<SimpleTest> implement
         int allErr=swSimpleTestMapper.getCountErr(user.getId());
         /*查询出所有错题的List并按照id进行分组*/
         int start=(ratePage.getPageNum()-1)*ratePage.getPageSize();
-        List<SimpleTest> list=swSimpleTestMapper.simpleTestErr(user.getId(),start,ratePage.getPageSize());
+        List<Integer> list=swSimpleTestMapper.simpleTestErr(user.getId(),start,ratePage.getPageSize());
         /*创建存放所有错题以及错误率的list*/
         List<ErrRate> list1=new ArrayList<ErrRate>();
         for(int i=0;i<list.size();i++){
-            if(null==list.get(i).getQuestion_id()){
+            if(null==list.get(i)){
                 continue;
             }
             /*先查询出当前错题错误次数*/
-            Map<String, Object> map = swSimpleTestMapper.getErrSumByQuestionId(list.get(i).getQuestion_id(),user.getId());
+            Map<String, Object> map = swSimpleTestMapper.getErrSumByQuestionId(list.get(i),user.getId());
 
             /*再查询出当前错题的总次数*/
-            int all=swSimpleTestMapper.getSumByQuestionId(list.get(i).getQuestion_id(),user.getId());
+            int all=swSimpleTestMapper.getSumByQuestionId(list.get(i),user.getId());
 
             System.out.println(map.get("err"));
             float err = Float.parseFloat((map.get("err").toString())+ ".0f");
@@ -97,7 +97,7 @@ public class SimpleTestServiceImpl extends AbstractService<SimpleTest> implement
             /*保存两位小数算出错误率*/
             float tmp=err/all;
             float rate=(Math.round(tmp*100)/100.0f);//如果要求精确4位就*10000然后/10000
-            errRate.setId(list.get(i).getQuestion_id());
+            errRate.setId(list.get(i));
             errRate.setRate(rate);
             list1.add(errRate);
         }
