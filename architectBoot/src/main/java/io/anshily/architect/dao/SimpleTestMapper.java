@@ -2,6 +2,8 @@ package io.anshily.architect.dao;
 
 
 import io.anshily.architect.base.core.Mapper;
+import io.anshily.architect.dto.Page;
+import io.anshily.architect.dto.RatePage;
 import io.anshily.architect.model.ExamAnswer;
 import io.anshily.architect.model.Question;
 import io.anshily.architect.model.SimpleTest;
@@ -15,10 +17,10 @@ public interface SimpleTestMapper extends Mapper<SimpleTest> {
     List<Question> simpleQuestionTest(String type);
     List<Map<String,Object>> orderQuestionTest(String type);
     String getQuestionType(int id);
-    List<SimpleTest> simpleTestErr(int id);
+    List<SimpleTest> simpleTestErr(@Param(value = "id")int id,@Param(value = "start")int start, @Param(value = "pageSize")int pageSize);
     List<ExamAnswer> normalTestErr(int id);
-    Map<String, Object> getErrSumByQuestionId(int questionid);
-    Integer getSumByQuestionId(int questionid);
+    Map<String, Object> getErrSumByQuestionId(@Param(value = "questionid")int questionid,@Param(value = "userid")int userid);
+    Integer getSumByQuestionId(@Param(value = "questionid")int questionid,@Param(value = "userid")int userid);
     Integer getNormalErrSumByQuestionId(int questionid);
     Integer getNormalSumByQuestionId(int questionid);
     List<Map<String,Integer>> QuestionTypeTest(@Param(value = "questiontype") int questiontype,@Param(value = "type")String type);

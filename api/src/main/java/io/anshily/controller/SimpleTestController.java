@@ -3,6 +3,7 @@ import io.anshily.base.core.Result;
 import io.anshily.base.core.ResultGenerator;
 import io.anshily.base.core.ServiceException;
 import io.anshily.dto.ErrRate;
+import io.anshily.dto.Page;
 import io.anshily.dto.SimpleTestDto;
 import io.anshily.dto.SumitTestAnswer;
 import io.anshily.model.Question;
@@ -110,8 +111,8 @@ public class SimpleTestController {
         return ResultGenerator.successResult(map);
     }
     @GetMapping("/simpleTestErrRate")
-    public Result simpleTestErr(@RequestParam String token) {
-        List<ErrRate> list=simpleTestService.simpleTestErr(token);
+    public Result simpleTestErr(@RequestBody Page page) {
+        List<ErrRate> list=simpleTestService.simpleTestErr(page);
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("SimpleTestErrRate",list);
         return ResultGenerator.successResult(map);

@@ -4,6 +4,8 @@ import io.anshily.architect.base.core.AbstractService;
 import io.anshily.architect.base.core.ServiceException;
 import io.anshily.architect.dao.SimpleTestMapper;
 import io.anshily.architect.dto.ErrRate;
+import io.anshily.architect.dto.Page;
+import io.anshily.architect.dto.RatePage;
 import io.anshily.architect.model.ExamAnswer;
 import io.anshily.architect.model.Question;
 import io.anshily.architect.model.SimpleTest;
@@ -59,15 +61,16 @@ public class SimpleTestServiceImpl extends AbstractService<SimpleTest> implement
     }
 
     @Override
-    public List<ErrRate> simpleTestErr(String token) {
+    public List<ErrRate> simpleTestErr(RatePage ratePage) {
        /*先查询token的状态，如果token为null，抛出异常*/
-        User user=userService.getUserInfoByToken(token);
+        User user=userService.getUserInfoByToken(ratePage.getToken());
         if (user == null){
             throw new ServiceException(3002,"用户未登录！");
         }
 
         /*查询出所有错题的List并按照id进行分组*/
-        List<SimpleTest> list=swSimpleTestMapper.simpleTestErr(user.getId());
+        int start=(ratePage.getPageNum()-1)*ratePage.getPageSize();
+        List<SimpleTest> list=swSimpleTestMapper.simpleTestErr(user.getId(),start,ratePage.getPageSize());
         /*创建存放所有错题以及错误率的list*/
         List<ErrRate> list1=new ArrayList<ErrRate>();
         for(int i=0;i<list.size();i++){
@@ -75,10 +78,10 @@ public class SimpleTestServiceImpl extends AbstractService<SimpleTest> implement
                 continue;
             }
             /*先查询出当前错题错误次数*/
-            Map<String, Object> map = swSimpleTestMapper.getErrSumByQuestionId(list.get(i).getQuestion_id());
+            Map<String, Object> map = swSimpleTestMapper.getErrSumByQuestionId(list.get(i).getQuestion_id(),user.getId());
 
             /*再查询出当前错题的总次数*/
-            int all=swSimpleTestMapper.getSumByQuestionId(list.get(i).getQuestion_id());
+            int all=swSimpleTestMapper.getSumByQuestionId(list.get(i).getQuestion_id(),user.getId());
 
             System.out.println(map.get("err"));
             float err = Float.parseFloat((map.get("err").toString())+ ".0f");

@@ -5,9 +5,7 @@ import io.anshily.architect.base.core.PageBean;
 import io.anshily.architect.base.core.Result;
 import io.anshily.architect.base.core.ResultGenerator;
 import io.anshily.architect.base.core.ServiceException;
-import io.anshily.architect.dto.ErrRate;
-import io.anshily.architect.dto.SimpleTestDto;
-import io.anshily.architect.dto.SumitTestAnswer;
+import io.anshily.architect.dto.*;
 import io.anshily.architect.model.Question;
 import io.anshily.architect.model.SimpleTest;
 import io.anshily.architect.model.User;
@@ -110,9 +108,9 @@ public class SimpleTestController {
         map.put("title",list);
         return ResultGenerator.successResult(map);
     }
-    @GetMapping("/simpleTestErrRate")
-    public Result simpleTestErr(@RequestParam String token) {
-        List<ErrRate> list=simpleTestService.simpleTestErr(token);
+    @PostMapping("/simpleTestErrRate")
+    public Result simpleTestErr(@RequestBody RatePage ratePage) {
+        List<ErrRate> list=simpleTestService.simpleTestErr(ratePage);
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("SimpleTestErrRate",list);
         return ResultGenerator.successResult(map);

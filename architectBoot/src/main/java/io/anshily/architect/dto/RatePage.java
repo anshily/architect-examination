@@ -1,21 +1,14 @@
 package io.anshily.architect.dto;
 
 /**
- * Created by ASUS on 2019/8/13.
+ * Created by ASUS on 2019/9/17.
  */
-public class Page {
+public class RatePage {
     private Integer pageNum;
     private Integer pageSize;
-    private Integer statu;
+    private String token;
 
 
-    public Integer getStatu() {
-        return statu;
-    }
-
-    public void setStatu(Integer statu) {
-        this.statu = statu;
-    }
 
     public Integer getPageNum() {
         return pageNum;
@@ -33,4 +26,11 @@ public class Page {
         this.pageSize = pageSize;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 }

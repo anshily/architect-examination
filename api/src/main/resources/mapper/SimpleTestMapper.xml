@@ -38,12 +38,12 @@
   </select>
 
   <select id="getErrSumByQuestionId" resultType="Integer">
-    select count(*) from sw_simple_test where question_id=#{questionid} and istrue=0
+    select count(*) from sw_simple_test where question_id=#{questionid} and istrue=0 and user_id=#{userid}
   </select>
 
 
   <select id="getSumByQuestionId" resultType="Integer">
-    select count(*) from sw_simple_test where question_id=#{questionid}
+    select count(*) from sw_simple_test where question_id=#{questionid} and user_id=#{userid}
   </select>
 
   <select id="normalTestErr" resultType="io.anshily.model.ExamAnswer">

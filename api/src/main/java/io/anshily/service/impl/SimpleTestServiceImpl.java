@@ -3,6 +3,7 @@ package io.anshily.service.impl;
 import io.anshily.base.core.ServiceException;
 import io.anshily.dao.SimpleTestMapper;
 import io.anshily.dto.ErrRate;
+import io.anshily.dto.Page;
 import io.anshily.model.ExamAnswer;
 import io.anshily.model.Question;
 import io.anshily.model.SimpleTest;
@@ -59,9 +60,9 @@ public class SimpleTestServiceImpl extends AbstractService<SimpleTest> implement
     }
 
     @Override
-    public List<ErrRate> simpleTestErr(String token) {
+    public List<ErrRate> simpleTestErr(Page page) {
        /*先查询token的状态，如果token为null，抛出异常*/
-        User user=userService.getUserInfoByToken(token);
+        User user=userService.getUserInfoByToken(page.getToken());
         if (user == null){
             throw new ServiceException(3002,"用户未登录！");
         }
@@ -72,12 +73,15 @@ public class SimpleTestServiceImpl extends AbstractService<SimpleTest> implement
         List<ErrRate> list1=new ArrayList<ErrRate>();
         for(int i=0;i<list.size();i++){
             /*先查询出当前错题错误次数*/
-            int err=swSimpleTestMapper.getErrSumByQuestionId(list.get(i).getQuestion_id());
+            int err=swSimpleTestMapper.getErrSumByQuestionId(list.get(i).getQuestion_id(),user.getId());
+            System.out.print("错题"+err);
             /*再查询出当前错题的总次数*/
-            int all=swSimpleTestMapper.getSumByQuestionId(list.get(i).getQuestion_id());
+            int all=swSimpleTestMapper.getSumByQuestionId(list.get(i).getQuestion_id(),user.getId());
+            System.out.print("总"+all);
             /*保存两位小数算出错误率*/
-            float tmp=err/all;
+            float tmp=(float) err/(float) all;
             float rate=(float)(Math.round(tmp*100)/100);//如果要求精确4位就*10000然后/10000
+            System.out.print("错误率"+rate);
 
             ErrRate errRate=new ErrRate();
             errRate.setId(list.get(i).getQuestion_id());
