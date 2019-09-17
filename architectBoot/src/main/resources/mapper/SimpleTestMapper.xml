@@ -39,8 +39,8 @@
 
   <select id="getErrSumByQuestionId" resultType="map">
     select q.question_title, q.question_bank_id, e.err from sw_question as q,
-      (select count(*) as err from sw_simple_test where question_id=#{questionid} and istrue=0) as e
-    where q.question_bank_id = #{questionid} and e.user_id=#{userid}
+      (select count(*) as err from sw_simple_test where question_id=#{questionid} and istrue=0 and user_id=#{userid}) as e
+    where q.question_bank_id = #{questionid}
   </select>
 
 
