@@ -38,7 +38,7 @@
   </select>
 
   <select id="getCountErr" resultType="Integer">
-    select count(question_id) from {select question_id from sw_simple_test where user_id=#{id} and istrue=0 group by question_id}
+    select count(question_id) from (select question_id from sw_simple_test where user_id=#{id} and istrue=0 group by question_id)
   </select>
 
   <select id="getErrSumByQuestionId" resultType="map">
