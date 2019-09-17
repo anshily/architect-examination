@@ -31,14 +31,14 @@
         where sw_user.id=#{id}
   </select>
 
-  <select id="simpleTestErr" resultType="io.anshily.architect.model.SimpleTest">
+  <select id="simpleTestErr" resultType="Integer">
     select question_id from sw_simple_test
     where user_id=#{id} and istrue=0
     group by question_id limit #{start},#{pageSize}
   </select>
 
   <select id="getCountErr" resultType="Integer">
-    select count(question_id) from (select question_id from sw_simple_test where user_id=#{id} and istrue=0 group by question_id)
+    select count(tmp.question_id) from (select question_id from sw_simple_test where user_id=#{id} and istrue=0 group by question_id) as tmp
   </select>
 
   <select id="getErrSumByQuestionId" resultType="map">
