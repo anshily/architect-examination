@@ -46,6 +46,8 @@ export class SequencePracticingPage implements OnInit {
 
                     if (this.questionArr.length > 0) {
 
+                        this.questionLength = this.questionArr.length;
+                        this.curQuestion = this.questionArr.slice(this.curQuestionIndex, this.curQuestionIndex + 1).pop();
                         this.http.get(ROOT_URL + 'exam/answer/selectRecord?token=' + localStorage.getItem('user_token'))
                             .subscribe(res => {
                                 console.log(res);
@@ -59,8 +61,6 @@ export class SequencePracticingPage implements OnInit {
                                     }
                                 }
                             });
-                        this.questionLength = this.questionArr.length;
-                        this.curQuestion = this.questionArr.slice(this.curQuestionIndex, this.curQuestionIndex + 1).pop();
                     }
                 }
             });
