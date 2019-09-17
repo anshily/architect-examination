@@ -11,25 +11,26 @@ export class DoWrongPage implements OnInit {
 
     wrongArr = [];
     pageNum = 1;
+    total = 0;
 
     constructor(private http: HttpClient, private router: Router) {
     }
 
     ngOnInit() {
-        this.http.post(ROOT_URL + 'simple/test/simpleTestErrRate', {
-            token: localStorage.getItem('user_token'),
-                pageSize: 50,
-                pageNum: 1
-            }).subscribe(res => {
-            console.log(res);
-            if (res['code'] == 0){
-                // this.wrongArr = res['data']['SimpleTestErrRate'];
-            }
-        });
+        // this.http.post(ROOT_URL + 'simple/test/simpleTestErrRate', {
+        //     token: localStorage.getItem('user_token'),
+        //         pageSize: 50,
+        //         pageNum: 1
+        //     }).subscribe(res => {
+        //     console.log(res);
+        //     if (res['code'] == 0){
+        //         // this.wrongArr = res['data']['SimpleTestErrRate'];
+        //     }
+        // });
         this.loopFetch().then();
     }
     async loopFetch() {
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < this.total / 5 + 1; i++) {
             await this.appendData(i + 1).then(res => {
                 // console.log(i);
                 // console.log(res);
@@ -69,10 +70,12 @@ export class DoWrongPage implements OnInit {
                 pageSize: 5,
                 pageNum: num
             }).subscribe(res => {
-                console.log(res);
+                // console.log(res);
                 if (res['code'] == 0){
 
                     resolve(res['data']['SimpleTestErrRate']);
+                    // console.log(res['data']['errSum']);
+                    this.total = res['data']['errSum'];
                     // this.wrongArr = [...this.wrongArr, res['data']['SimpleTestErrRate']];
                 }else {
                     reject('执行失败');

@@ -153,7 +153,7 @@ export class SequencePracticingPage implements OnInit {
     }
 
     scrollToNext() {
-        if (this.curQuestionIndex < this.questionLength) {
+        if (this.curQuestionIndex < this.questionLength - 1) {
             this.curQuestionIndex++;
             let question = this.questionArr.slice(this.curQuestionIndex, this.curQuestionIndex + 1).pop()
             console.log(this.questionArr.slice(this.curQuestionIndex, this.curQuestionIndex + 1).pop());

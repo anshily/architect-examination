@@ -41,11 +41,11 @@
       <ion-button shape="round" (click)="prevQuestion()" [disabled]="curQuestionIndex == 0 ? true : false">上一题
       </ion-button>
 
-      <ion-button *ngIf="questionLength >= curQuestionIndex" shape="round" (click)="nextQuestion()">下一题
+      <ion-button *ngIf="questionLength - 1 > curQuestionIndex" shape="round" (click)="nextQuestion()">下一题
       </ion-button>
 
-      <ion-button *ngIf="!(questionLength >= curQuestionIndex)" shape="round" (click)="submitResult()">交卷
-      </ion-button>
+      <!--<ion-button *ngIf="!(questionLength > curQuestionIndex)" shape="round" (click)="submitResult()">交卷-->
+      <!--</ion-button>-->
 
     </div>
 

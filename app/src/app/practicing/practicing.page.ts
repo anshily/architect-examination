@@ -163,7 +163,18 @@ export class PracticingPage implements OnInit {
                     localStorage.setItem('sequence-random-magic', '');
                     this.sequenceStorage.clearRandomStorage();
                     this.presentPracticingLoading().then();
-                    this.navController.navigateForward('/sequence-practicing').then();
+
+                    this.http.post(ROOT_URL + 'exam/answer/saveRecord', {
+                        token: localStorage.getItem('user_token'),
+                        questionid: 0,
+                        position: 0
+                    }).subscribe(res => {
+                        console.log(res);
+                        if (res['code'] == 0){
+                            console.log('done');
+                            this.navController.navigateForward('/sequence-practicing').then();
+                        }
+                    });
                 }
             }, {
                 text: '取消',
