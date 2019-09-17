@@ -110,9 +110,7 @@ public class SimpleTestController {
     }
     @PostMapping("/simpleTestErrRate")
     public Result simpleTestErr(@RequestBody RatePage ratePage) {
-        List<ErrRate> list=simpleTestService.simpleTestErr(ratePage);
-        Map<String,Object> map=new HashMap<String,Object>();
-        map.put("SimpleTestErrRate",list);
+        Map<String,Object> map=simpleTestService.simpleTestErr(ratePage);
         return ResultGenerator.successResult(map);
     }
     @GetMapping("/normalTestErrRate")

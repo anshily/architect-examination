@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -61,13 +62,14 @@ public class SimpleTestServiceImpl extends AbstractService<SimpleTest> implement
     }
 
     @Override
-    public List<ErrRate> simpleTestErr(RatePage ratePage) {
+    public Map<String,Object> simpleTestErr(RatePage ratePage) {
        /*先查询token的状态，如果token为null，抛出异常*/
         User user=userService.getUserInfoByToken(ratePage.getToken());
         if (user == null){
             throw new ServiceException(3002,"用户未登录！");
         }
-
+        /*查询出总共的错题数*/
+        int allErr=swSimpleTestMapper.getCountErr(user.getId());
         /*查询出所有错题的List并按照id进行分组*/
         int start=(ratePage.getPageNum()-1)*ratePage.getPageSize();
         List<SimpleTest> list=swSimpleTestMapper.simpleTestErr(user.getId(),start,ratePage.getPageSize());
@@ -102,9 +104,13 @@ public class SimpleTestServiceImpl extends AbstractService<SimpleTest> implement
             errRate.setRate(rate);
             list1.add(errRate);
         }
-
-        return list1;
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("errSum",allErr);
+        map.put("SimpleTestErrRate",list1);
+        return map;
     }
+
+
 
     @Override
     public List<ErrRate> normalTestErr(String token) {

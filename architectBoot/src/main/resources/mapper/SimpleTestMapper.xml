@@ -32,9 +32,15 @@
   </select>
 
   <select id="simpleTestErr" resultType="io.anshily.architect.model.SimpleTest">
-    select * from sw_simple_test
+    select question_id from sw_simple_test
     where user_id=#{id} and istrue=0
     group by question_id limit #{start},#{pageSize}
+  </select>
+
+  <select id="getCountErr" resultType="Integer">
+    select count(question_id) from sw_simple_test
+    where user_id=#{id} and istrue=0
+    group by question_id
   </select>
 
   <select id="getErrSumByQuestionId" resultType="map">
@@ -45,7 +51,7 @@
 
 
   <select id="getSumByQuestionId" resultType="Integer">
-    select count(*) from sw_simple_test where question_id=#{questionid} and user_id=#{userid}
+    select count(question_id) from sw_simple_test where question_id=#{questionid} and user_id=#{userid}
   </select>
 
   <select id="normalTestErr" resultType="io.anshily.architect.model.ExamAnswer">
