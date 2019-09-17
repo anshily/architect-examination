@@ -15,7 +15,11 @@ export class DoWrongPage implements OnInit {
     }
 
     ngOnInit() {
-        this.http.get(ROOT_URL + 'simple/test/simpleTestErrRate?token=' + localStorage.getItem('user_token')).subscribe(res => {
+        this.http.post(ROOT_URL + 'simple/test/simpleTestErrRate', {
+            token: localStorage.getItem('user_token'),
+                pageSize: 10,
+                pageNum: 1
+            }).subscribe(res => {
             console.log(res);
             if (res['code'] == 0){
                 this.wrongArr = res['data']['SimpleTestErrRate'];
