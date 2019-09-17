@@ -90,12 +90,9 @@ public class SimpleTestServiceImpl extends AbstractService<SimpleTest> implement
 
             ErrRate errRate=new ErrRate();
             errRate.setTitle((String) map.get("question_title"));
-            errRate.setId(Integer.parseInt(map.get("question_bank_id").toString()));
+            /*errRate.setId(Integer.parseInt(map.get("question_bank_id").toString()));*/
             errRate.setErr(err);
             errRate.setAll(Float.parseFloat(all + ".0f"));
-
-//            System.out.println(err);
-//            System.out.println(map.get("question_title"));
 
             /*保存两位小数算出错误率*/
             float tmp=err/all;
