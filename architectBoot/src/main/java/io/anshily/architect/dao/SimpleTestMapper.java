@@ -18,6 +18,7 @@ public interface SimpleTestMapper extends Mapper<SimpleTest> {
     List<Map<String,Object>> orderQuestionTest(String type);
     String getQuestionType(int id);
     List<SimpleTest> simpleTestErr(@Param(value = "id")int id,@Param(value = "start")int start, @Param(value = "pageSize")int pageSize);
+    Integer getCountErr(int id);
     List<ExamAnswer> normalTestErr(int id);
     Map<String, Object> getErrSumByQuestionId(@Param(value = "questionid")int questionid,@Param(value = "userid")int userid);
     Integer getSumByQuestionId(@Param(value = "questionid")int questionid,@Param(value = "userid")int userid);
