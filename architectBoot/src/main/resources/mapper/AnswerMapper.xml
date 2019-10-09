@@ -12,4 +12,19 @@
     <result column="index" jdbcType="INTEGER" property="index" />
     <result column="index_letter" jdbcType="VARCHAR" property="index_letter" />
   </resultMap>
+
+  <select id="getAnswer" resultType="Integer">
+    select question_bank_id  from sw_question where question_type_id=3
+  </select>
+
+  <select id="getAnswerById" resultType="io.anshily.architect.model.Answer">
+    select * from sw_answer where question_bank_id=#{id}
+  </select>
+
+  <update id="A">
+    update sw_answer set name='正确',index_number=0,index_letter='A' where question_item_id=#{id}
+  </update>
+  <update id="B">
+    update sw_answer set name='错误',index_number=1,index_letter='B' where question_item_id=#{id}
+  </update>
 </mapper>

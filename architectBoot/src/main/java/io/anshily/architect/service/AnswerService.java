@@ -8,4 +8,5 @@ import io.anshily.architect.model.Answer;
  */
 public interface AnswerService extends Service<Answer> {
 
+    void test();
 }

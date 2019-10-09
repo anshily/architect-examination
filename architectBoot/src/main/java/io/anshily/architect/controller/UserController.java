@@ -84,6 +84,7 @@ public class UserController {
         }
     }
 
+
     @GetMapping("/userInfo")
     public Result userInfo(@RequestParam String token){
         User user = userService.getUserInfoByToken(token);

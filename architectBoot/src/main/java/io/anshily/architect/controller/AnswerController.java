@@ -65,4 +65,10 @@ public class AnswerController {
         page.setList(list);
         return ResultGenerator.successResult(page);
     }
+    @GetMapping("/test")
+    public void test() {
+        answerService.test();
+
+    }
+
 }
