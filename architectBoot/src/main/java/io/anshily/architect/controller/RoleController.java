@@ -65,4 +65,13 @@ public class RoleController {
         page.setList(list);
         return ResultGenerator.successResult(page);
     }
+
+    @GetMapping("/getRoleList")
+    public Result getRoleList() {
+        Condition condition = new Condition(Role.class);
+        Example.Criteria criteria = condition.createCriteria();
+        criteria.andCondition("statu=1");
+        List<Role> list = roleService.findByCondition(condition);
+        return ResultGenerator.successResult(list);
+    }
 }

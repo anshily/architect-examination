@@ -31,6 +31,15 @@ public class Role {
      * 角色描述
      */
     private String info;
+    private Integer statu;
+
+    public Integer getStatu() {
+        return statu;
+    }
+
+    public void setStatu(Integer statu) {
+        this.statu = statu;
+    }
 
     /**
      * 获取id
