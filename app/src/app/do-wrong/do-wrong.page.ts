@@ -32,10 +32,12 @@ export class DoWrongPage implements OnInit {
     async loopFetch() {
         for (let i = 0; i < this.total / 5 + 1; i++) {
             await this.appendData(i + 1).then(res => {
-                // console.log(i);
-                // console.log(res);
-                // console.log(this.wrongArr);
-                this.wrongArr = [...this.wrongArr, ...res];
+
+                this.wrongArr = this.wrongArr.concat(res);
+                // res.forEach(item => {
+                //     this.wrongArr.push(item);
+                // });
+                // this.wrongArr = [...this.wrongArr, ...tmp];
             });
         }
     }
