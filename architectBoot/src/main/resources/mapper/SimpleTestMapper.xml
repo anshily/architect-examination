@@ -70,10 +70,10 @@
   <select id="QuestionTypeTest" resultType="map">
     select question_bank_id from sw_question
     <where>
-      <if test="type==2">
+      <if test="questiontype==2">
         and name=#{type} and question_type_id=#{questiontype}
       </if>
-      <if test="type!=2">
+      <if test="questiontype!=2">
         and name=#{type} and question_type_id=#{questiontype} order by rand()
       </if>
     </where>
