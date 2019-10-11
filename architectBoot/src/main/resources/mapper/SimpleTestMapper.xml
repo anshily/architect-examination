@@ -80,15 +80,7 @@
   </select>
 
   <select id="getRandomTestByType" resultType="map">
-    select question_bank_id from sw_question
-    <where>
-      <if test="type==2">
-        question_bank_category_id=#{category} and question_type_id=#{type} order by question_bank_id desc
-      </if>
-      <if test="type!=2">
-        question_bank_category_id=#{category} and question_type_id=#{type} order by rand()
-      </if>
-    </where>
+    select question_bank_id from sw_question where question_bank_category_id=#{category} and question_type_id=#{type} order by question_bank_id desc
   </select>
 
 </mapper>
