@@ -35,7 +35,6 @@ public class SimpleTestController {
     @PostMapping("/add")
     public Result add(@RequestBody SumitTestAnswer sumitTestAnswer) {
         SimpleTest simpleTest = sumitTestAnswer.getSimpleTest();
-
         User user = userService.getUserInfoByToken(sumitTestAnswer.getToken());
         if (user == null){
             throw new ServiceException(3002,"用户未登录！");
