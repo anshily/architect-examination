@@ -41,12 +41,12 @@
     select id from sw_user where identify_card=#{name} and statu=1
   </select>
 
-  <select id="getSimpleTestTime" resultType="io.anshily.architect.model.SimpleTest">
-    SELECT max(id),max(add_time) from sw_simple_test where user_id=#{userid}
+  <select id="getSimpleTestTime" resultType="String">
+    SELECT max(add_time)  from sw_simple_test where user_id=#{userid}
   </select>
 
-  <select id="getExamStartTime" resultType="io.anshily.architect.model.ExamMessage">
-    select max(id),max(createtime) from sw_exam_message where userid=#{userid}
+  <select id="getExamStartTime" resultType="String">
+    select max(createtime) from sw_exam_message  where userid=#{userid}
   </select>
 
   <update id="deleteUser">

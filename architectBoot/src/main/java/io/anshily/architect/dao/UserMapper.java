@@ -6,14 +6,17 @@ import io.anshily.architect.model.SimpleTest;
 import io.anshily.architect.model.User;
 import org.apache.ibatis.annotations.Param;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface UserMapper extends Mapper<User> {
     User getUserInfoByToken(String token);
     List<User> loginByIdAndPass(@Param(value="identify_card") String identify_card, @Param(value="password") String password);
     void addRoleToUser(@Param(value="id")int id,@Param(value="role")int role);
     User nameExist(String name);
-    ExamMessage getExamStartTime(int userid);
-    SimpleTest getSimpleTestTime(int userid);
+    String getExamStartTime(int userid);
+    String getSimpleTestTime(int userid);
     void deleteUser(Integer userid);
 }

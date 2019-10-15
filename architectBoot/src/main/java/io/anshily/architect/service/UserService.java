@@ -19,7 +19,7 @@ public interface UserService extends Service<User> {
 
     Integer nameExist(String name);
 
-    Map<String,Object> getStudyTime(Integer userid);
+    Map<String,String> getStudyTime(Integer userid);
 
     void deleteUser(Integer userid);
 }

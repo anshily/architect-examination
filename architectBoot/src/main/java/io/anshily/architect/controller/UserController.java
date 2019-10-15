@@ -8,6 +8,7 @@ import io.anshily.architect.dto.UserToRole;
 import io.anshily.architect.model.User;
 import io.anshily.architect.service.UserService;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.ognl.ObjectElementsAccessor;
 import org.springframework.web.bind.annotation.*;
 import tk.mybatis.mapper.entity.Condition;
 import tk.mybatis.mapper.entity.Example;
@@ -149,7 +150,7 @@ public class UserController {
 
     @GetMapping("/getStudyTime")
     public Result getStudyTime(@RequestParam Integer userid) {
-        Map<String,Object> map=userService.getStudyTime(userid);
+        Map<String,String> map=userService.getStudyTime(userid);
         return ResultGenerator.successResult(map);
     }
     @GetMapping("/deleteUser")

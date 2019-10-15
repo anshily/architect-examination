@@ -1,15 +1,19 @@
 package io.anshily.architect.service.impl;
 
+import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 import io.anshily.architect.base.core.AbstractService;
 import io.anshily.architect.dao.UserMapper;
 import io.anshily.architect.model.ExamMessage;
 import io.anshily.architect.model.SimpleTest;
 import io.anshily.architect.model.User;
 import io.anshily.architect.service.UserService;
+import org.apache.ibatis.javassist.expr.Instanceof;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,14 +53,15 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     }
 
     @Override
-    public Map<String, Object> getStudyTime(Integer userid) {
+    public Map<String,String> getStudyTime(Integer userid) {
         /*获取当前用户最后一场考试的开始时间*/
-        ExamMessage examMessage=swUserMapper.getExamStartTime(userid);
-        /*获取当前用户最后一次练题的时间*/
-        SimpleTest simpleTest=swUserMapper.getSimpleTestTime(userid);
-        Map<String,Object> map=new HashMap<String,Object>();
-        map.put("ExamStartTime",examMessage);
-        map.put("SimpleTestTime",simpleTest);
+       /* System.out.print(examMessage.getAdd_time());*/
+       /* 获取当前用户最后一次练题的时间*/
+      /*  SimpleTest simpleTest=swUserMapper.getSimpleTestTime(userid);*/
+     /*   System.out.print(swUserMapper.getExamStartTime(userid));*/
+        Map<String,String> map=new HashMap<>();
+        map.put("ExamStartTime",swUserMapper.getExamStartTime(userid));
+        map.put("SimpleTestTime",swUserMapper.getSimpleTestTime(userid));
         return map;
     }
 
