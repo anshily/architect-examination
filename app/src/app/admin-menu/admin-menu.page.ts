@@ -33,4 +33,9 @@ export class AdminMenuPage implements OnInit {
     userManagement(){
         this.navCtrl.navigateForward('/user-management').then();
     }
+
+    logout() {
+        localStorage.clear();
+        this.navCtrl.navigateForward('/login').then();
+    }
 }
