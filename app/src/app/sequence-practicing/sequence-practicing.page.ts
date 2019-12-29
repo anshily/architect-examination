@@ -152,6 +152,63 @@ export class SequencePracticingPage implements OnInit {
         }
     }
 
+    finish(){
+        if (this.questionArr[this.curQuestionIndex]['res']) {
+            let simple = this.questionArr[this.curQuestionIndex]['res'];
+            if (simple['childQuestionResult']) {
+                // sumStatus
+                this.questionArr[this.curQuestionIndex]['sumStatus'] = 1;
+                let wrong = false;
+                simple['childQuestionResult'].forEach(child => {
+                    if (child['res'] && child['res']['questionResult']) {
+                        let question = child['res']['questionResult'];
+                        if (!question['isRight']){
+                            wrong = true;
+                        }
+                        console.log(child);
+                        this.http.post(ROOT_URL + 'simple/test/add', {
+                            token: localStorage.getItem('user_token'),
+                            simpleTest: {
+                                question_id: question['question']['question_bank_id'],
+                                answer: question['userResult'].toString(),
+                                istrue: question['isRight'] ? 1 : 0
+                            }
+                        }).subscribe(res => {
+                            console.log(res);
+                        });
+                    }
+                });
+                if (wrong) {
+                    this.presentSumAlertConfirm('').then();
+                } else {
+                    this.finishAlertConfirm().then();
+                    return;
+                }
+            }
+            if (simple['questionResult']) {
+
+                let params = {
+                    token: localStorage.getItem('user_token'),
+                    simpleTest: {
+                        question_id: this.questionArr[this.curQuestionIndex]['question_bank_id'],
+                        answer: simple['questionResult']['userResult'].toString(),
+                        istrue: simple['questionResult']['isRight'] ? 1 : 0
+                    }
+                }
+                this.http.post(ROOT_URL + 'simple/test/add', params).subscribe(res => {
+                    console.log(res);
+                });
+                if (!simple['questionResult']['isRight']) {
+                    this.presentAlertConfirm(simple['questionResult']['userResult'].toString(),
+                        simple['questionResult']['rightResult'].toString());
+                }else {
+                    this.finishAlertConfirm().then();
+                    return;
+                }
+            }
+        }
+    }
+
     scrollToNext() {
         if (this.curQuestionIndex < this.questionLength - 1) {
             this.curQuestionIndex++;
@@ -214,6 +271,24 @@ export class SequencePracticingPage implements OnInit {
         const alert = await this.alertController.create({
             header: '做错了！',
             message: `请注意页面错题：【${err}】`,
+            buttons: [
+                {
+                    text: '我知道了',
+                    handler: () => {
+                        // console.log('Confirm Okay');
+                        // this.scrollToNext();
+                    }
+                }
+            ]
+        });
+
+        await alert.present();
+    }
+
+    async finishAlertConfirm() {
+        const alert = await this.alertController.create({
+            header: '提示',
+            message: `恭喜你完成了本次训练！`,
             buttons: [
                 {
                     text: '我知道了',

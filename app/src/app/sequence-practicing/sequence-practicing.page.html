@@ -44,8 +44,8 @@
       <ion-button *ngIf="questionLength - 1 > curQuestionIndex" shape="round" (click)="nextQuestion()">下一题
       </ion-button>
 
-      <!--<ion-button *ngIf="!(questionLength > curQuestionIndex)" shape="round" (click)="submitResult()">交卷-->
-      <!--</ion-button>-->
+      <ion-button *ngIf="(questionLength - 1 == curQuestionIndex)" shape="round" (click)="finish()">完成
+      </ion-button>
 
     </div>
 

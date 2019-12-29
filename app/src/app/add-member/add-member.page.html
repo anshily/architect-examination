@@ -21,24 +21,7 @@
   <ion-item>
     <ion-label>报名工种</ion-label>
     <ion-select placeholder="选择工种" [(ngModel)]="workType" okText="确定" cancelText="取消">
-      <ion-select-option value="1">A 类</ion-select-option>
-      <ion-select-option value="2">B 类</ion-select-option>
-      <ion-select-option value="3">C 类</ion-select-option>
-      <ion-select-option value="4">高处作业吊篮安装拆卸工</ion-select-option>
-      <ion-select-option value="5">建筑电工</ion-select-option>
-      <ion-select-option value="6">建筑焊工</ion-select-option>
-      <ion-select-option value="7">建筑普通脚手架架子工</ion-select-option>
-      <ion-select-option value="8">建筑起重信号司索工</ion-select-option>
-      <ion-select-option value="9">建筑施工升降机司机</ion-select-option>
-      <ion-select-option value="10">施工升降机安装拆卸工</ion-select-option>
-      <ion-select-option value="12">物料提升机安装拆卸工</ion-select-option>
-      <ion-select-option value="13">物料提升机司机</ion-select-option>
-      <ion-select-option value="14">新塔式起重机安装拆卸工</ion-select-option>
-      <ion-select-option value="15">新塔式起重机司机</ion-select-option>
-      <!--<ion-select-option value="5">安监特种工</ion-select-option>-->
-      <!--<ion-select-option value="6">中专学历</ion-select-option>-->
-      <!--<ion-select-option value="7">大专本科学历</ion-select-option>-->
-      <!--<ion-select-option value="8">助工</ion-select-option>-->
+      <ion-select-option *ngFor="let item of typeList" value="{{item['id']}}">{{item['name']}}</ion-select-option>
     </ion-select>
   </ion-item>
 

@@ -13,12 +13,19 @@ export class AddMemberPage implements OnInit {
     name;
     workType;
     idCard;
+    typeList = [];
 
     constructor(private http: HttpClient, private router: Router, public toastController: ToastController,
                 public alertController: AlertController, private navCtrl: NavController) {
     }
 
     ngOnInit() {
+        this.http.get(ROOT_URL + '/role/getRoleList').subscribe(res => {
+           if (res['code'] === 0) {
+               console.log(res);
+               this.typeList = res['data'];
+           }
+        });
     }
 
     // 注册用户
